@@ -69,6 +69,7 @@ public class ResourceManager : MonoBehaviour
                 {
                     Addressables.Release(handle);
                     m_handleDic.Remove(address);
+                    m_handleCountDic.Remove(address);
                 }
             }
         }

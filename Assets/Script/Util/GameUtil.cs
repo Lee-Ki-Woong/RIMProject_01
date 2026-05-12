@@ -1,16 +1,23 @@
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class GameUtil : MonoBehaviour
+public static class GameUtil
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static async UniTaskVoid PlayAudioSource(AudioSource audioSource, string address, bool isLoop)
     {
-        
+        AudioClip audioClip = await LoadUtil.LoadAudioClip(address);
+
+        if (isLoop)
+        {
+            audioSource.clip = audioClip;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.PlayOneShot(audioClip);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
