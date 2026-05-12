@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public partial class UIManager : MonoBehaviour
 {
     // [SerializeField]
     [SerializeField] private GameObject MyCanvas;
@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     private Transform UIFolder;
 
     private Dictionary<UIType, GameObject> m_uiListDic = new();
-    private Dictionary<UIType, UniTask<GameObject>> m_checkUniTaskDic = new(); 
     private HashSet<UIType> m_checkUIHash = new();
 
     // [Life Cycle]
@@ -24,83 +23,34 @@ public class UIManager : MonoBehaviour
         InstantiateCanvas().Forget();
     }
 
-
     // [Instantiate]
     private async UniTaskVoid InstantiateCanvas()
     {
         if (MyCanvas == null && UIFolder == null)
         {
-            MyCanvas = await ResourceManager.Instance.LoadAsset<GameObject>("Base/Canvas", destroyCancellationToken);
-            GameObject canvas = Instantiate(MyCanvas);
-            canvas.name = "UIFolder";
+            GameObject canvas = await ResourceManager.Instance.LoadAsset<GameObject>("Base/Canvas", destroyCancellationToken);
+            MyCanvas = Instantiate(canvas);
+            MyCanvas.name = "UIFolder";
             UIFolder = MyCanvas.transform;
         }
     }
 
 
-    // [Create UI]
-    private async UniTask<GameObject> CreateUIAsync(UIType uiType, CancellationToken token)
+    public void OpenUI(UIType uiType)
     {
-        GameObject ui = await ResourceManager.Instance.LoadAsset<GameObject>(uiType.ToString(), token);
-        if (ui == null) return null;
-
-        GameObject uiInstance = Instantiate(ui, UIFolder);
-        uiInstance.name = uiType.ToString();
-
-        return uiInstance;
+        if (m_uiListDic.TryGetValue(uiType, out GameObject ui) == false)
+        {
+            CreateUI(uiType).Forget();
+        }
     }
 
 
-    // [Open UI]
-    public async UniTask OepnUIAsync(UIType uiType, CancellationToken token)
+    private async UniTaskVoid CreateUI(UIType uiType)
     {
-        if (m_checkUIHash.Contains(uiType)) return;
-
-        if (m_uiListDic.TryGetValue(uiType, out GameObject ui))
-        {
-            ui.SetActive(true);
-            return;
-        }
-
-        if (m_checkUniTaskDic.TryGetValue(uiType, out UniTask<GameObject> uniTask))
-        {
-            await uniTask;
-            return;
-        }
-
-        UniTask<GameObject> newUniTask = CreateUIAsync(uiType, token);
-        m_checkUniTaskDic.Add(uiType, newUniTask);
-
-        try
-        {
-            GameObject newUI = await newUniTask;
-
-            if (newUI != null)
-            {
-                m_uiListDic.Add(uiType, newUI);
-                m_checkUIHash.Add(uiType);
-                newUI.SetActive(true);
-            }
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogException(e);
-            m_uiListDic.Remove(uiType);
-        }
-        finally
-        {
-            m_checkUniTaskDic.Remove(uiType);
-        }
+        string path = this.GetPath(uiType);
+        GameObject ui = await GameUtil
     }
 
-    public void CloseUI(UIType uiType)
-    {
-        if (m_checkUIHash.Contains(uiType) == false) return;
 
-        if (m_uiListDic.TryGetValue(uiType, out GameObject ui))
-        {
-            m_checkUIHash.Remove(uiType);
-            ui.SetActive(false);
-        }
-    }
+
 }
