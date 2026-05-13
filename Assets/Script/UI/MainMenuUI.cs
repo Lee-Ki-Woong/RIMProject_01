@@ -4,7 +4,11 @@ using UnityEngine.UI;
 public class MainMenuUI : BaseUI
 {
     // [SerializeField]
-    [SerializeField] private Button PlayBGMBtn;
+    [SerializeField] private Button PlayGameBtn;
+    [SerializeField] private Button MyColletionBtn;
+    [SerializeField] private Button ShopBtn;
+    [SerializeField] private Button GameOptionBtn;
+    [SerializeField] private Button ExitGameBtn;
 
 
     // [Life Cycle]
@@ -16,13 +20,9 @@ public class MainMenuUI : BaseUI
     // [BindBtnEvent]
     private void BindBtnEvent()
     {
-        PlayBGMBtn.onClick.AddListener(OnClickPlayBGMBtn);
     }
 
     // [Btn Handles]
-    private void OnClickPlayBGMBtn()
-    {
-        SoundManager.Instance.PlayBGM();
-    }
+
 
 }

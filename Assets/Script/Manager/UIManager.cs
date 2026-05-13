@@ -1,48 +1,78 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public partial class UIManager : MonoBehaviour
 {
     // [SerializeField]
-    [SerializeField] private GameObject MyCanvas;
+    [SerializeField] private GameObject BackGroundUICanvas;
+    [SerializeField] private GameObject MainUICanvas;
+    [SerializeField] private GameObject ContentUICanvas;
+    [SerializeField] private GameObject PopupUICanvas;
+    [SerializeField] private GameObject TopUICanvas;
 
     // [Field]
     public static UIManager Instance {  get; private set; }
-    private Transform UIFolder;
 
     private Dictionary<UIType, GameObject> m_uiListDic = new();
     private HashSet<UIType> m_checkUIHash = new();
+
+    private int sort = 0;
 
     // [Life Cycle]
     private void Awake()
     {
         if(Instance == null) Instance = this;
-
-        InstantiateCanvas().Forget();
+        LoadCanvas().Forget();
     }
 
     private void Start()
     {
     }
 
-    // [Instantiate]
-    private async UniTaskVoid InstantiateCanvas()
+    // [Instantiate Canvas]
+    private async UniTaskVoid LoadCanvas()
     {
-        if (MyCanvas == null && UIFolder == null)
-        {
-            GameObject canvas = await ResourceManager.Instance.LoadAsset<GameObject>("Base/Canvas", destroyCancellationToken);
-            MyCanvas = Instantiate(canvas);
-            MyCanvas.name = "UIFolder";
-            UIFolder = MyCanvas.transform;
-        }
+        (BackGroundUICanvas, MainUICanvas, ContentUICanvas, PopupUICanvas, TopUICanvas)
+        = await UniTask.WhenAll(
+        InstantiateCanvasAsync(BackGroundUICanvas),
+        InstantiateCanvasAsync(MainUICanvas),
+        InstantiateCanvasAsync(ContentUICanvas),
+        InstantiateCanvasAsync(PopupUICanvas),
+        InstantiateCanvasAsync(TopUICanvas)
+        );
 
-        this.OpenBackGround();
-        
-        this.OpenMainUI();
+        GetSort(BackGroundUICanvas);
+        GetSort(MainUICanvas);
+        GetSort(ContentUICanvas);
+        GetSort(PopupUICanvas);
+        GetSort(TopUICanvas);
     }
 
 
+    private async UniTask<GameObject> InstantiateCanvasAsync(GameObject canvas)
+    {
+        if (canvas == null)
+        {
+            GameObject loadCanvas = await ResourceManager.Instance.LoadAsset<GameObject>("Base/Canvas", destroyCancellationToken);
+            GameObject canvasInstance = Instantiate(loadCanvas);
+            
+            return canvasInstance;
+        }
+
+        return canvas;
+    }
+
+
+    private void GetSort(GameObject gameObject)
+    {
+        Canvas canvas = gameObject.GetComponent<Canvas>();
+        canvas.sortingOrder = sort++;
+    }
+
+
+    // [OpenUI]
     public void OpenUI(UIType uiType)
     {
         if(m_checkUIHash.Contains(uiType)) return;
@@ -58,7 +88,7 @@ public partial class UIManager : MonoBehaviour
         CreateUI(uiType).Forget();
     }
 
-
+    // [CreateUI]
     private async UniTaskVoid CreateUI(UIType uiType)
     {
         m_checkUIHash.Add(uiType);
@@ -72,12 +102,13 @@ public partial class UIManager : MonoBehaviour
             return;
         }
 
-        GameObject uiInstance = Instantiate(ui, UIFolder);
+        GameObject uiInstance = Instantiate(ui);
         m_uiListDic.Add(uiType, uiInstance);
         uiInstance.SetActive(true);
     }
 
 
+    // [CloseUI]
     public void CloseUI(UIType uiType)
     {
         if (m_checkUIHash.Contains(uiType))
