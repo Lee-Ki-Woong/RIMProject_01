@@ -1,16 +1,15 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public partial class UIManager : MonoBehaviour
 {
     // [SerializeField]
-    [SerializeField] private GameObject BackGroundUICanvas;
-    [SerializeField] private GameObject MainUICanvas;
-    [SerializeField] private GameObject ContentUICanvas;
-    [SerializeField] private GameObject PopupUICanvas;
-    [SerializeField] private GameObject TopUICanvas;
+    [SerializeField] private Canvas BackGroundUICanvas;
+    [SerializeField] private Canvas MainUICanvas;
+    [SerializeField] private Canvas ContentUICanvas;
+    [SerializeField] private Canvas PopupUICanvas;
+    [SerializeField] private Canvas TopUICanvas;
 
     // [Field]
     public static UIManager Instance {  get; private set; }
@@ -24,53 +23,11 @@ public partial class UIManager : MonoBehaviour
     private void Awake()
     {
         if(Instance == null) Instance = this;
-        LoadCanvas().Forget();
     }
 
     private void Start()
     {
     }
-
-    // [Instantiate Canvas]
-    private async UniTaskVoid LoadCanvas()
-    {
-        (BackGroundUICanvas, MainUICanvas, ContentUICanvas, PopupUICanvas, TopUICanvas)
-        = await UniTask.WhenAll(
-        InstantiateCanvasAsync(BackGroundUICanvas),
-        InstantiateCanvasAsync(MainUICanvas),
-        InstantiateCanvasAsync(ContentUICanvas),
-        InstantiateCanvasAsync(PopupUICanvas),
-        InstantiateCanvasAsync(TopUICanvas)
-        );
-
-        GetSort(BackGroundUICanvas);
-        GetSort(MainUICanvas);
-        GetSort(ContentUICanvas);
-        GetSort(PopupUICanvas);
-        GetSort(TopUICanvas);
-    }
-
-
-    private async UniTask<GameObject> InstantiateCanvasAsync(GameObject canvas)
-    {
-        if (canvas == null)
-        {
-            GameObject loadCanvas = await ResourceManager.Instance.LoadAsset<GameObject>("Base/Canvas", destroyCancellationToken);
-            GameObject canvasInstance = Instantiate(loadCanvas);
-            
-            return canvasInstance;
-        }
-
-        return canvas;
-    }
-
-
-    private void GetSort(GameObject gameObject)
-    {
-        Canvas canvas = gameObject.GetComponent<Canvas>();
-        canvas.sortingOrder = sort++;
-    }
-
 
     // [OpenUI]
     public void OpenUI(UIType uiType)

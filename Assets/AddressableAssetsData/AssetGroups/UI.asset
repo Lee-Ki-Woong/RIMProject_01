@@ -16,12 +16,12 @@ MonoBehaviour:
   m_GUID: 7249909698a83584d86b0f2928f3d048
   m_SerializeEntries:
   - m_GUID: 419f40309b5e34d49ab051937ace893f
-    m_Address: UI/BackGround
+    m_Address: UI/BackGround/UI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fcde4c428b7dace4ba4ce160fe7cfc42
-    m_Address: UI/MainUI
+    m_Address: UI/MainMenu/UI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
