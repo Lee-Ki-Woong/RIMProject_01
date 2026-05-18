@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
 {
-    // [Field]
+    // [Instance]
     public static NetworkManager Instance;
 
 

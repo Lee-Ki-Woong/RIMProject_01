@@ -25,14 +25,20 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void Start()
+    {
+        UI.OpenUI(UIRootType.BackGroundUI, UIType.BackGround);
+        UI.OpenUI(UIRootType.MainUI, UIType.MainMenu);
+    }
+
     private void SavePlayerModel()
     {
-        NetworkManager.Instance.RequestSavePlayerModel(PlayerModel);
+        Network.RequestSavePlayerModel(PlayerModel);
     }
 
     private void LoadPlayerModel()
     {
-        PlayerModel = NetworkManager.Instance.RequestLoadPlayerModel();
+        PlayerModel = Network.RequestLoadPlayerModel();
     }
 
     public void Save()

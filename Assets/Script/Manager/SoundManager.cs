@@ -2,12 +2,14 @@
 
 public class SoundManager : MonoBehaviour
 {
+    // [Instance]
+    public static SoundManager Instance { get; private set; }
+
+
     // [SerializeField]
     [SerializeField] private AudioSource BGMSound;
     [SerializeField] private AudioSource SFXSound;
 
-    // [Field]
-    public static SoundManager Instance {  get; private set; }
 
     // [Life Cycle]
     private void Awake()
@@ -17,6 +19,6 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM()
     {
-        GameUtil.PlayAudioSource(BGMSound, "Sound/OpeningBGM", true).Forget();
+        GameUtil.PlayAudioSource(BGMSound, "Sound/OpeningBGM", true, this.destroyCancellationToken).Forget();
     }
 }

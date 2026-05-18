@@ -1,23 +1,28 @@
-﻿using System.IO;
-using UnityEngine;
-
-public static class UIManagerExtension
+﻿public static class UIManagerExtension
 {
-    public static string GetPath(this UIManager uiManage, UIType uiType)
+    public static string GetPath(this UIManager uiManage, UIRootType uiRootType, UIType uiType)
     {
-        string path = uiType.ToString();
+        string path = $"UI/{uiRootType}/{uiType}";
         return path;
     }
 
     public static void OpenBackGround(this UIManager uiManager)
     {
-        uiManager.OpenUI(UIType.BackGround);
-
+        uiManager.OpenUI(UIRootType.BackGroundUI, UIType.BackGround);
     }
 
     public static void OpenMainUI(this UIManager uiManager)
     {
-        uiManager.OpenUI(UIType.Main);
+        uiManager.OpenUI(UIRootType.MainUI, UIType.MainMenu);
     }
 
+    public static void OpenLoadingUI(this UIManager uiManager)
+    {
+        uiManager.OpenUI(UIRootType.TopUI, UIType.LoadingPopup);
+    }
+
+    public static void OpenInGameOptionUI(this UIManager uiManager)
+    {
+        uiManager.OpenUI(UIRootType.PopupUI, UIType.InGameOptionPopup);
+    }
 }

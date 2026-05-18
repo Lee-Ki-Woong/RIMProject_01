@@ -7,11 +7,14 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class ResourceManager : MonoBehaviour
 {
-    // [Field]
+    // [Instance]
     public static ResourceManager Instance {  get; private set; }
 
+
+    // [Field]
     private Dictionary<string, AsyncOperationHandle> m_handleDic = new();
     private Dictionary<string, int> m_handleCountDic = new();
+
 
     // [Life Cycle]
     private void Awake()
@@ -19,34 +22,40 @@ public class ResourceManager : MonoBehaviour
         if(Instance == null) Instance = this;
     }
 
+
+    // [Load Asset]
     public async UniTask<T> LoadAsset<T> (string address, CancellationToken token = default) where T : Object
     {
         if(m_handleDic.TryGetValue(address, out AsyncOperationHandle handle) && handle.IsValid())
         {
-            if(handle.IsDone == false)
-            {
-                await handle.ToUniTask(cancellationToken : token);
-            }
-
+            await handle.ToUniTask(cancellationToken : token);
             m_handleCountDic[address]++;
             return handle.Result as T;
         }
 
         AsyncOperationHandle<T> newHandle = Addressables.LoadAssetAsync<T>(address);
         m_handleDic.Add(address, newHandle);
-        m_handleCountDic.Add(address, 0);
+        m_handleCountDic.Add(address, 1);
 
         try
         {
-            m_handleCountDic[address]++;
-            await newHandle.ToUniTask(cancellationToken : token);
+            await newHandle.ToUniTask(cancellationToken: token);
             return newHandle.Result;
         }
-        catch(System.Exception ex)
+        catch (System.OperationCanceledException)
+        {
+            m_handleCountDic.Remove(address);
+            m_handleDic.Remove(address);
+            if (newHandle.IsValid()) Addressables.Release(newHandle);
+
+
+            return null;
+        }
+        catch (System.Exception ex)
         {
             Debug.LogException(ex);
 
-            if(m_handleDic.ContainsKey(address))
+            if (m_handleDic.ContainsKey(address))
             {
                 m_handleCountDic.Remove(address);
                 m_handleDic.Remove(address);
@@ -57,6 +66,8 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+
+    // [UnLoad Asset]
     public void UnLoadAsset<T>(string address) where T : Object
     {
         if (m_handleCountDic.ContainsKey(address))

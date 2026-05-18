@@ -1,13 +1,16 @@
-﻿
-
-public enum UIType : byte
+﻿public enum UIType : short
 {
     BackGround = 0,
-    Main = 1,
-    MyCollection = 11,
-    GameOption = 12,
 
-    InGame = 2,
+    MainMenu = 100,
+    InGame = 101,
+
+    MyCollection = 301,
+    GameOption = 301,
+
+    InGameOptionPopup = 399,
+
+    LoadingPopup = 500,
 }
 
 public enum UIRootType : byte
