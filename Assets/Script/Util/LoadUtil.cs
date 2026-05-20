@@ -1,6 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Threading;
+using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public static class LoadUtil
 {
@@ -27,6 +29,14 @@ public static class LoadUtil
         if (audioClip == null) LogError(address);
 
         return audioClip;
+    }
+
+    public static async UniTask<TMP_FontAsset> LoadFontAssetAsync(string address, CancellationToken token)
+    {
+        TMP_FontAsset fontAsset = await ResourceManager.Instance.LoadAsset<TMP_FontAsset>(address, token);
+        if(fontAsset == null) LogError(address);
+
+        return fontAsset;
     }
 
 

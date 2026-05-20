@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
+using TMPro;
 using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
@@ -30,5 +31,18 @@ public abstract class BaseUI : MonoBehaviour
     }
 
     public virtual async UniTask SetAssetAsync() { }
+
+
+    protected async UniTask<Sprite> MenuBtn()
+    {
+        Sprite sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
+        return sprite;
+    }
+
+    protected async UniTask<TMP_FontAsset> BaseFont()
+    {
+        TMP_FontAsset fontAsset = await LoadUtil.LoadFontAssetAsync("Font/BaseFont", destroyCancellationToken);
+        return fontAsset;
+    }
 
 }

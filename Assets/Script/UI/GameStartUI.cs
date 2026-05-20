@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +9,12 @@ public class GameStartUI : BaseUI
     [Header("StoryModeBtn")]
     [SerializeField] private Button StoryModeBtn;
     [SerializeField] private Image StoryModeBtnImage;
+    [SerializeField] private TMP_Text StoryModeText;
 
     [Header("ReturnBtn")]
     [SerializeField] private Button ReturnBtn;
     [SerializeField] private Image ReturnBtnImage;
-
+    [SerializeField] private TMP_Text ReturnText;
 
     // [Field]
 
@@ -29,8 +30,13 @@ public class GameStartUI : BaseUI
     // [Set Asset]
     public override async UniTask SetAssetAsync()
     {
-        StoryModeBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
-        ReturnBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
+        StoryModeBtnImage.sprite = await MenuBtn();
+        StoryModeText.font = await BaseFont();
+        StoryModeText.text = "스토리 모드";
+
+        ReturnBtnImage.sprite = await MenuBtn();
+        ReturnText.font = await BaseFont();
+        ReturnText.text = "돌아가기";
 
         m_isAssetLoad = true;
     }
@@ -38,15 +44,16 @@ public class GameStartUI : BaseUI
 
 
 
-    // [BindAllBtnEvent]
+    // [Bind All Btn Event]
     private void BindAllBtnEvent()
     {
         StoryModeBtn.onClick.AddListener(OnClick_StoryMode);
+
         ReturnBtn.onClick.AddListener(OnClick_Return);
     }
 
 
-    // [BindBtnEvent]
+    // [Bind Btn Event]
     private void OnClick_StoryMode()
     {
         

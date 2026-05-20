@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public partial class UIManager : MonoBehaviour
 {
@@ -95,12 +96,29 @@ public partial class UIManager : MonoBehaviour
     }
 
 
-
-    public void OpenLoadingUI()
+    // [MyCollectionUI]
+    public async UniTaskVoid OpenMyCollectionUI()
     {
-    }
+        MyCollectionUI myCollectionUI = CreateUI<MyCollectionUI>(UIRootType.MainUI, UIType.MyCollection);
+        if(myCollectionUI == null) return;
 
-    public void OpenInGameOptionUI()
-    {
+        myCollectionUI.SetUIName("MyCollectionUI");
+
+        if(myCollectionUI.m_isAssetLoad)
+        {
+            OpenUI(UIRootType.MainUI, UIType.MyCollection);
+            return;
+        }
+
+        try
+        {
+            await myCollectionUI.SetAssetAsync();
+        }
+        catch (System.OperationCanceledException)
+        {
+            return;
+        }
+
+        OpenUI(UIRootType.MainUI, UIType.MyCollection);
     }
 }
