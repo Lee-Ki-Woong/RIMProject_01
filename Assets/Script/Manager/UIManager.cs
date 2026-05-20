@@ -1,6 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public partial class UIManager : MonoBehaviour
@@ -18,7 +16,7 @@ public partial class UIManager : MonoBehaviour
     
     
     // [Field]
-    private Dictionary<UIType, GameObject> m_uiListDic = new();
+    private Dictionary<UIType, BaseUI> m_uiListDic = new();
     private HashSet<UIType> m_checkUIHash = new();
 
 
@@ -35,45 +33,93 @@ public partial class UIManager : MonoBehaviour
         if(m_checkUIHash.Contains(uiType)) return;
 
 
-        if (m_uiListDic.TryGetValue(uiType, out GameObject ui))
+        if (m_uiListDic.TryGetValue(uiType, out BaseUI baseUI))
         {
-            ui.SetActive(true);
+            baseUI.SetActiveTrue();
             m_checkUIHash.Add(uiType);
             return;
         }
 
-        CreateUI(uiRootType, uiType, this.destroyCancellationToken).Forget();
+        BaseUI newBaseUI = CreateUI<BaseUI>(uiRootType, uiType);
+        if (newBaseUI == null) return;
+
+        newBaseUI.SetActiveTrue();
+        m_checkUIHash.Add(uiType);
     }
 
 
     // [CreateUI]
-    private async UniTaskVoid CreateUI(UIRootType uiRootType, UIType uiType, CancellationToken token)
+
+    //private async UniTaskVoid CreateUIAsync(UIRootType uiRootType, UIType uiType, CancellationToken token)
+    //{
+    //    m_checkUIHash.Add(uiType);
+    //    string path = this.GetPath(uiRootType, uiType);
+
+    //    try
+    //    {
+    //        GameObject ui = await LoadUtil.LoadPrefabAsync(path, token);
+
+    //        if (ui == null)
+    //        {
+    //            Debug.LogError($"{this.gameObject.name} : {path}의 로드에 실패하였습니다.");
+    //            m_checkUIHash.Remove(uiType);
+    //            return;
+    //        }
+
+    //        Canvas canvas = SetCanvas(uiRootType);
+    //        if (canvas == null) return;
+
+    //        GameObject uiInstance = Instantiate(ui, canvas.transform);
+    //        m_uiListDic.Add(uiType, uiInstance);
+    //        uiInstance.SetActive(true);
+    //    }
+    //    catch(System.OperationCanceledException)
+    //    {
+    //        m_checkUIHash.Remove(uiType);
+    //    }
+    //}
+
+    public T CreateUI<T>(UIRootType uiRootType, UIType uiType) where T : BaseUI
     {
-        m_checkUIHash.Add(uiType);
+        if(m_uiListDic.TryGetValue(uiType, out BaseUI baseUI))
+        {
+            return baseUI as T;
+        }
+
         string path = this.GetPath(uiRootType, uiType);
 
-        try
+
+        GameObject prefab = LoadUtil.LoadPrefab(path);
+        
+        if (prefab == null)
         {
-            GameObject ui = await LoadUtil.LoadPrefab(path, token);
-
-            if (ui == null)
-            {
-                Debug.LogError($"{this.gameObject.name} : {path}의 로드에 실패하였습니다.");
-                m_checkUIHash.Remove(uiType);
-                return;
-            }
-
-            Canvas canvas = SetCanvas(uiRootType);
-            if (canvas == null) return;
-
-            GameObject uiInstance = Instantiate(ui, canvas.transform);
-            m_uiListDic.Add(uiType, uiInstance);
-            uiInstance.SetActive(true);
+            Debug.LogError($"{this.gameObject.name} : {path}의 로드에 실패하였습니다!!");
+            return null;
         }
-        catch(System.OperationCanceledException)
+
+
+        Canvas canvas = SetCanvas(uiRootType);
+
+        if (canvas == null)
         {
-            m_checkUIHash.Remove(uiType);
+            Debug.LogError($"{this.gameObject.name} : {uiRootType}의 캔버스가 없습니다!!");
+            return null;
         }
+
+
+        BaseUI baseUIComponent = Instantiate(prefab, canvas.transform).GetComponent<BaseUI>();
+
+        if(baseUIComponent == null)
+        {
+            Debug.LogError("BaseUI 컴포넌트가 없습니다!!");
+            return null;
+        }
+
+
+        baseUIComponent.SetActiveFalse();
+
+        m_uiListDic.Add(uiType, baseUIComponent);
+        return baseUIComponent as T;
     }
 
 
@@ -82,9 +128,9 @@ public partial class UIManager : MonoBehaviour
     {
         if (m_checkUIHash.Contains(uiType))
         {
-            if (m_uiListDic.TryGetValue(uiType, out GameObject ui))
+            if (m_uiListDic.TryGetValue(uiType, out BaseUI baseUI))
             {
-                ui.SetActive(false);
+                baseUI.SetActiveFalse();
                 m_checkUIHash.Remove(uiType);
             }
         }

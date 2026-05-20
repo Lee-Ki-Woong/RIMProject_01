@@ -392,8 +392,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6909738878354872419}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.055, y: 0.7}
-  m_AnchorMax: {x: 0.505, y: 0.9}
+  m_AnchorMin: {x: 0.05, y: 0.7}
+  m_AnchorMax: {x: 0.5, y: 0.9}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -972,6 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b6439e1e22d1a4bbda1f9e94688b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuUI
+  TitleImage: {fileID: 300160923006559754}
   PlayGameBtn: {fileID: 0}
   MyColletionBtn: {fileID: 0}
   ShopBtn: {fileID: 0}

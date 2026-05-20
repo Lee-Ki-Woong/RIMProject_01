@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: UI
+  m_Name: Sprite
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: UI
-  m_GUID: 7249909698a83584d86b0f2928f3d048
-  m_SerializeEntries: []
+  m_GroupName: Sprite
+  m_GUID: 2bd3216ae42df2144babb979f55973bf
+  m_SerializeEntries:
+  - m_GUID: 3b852732836be544c9a5e2fbf1abb1ff
+    m_Address: Sprite/MainMenu/TitleTextSprite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: a0f2fc6017929e24abc2315c3bfafac1, type: 2}
-    - {fileID: 11400000, guid: 811dc6451cf02a043a6213ebd86f1711, type: 2}
+    - {fileID: 11400000, guid: bce7fd7940ef70c4888813b25a8ea75f, type: 2}
+    - {fileID: 11400000, guid: 9358a33e4389c8848a77334a31368588, type: 2}

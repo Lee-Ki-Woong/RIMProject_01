@@ -12,12 +12,12 @@ public static class LoadUtil
         return sprite;
     }
 
-    public static async UniTask<GameObject> LoadPrefab(string address, CancellationToken token)
+    public static async UniTask<GameObject> LoadPrefabAsync(string address, CancellationToken token)
     {
-        GameObject gameOjbect = await ResourceManager.Instance.LoadAsset<GameObject>(address, token);
-        if (gameOjbect == null) LogError(address);
+        GameObject GameObject = await ResourceManager.Instance.LoadAsset<GameObject>(address, token);
+        if (GameObject == null) LogError(address);
 
-        return gameOjbect;
+        return GameObject;
     }
 
     public static async UniTask<AudioClip> LoadAudioClip(string address, CancellationToken token)
@@ -26,6 +26,14 @@ public static class LoadUtil
         if (audioClip == null) LogError(address);
 
         return audioClip;
+    }
+
+    public static GameObject LoadPrefab(string path)
+    {
+        GameObject gameObject = (GameObject)Resources.Load(path);
+        if (gameObject == null) LogError(path);
+
+        return gameObject;
     }
 
     private static void LogError(string address)

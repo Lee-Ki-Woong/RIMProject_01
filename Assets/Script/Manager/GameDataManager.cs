@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
@@ -12,13 +11,17 @@ public class GameDataManager : MonoBehaviour
     // [Field]
     public Dictionary<string, CharacterData> m_characterDataList { get; private set; } = new();
 
-
+    [Serializable]
+    private class SerializableWrapper<T>
+    {
+        public List<T> m_Wrapper;
+    }
 
 
     // [Life Cycle]
     private void Awake()
     {
-        if(Instance == null) Instance = this;
+        if (Instance == null) Instance = this;
     }
 
 
@@ -38,7 +41,7 @@ public class GameDataManager : MonoBehaviour
         try
         {
             string jsonData = loadTextAsset.text;
-
+            string wrapperData = "(\"m_Wrapper\":" + jsonData + ")";
 
 
 
