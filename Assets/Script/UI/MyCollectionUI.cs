@@ -6,25 +6,25 @@ using UnityEngine.UI;
 public class MyCollectionUI : BaseUI
 {
     // [SerializeField]
-    [Header("CharacterCollection")]
-    [SerializeField] private Button CharacterCollectionBtn;
-    [SerializeField] private Image CharacterCollectionBtnImage;
-    [SerializeField] private TMP_Text CharacterCollectionText;
+    [Header("Character Collection")]
+    [SerializeField] private Button Button_CharacterCollection;
+    [SerializeField] private Image Image_CharacterCollectionButton;
+    [SerializeField] private TMP_Text Text_CharacterCollection;
 
-    [Header("WeaponCollection")]
-    [SerializeField] private Button WeaponCollectionBtn;
-    [SerializeField] private Image WeaponCollectionBtnImage;
-    [SerializeField] private TMP_Text WeaponCollectionText;
+    [Header("Weapon Collection")]
+    [SerializeField] private Button Button_WeaponCollection;
+    [SerializeField] private Image Image_WeaponCollectionButton;
+    [SerializeField] private TMP_Text Text_WeaponCollection;
 
-    [Header("ArtifactCollection")]
-    [SerializeField] private Button ArtifactCollectionBtn;
-    [SerializeField] private Image ArtifactCollectionBtnImage;
-    [SerializeField] private TMP_Text ArtifactCollectionText;
+    [Header("Artifact Collection")]
+    [SerializeField] private Button Button_ArtifactCollection;
+    [SerializeField] private Image Image_ArtifactCollctionButton;
+    [SerializeField] private TMP_Text Text_ArtifactCollection;
 
     [Header("Return")]
-    [SerializeField] private Button ReturnBtn;
-    [SerializeField] private Image ReturnBtnImage;
-    [SerializeField] private TMP_Text ReturnText;
+    [SerializeField] private Button Button_Return;
+    [SerializeField] private Image Image_ReturnButton;
+    [SerializeField] private TMP_Text Text_Return;
 
 
     // [Lift Cycle]
@@ -40,21 +40,21 @@ public class MyCollectionUI : BaseUI
     {
         (Sprite menuBtnSprite, TMP_FontAsset baseFont) = await UniTask.WhenAll(MenuBtnSprite(), BaseFont());
 
-        CharacterCollectionBtnImage.sprite = menuBtnSprite;
-        CharacterCollectionText.font = baseFont;
-        CharacterCollectionText.text = "캐릭터 컬렉션";
+        Image_CharacterCollectionButton.sprite = menuBtnSprite;
+        Text_CharacterCollection.font = baseFont;
+        Text_CharacterCollection.text = "캐릭터 컬렉션";
 
-        WeaponCollectionBtnImage.sprite = menuBtnSprite;
-        WeaponCollectionText.font = baseFont;
-        WeaponCollectionText.text = "무기 컬렉션";
+        Image_WeaponCollectionButton.sprite = menuBtnSprite;
+        Text_WeaponCollection.font = baseFont;
+        Text_WeaponCollection.text = "무기 컬렉션";
 
-        ArtifactCollectionBtnImage.sprite = menuBtnSprite;
-        ArtifactCollectionText.font = baseFont;
-        ArtifactCollectionText.text = "아티팩트 컬렉션";
+        Image_ArtifactCollctionButton.sprite = menuBtnSprite;
+        Text_ArtifactCollection.font = baseFont;
+        Text_ArtifactCollection.text = "아티팩트 컬렉션";
 
-        ReturnBtnImage.sprite = menuBtnSprite;
-        ReturnText.font = baseFont;
-        ReturnText.text = "돌아가기";
+        Image_ReturnButton.sprite = menuBtnSprite;
+        Text_Return.font = baseFont;
+        Text_Return.text = "돌아가기";
 
     }
 
@@ -62,11 +62,11 @@ public class MyCollectionUI : BaseUI
     // [Bind All Btn Event]
     private void BindAllBtnEvent()
     {
-        CharacterCollectionBtn.onClick.AddListener(OnClick_CharacterCollection);
-        WeaponCollectionBtn.onClick.AddListener(OnClick_WeaponCollection);
-        ArtifactCollectionBtn.onClick.AddListener(OnClick_ArtifactCollection);
+        Button_CharacterCollection.onClick.AddListener(OnClick_CharacterCollection);
+        Button_WeaponCollection.onClick.AddListener(OnClick_WeaponCollection);
+        Button_ArtifactCollection.onClick.AddListener(OnClick_ArtifactCollection);
 
-        ReturnBtn.onClick.AddListener(OnClick_Return);
+        Button_Return.onClick.AddListener(OnClick_Return);
     }
 
 

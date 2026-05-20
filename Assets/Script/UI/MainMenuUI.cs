@@ -6,30 +6,30 @@ using UnityEngine.UI;
 public class MainMenuUI : BaseUI
 {
     // [SerializeField]
-    [Header("PlayGameBtn")]
-    [SerializeField] private Button PlayGameBtn;
-    [SerializeField] private Image PlayGameBtnImage;
-    [SerializeField] private TMP_Text PlayGameText;
+    [Header("Play Game")]
+    [SerializeField] private Button Button_PlayGame;
+    [SerializeField] private Image Image_PlayGameButton;
+    [SerializeField] private TMP_Text Text_PlayGame;
 
-    [Header("MyCollectionBtn")]
-    [SerializeField] private Button MyCollectionBtn;
-    [SerializeField] private Image MyCollectionBtnImage;
-    [SerializeField] private TMP_Text MyCollectionText;
+    [Header("My Collection")]
+    [SerializeField] private Button Button_MyCollection;
+    [SerializeField] private Image Image_MyCollectionButton;
+    [SerializeField] private TMP_Text Text_MyCollection;
 
-    [Header("ShopBtn")]
-    [SerializeField] private Button ShopBtn;
-    [SerializeField] private Image ShopBtnImage;
-    [SerializeField] private TMP_Text ShopText;
+    [Header("Shop")]
+    [SerializeField] private Button Button_Shop;
+    [SerializeField] private Image Image_ShopButton;
+    [SerializeField] private TMP_Text Text_Shop;
 
-    [Header("GameOptionBtn")]
-    [SerializeField] private Button GameOptionBtn;
-    [SerializeField] private Image GameOptionBtnImage;
-    [SerializeField] private TMP_Text GameOptionText;
+    [Header("Game Option")]
+    [SerializeField] private Button Button_GameOption;
+    [SerializeField] private Image Image_GameOptionButton;
+    [SerializeField] private TMP_Text Text_GameOption;
 
-    [Header("ExitGameBtn")]
-    [SerializeField] private Button ExitGameBtn;
-    [SerializeField] private Image ExitGameBtnImage;
-    [SerializeField] private TMP_Text ExitGameText;
+    [Header("Exit Game")]
+    [SerializeField] private Button Button_ExitGame;
+    [SerializeField] private Image Image_ExitGameButton;
+    [SerializeField] private TMP_Text Text_ExitGame;
 
     // [Field]
 
@@ -48,26 +48,26 @@ public class MainMenuUI : BaseUI
         (Sprite menuBtnSprite, TMP_FontAsset baseFont) = await UniTask.WhenAll(MenuBtnSprite(), BaseFont());
 
 
-        PlayGameBtnImage.sprite = menuBtnSprite;
-        PlayGameText.font = baseFont;
-        PlayGameText.text = "게임 시작";
+        Image_PlayGameButton.sprite = menuBtnSprite;
+        Text_PlayGame.font = baseFont;
+        Text_PlayGame.text = "게임 시작";
 
 
-        MyCollectionBtnImage.sprite = menuBtnSprite;
-        MyCollectionText.font = baseFont;
-        MyCollectionText.text = "내 콜렉션";
+        Image_MyCollectionButton.sprite = menuBtnSprite;
+        Text_MyCollection.font = baseFont;
+        Text_MyCollection.text = "내 콜렉션";
 
-        ShopBtnImage.sprite = menuBtnSprite;
-        ShopText.font = baseFont;
-        ShopText.text = "샵";
+        Image_ShopButton.sprite = menuBtnSprite;
+        Text_Shop.font = baseFont;
+        Text_Shop.text = "샵";
 
-        GameOptionBtnImage.sprite = menuBtnSprite;
-        GameOptionText.font = baseFont;
-        GameOptionText.text = "게임 옵션";
+        Image_GameOptionButton.sprite = menuBtnSprite;
+        Text_GameOption.font = baseFont;
+        Text_GameOption.text = "게임 옵션";
 
-        ExitGameBtnImage.sprite = menuBtnSprite;
-        ExitGameText.font = baseFont;
-        ExitGameText.text = "게임 종료";
+        Image_ExitGameButton.sprite = menuBtnSprite;
+        Text_ExitGame.font = baseFont;
+        Text_ExitGame.text = "게임 종료";
 
         m_isAssetLoad = true;
     }
@@ -76,12 +76,12 @@ public class MainMenuUI : BaseUI
     // [Bind All Btn Event]
     private void BindAllBtnEvent()
     {
-        PlayGameBtn.onClick.AddListener(OnClick_PlayGame);
-        MyCollectionBtn.onClick.AddListener(OnClick_OpenMyCollectionUI);
-        ShopBtn.onClick.AddListener(OnClick_OpenShopUI);
-        GameOptionBtn.onClick.AddListener(OnClick_OpenGameOptionUI);
+        Button_PlayGame.onClick.AddListener(OnClick_PlayGame);
+        Button_MyCollection.onClick.AddListener(OnClick_OpenMyCollectionUI);
+        Button_Shop.onClick.AddListener(OnClick_OpenShopUI);
+        Button_GameOption.onClick.AddListener(OnClick_OpenGameOptionUI);
 
-        ExitGameBtn.onClick.AddListener(OnClick_ExitGame);
+        Button_ExitGame.onClick.AddListener(OnClick_ExitGame);
     }
 
 

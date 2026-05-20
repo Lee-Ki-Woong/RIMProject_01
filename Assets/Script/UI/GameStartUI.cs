@@ -7,14 +7,14 @@ public class GameStartUI : BaseUI
 {
     // [SerializeField]
     [Header("StoryModeBtn")]
-    [SerializeField] private Button StoryModeBtn;
-    [SerializeField] private Image StoryModeBtnImage;
-    [SerializeField] private TMP_Text StoryModeText;
+    [SerializeField] private Button Button_StoryMode;
+    [SerializeField] private Image Image_StoryModeButton;
+    [SerializeField] private TMP_Text Text_StoryMode;
 
     [Header("ReturnBtn")]
-    [SerializeField] private Button ReturnBtn;
-    [SerializeField] private Image ReturnBtnImage;
-    [SerializeField] private TMP_Text ReturnText;
+    [SerializeField] private Button Button_Return;
+    [SerializeField] private Image Image_ReturnButton;
+    [SerializeField] private TMP_Text Text_Return;
 
     // [Field]
 
@@ -33,13 +33,13 @@ public class GameStartUI : BaseUI
         (Sprite menuBtnSprite, TMP_FontAsset baseFont) = await UniTask.WhenAll(MenuBtnSprite(), BaseFont());
 
 
-        StoryModeBtnImage.sprite = menuBtnSprite;
-        StoryModeText.font = baseFont;
-        StoryModeText.text = "스토리 모드";
+        Image_StoryModeButton.sprite = menuBtnSprite;
+        Text_StoryMode.font = baseFont;
+        Text_StoryMode.text = "스토리 모드";
 
-        ReturnBtnImage.sprite = menuBtnSprite;
-        ReturnText.font = baseFont;
-        ReturnText.text = "돌아가기";
+        Image_ReturnButton.sprite = menuBtnSprite;
+        Text_Return.font = baseFont;
+        Text_Return.text = "돌아가기";
 
         m_isAssetLoad = true;
     }
@@ -48,9 +48,9 @@ public class GameStartUI : BaseUI
     // [Bind All Btn Event]
     private void BindAllBtnEvent()
     {
-        StoryModeBtn.onClick.AddListener(OnClick_StoryMode);
+        Button_StoryMode.onClick.AddListener(OnClick_StoryMode);
 
-        ReturnBtn.onClick.AddListener(OnClick_Return);
+        Button_Return.onClick.AddListener(OnClick_Return);
     }
 
 

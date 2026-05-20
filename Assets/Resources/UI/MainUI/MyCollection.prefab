@@ -576,18 +576,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ae9632575e25a4ea41c203678d560c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyCollectionUI
-  CharacterCollectionBtn: {fileID: 1790819612638064612}
-  CharacterCollectionBtnImage: {fileID: 5434308970673564319}
-  CharacterCollectionText: {fileID: 7143141130958204923}
-  WeaponCollectionBtn: {fileID: 8750228178162466829}
-  WeaponCollectionBtnImage: {fileID: 8181835949725057542}
-  WeaponCollectionText: {fileID: 895173128336829118}
-  ArtifactCollectionBtn: {fileID: 8204294590857022139}
-  ArtifactCollectionBtnImage: {fileID: 6994365248659504566}
-  ArtifactCollectionText: {fileID: 3819964205735174974}
-  ReturnBtn: {fileID: 7907289623256701144}
-  ReturnBtnImage: {fileID: 7903610590189361324}
-  ReturnText: {fileID: 1418953525182641450}
+  Button_CharacterCollection: {fileID: 1790819612638064612}
+  Image_CharacterCollectionButton: {fileID: 5434308970673564319}
+  Text_CharacterCollection: {fileID: 7143141130958204923}
+  Button_WeaponCollection: {fileID: 8750228178162466829}
+  Image_WeaponCollectionButton: {fileID: 8181835949725057542}
+  Text_WeaponCollection: {fileID: 895173128336829118}
+  Button_ArtifactCollection: {fileID: 8204294590857022139}
+  Image_ArtifactCollctionButton: {fileID: 6994365248659504566}
+  Text_ArtifactCollection: {fileID: 3819964205735174974}
+  Button_Return: {fileID: 7907289623256701144}
+  Image_ReturnButton: {fileID: 7903610590189361324}
+  Text_Return: {fileID: 1418953525182641450}
 --- !u!1 &5823883905292987252
 GameObject:
   m_ObjectHideFlags: 0

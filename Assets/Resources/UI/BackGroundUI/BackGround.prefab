@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93afdc13c09603443b82fa2b0cd85799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackGroundUI
-  BackGroundTitleText: {fileID: 1671907959636913520}
-  BackGroundTitleImage: {fileID: 7426262209972118345}
-  BackGroundTitleAnimation: {fileID: 0}
+  Image_BackGroundTitleText: {fileID: 1671907959636913520}
+  Image_BackGroundTitleImage: {fileID: 7426262209972118345}
+  Animation_BackGroundTitle: {fileID: 0}
 --- !u!1 &6818147723110673788
 GameObject:
   m_ObjectHideFlags: 0

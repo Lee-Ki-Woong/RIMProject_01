@@ -7,9 +7,9 @@ public class BackGroundUI : BaseUI
 {
     // [SerializeField]
     [Header("TitleImage")]
-    [SerializeField] private Image BackGroundTitleText;
-    [SerializeField] private Image BackGroundTitleImage;
-    [SerializeField] private Animation BackGroundTitleAnimation;
+    [SerializeField] private Image Image_BackGroundTitleText;
+    [SerializeField] private Image Image_BackGroundTitleImage;
+    [SerializeField] private Animation Animation_BackGroundTitle;
 
 
     // [Field]
@@ -28,8 +28,8 @@ public class BackGroundUI : BaseUI
         (Sprite titleTextSprite, Sprite titleImageSprite) = await UniTask.WhenAll(LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleText", destroyCancellationToken),
                                                                                     LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleImage", destroyCancellationToken));
 
-        BackGroundTitleText.sprite = titleTextSprite;
-        BackGroundTitleImage.sprite = titleImageSprite;
+        Image_BackGroundTitleText.sprite = titleTextSprite;
+        Image_BackGroundTitleImage.sprite = titleImageSprite;
 
         m_isAssetLoad = true;
     }

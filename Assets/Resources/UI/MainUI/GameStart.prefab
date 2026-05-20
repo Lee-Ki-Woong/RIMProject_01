@@ -326,12 +326,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d725e9a96279a347ab6a7d9a0b93e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStartUI
-  StoryModeBtn: {fileID: 5472168069419557671}
-  StoryModeBtnImage: {fileID: 2508345213002298908}
-  StoryModeText: {fileID: 9125430161987760690}
-  ReturnBtn: {fileID: 1214694040497766005}
-  ReturnBtnImage: {fileID: 6588936632517545059}
-  ReturnText: {fileID: 2695335222371300468}
+  Button_StoryMode: {fileID: 5472168069419557671}
+  Image_StoryModeButton: {fileID: 2508345213002298908}
+  Text_StoryMode: {fileID: 9125430161987760690}
+  Button_Return: {fileID: 1214694040497766005}
+  Image_ReturnButton: {fileID: 6588936632517545059}
+  Text_Return: {fileID: 2695335222371300468}
 --- !u!1 &3178070956840584802
 GameObject:
   m_ObjectHideFlags: 0
