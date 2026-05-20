@@ -5,8 +5,6 @@ using UnityEngine.UI;
 public class MainMenuUI : BaseUI
 {
     // [SerializeField]
-
-
     [Header("PlayGameBtn")]
     [SerializeField] private Button PlayGameBtn;
     [SerializeField] private Image PlayGameBtnImage;
@@ -41,11 +39,11 @@ public class MainMenuUI : BaseUI
     // [Set Asset]
     public override async UniTask SetAssetAsync()
     {
-        PlayGameBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainMenu/MenuBtn", destroyCancellationToken);
-        MyColletionBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainMenu/MenuBtn", destroyCancellationToken);
-        ShopBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainMenu/MenuBtn", destroyCancellationToken);
-        GameOptionBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainMenu/MenuBtn", destroyCancellationToken);
-        ExitGameBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainMenu/MenuBtn", destroyCancellationToken);
+        PlayGameBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
+        MyColletionBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
+        ShopBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
+        GameOptionBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
+        ExitGameBtnImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
 
         m_isAssetLoad = true;
     }
@@ -66,6 +64,7 @@ public class MainMenuUI : BaseUI
     private void OnClick_PlayGame()
     {
         CloseUI(UIType.MainMenu);
+        UIManager.Instance.OpenGameStartUI().Forget();
     }
 
     private void OnClick_OpenMyCollectionUI()

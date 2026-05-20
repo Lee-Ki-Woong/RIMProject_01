@@ -26,7 +26,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99fc096149807024a920b540bd27fa5b
-    m_Address: Sprite/MainMenu/MenuBtn
+    m_Address: Sprite/MainUI/MenuBtn
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

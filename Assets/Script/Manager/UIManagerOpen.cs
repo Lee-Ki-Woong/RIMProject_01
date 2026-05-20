@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.CompilerServices;
 using UnityEngine;
 
 public partial class UIManager : MonoBehaviour
@@ -65,6 +66,35 @@ public partial class UIManager : MonoBehaviour
 
         OpenUI(UIRootType.MainUI, UIType.MainMenu);
     }
+
+
+    // [GameStartUI]
+    public async UniTaskVoid OpenGameStartUI()
+    {
+        GameStartUI gameStartUI = CreateUI<GameStartUI>(UIRootType.MainUI, UIType.GameStart);
+        if (gameStartUI == null) return;
+
+        gameStartUI.SetUIName("GameStartUI");
+
+        if(gameStartUI.m_isAssetLoad)
+        {
+            OpenUI(UIRootType.MainUI, UIType.GameStart);
+            return;
+        }
+
+        try
+        {
+            await gameStartUI.SetAssetAsync();
+        }
+        catch(System.OperationCanceledException)
+        {
+            return;
+        }
+
+        OpenUI(UIRootType.MainUI, UIType.GameStart);
+    }
+
+
 
     public void OpenLoadingUI()
     {

@@ -3,10 +3,12 @@
     BackGround = 0,
 
     MainMenu = 100,
-    InGame = 101,
 
-    MyCollection = 301,
-    GameOption = 301,
+    GameStart = 101,
+
+    MyCollection = 111,
+
+    GameOption = 121,
 
     InGameOptionPopup = 399,
 
@@ -19,5 +21,5 @@ public enum UIRootType : byte
     MainUI = 1,
     ContentUI = 2,
     PopupUI = 3,
-    TopUI = 4,
+    TopUI = 5,
 }
