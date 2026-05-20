@@ -48,37 +48,7 @@ public partial class UIManager : MonoBehaviour
     }
 
 
-    // [CreateUI]
-
-    //private async UniTaskVoid CreateUIAsync(UIRootType uiRootType, UIType uiType, CancellationToken token)
-    //{
-    //    m_checkUIHash.Add(uiType);
-    //    string path = this.GetPath(uiRootType, uiType);
-
-    //    try
-    //    {
-    //        GameObject ui = await LoadUtil.LoadPrefabAsync(path, token);
-
-    //        if (ui == null)
-    //        {
-    //            Debug.LogError($"{this.gameObject.name} : {path}의 로드에 실패하였습니다.");
-    //            m_checkUIHash.Remove(uiType);
-    //            return;
-    //        }
-
-    //        Canvas canvas = SetCanvas(uiRootType);
-    //        if (canvas == null) return;
-
-    //        GameObject uiInstance = Instantiate(ui, canvas.transform);
-    //        m_uiListDic.Add(uiType, uiInstance);
-    //        uiInstance.SetActive(true);
-    //    }
-    //    catch(System.OperationCanceledException)
-    //    {
-    //        m_checkUIHash.Remove(uiType);
-    //    }
-    //}
-
+    // [Create UI]
     public T CreateUI<T>(UIRootType uiRootType, UIType uiType) where T : BaseUI
     {
         if(m_uiListDic.TryGetValue(uiType, out BaseUI baseUI))

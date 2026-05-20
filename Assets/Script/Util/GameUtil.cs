@@ -6,7 +6,7 @@ public static class GameUtil
 {
     public static async UniTaskVoid PlayAudioSource(AudioSource audioSource, string address, bool isLoop, CancellationToken token)
     {
-        AudioClip audioClip = await LoadUtil.LoadAudioClip(address, token);
+        AudioClip audioClip = await LoadUtil.LoadAudioClipAsync(address, token);
 
         if (isLoop)
         {

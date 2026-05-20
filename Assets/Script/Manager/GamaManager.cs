@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UI.OpenBackGroundUI().Forget();
-        UI.OpenMainUI().Forget();
+        UI.OpenMainMenuUI().Forget();
     }
 
     private void SavePlayerModel()
@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
     public void Load()
     {
         LoadPlayerModel();
+    }
+
+    public void GameQuit()
+    {
+        Save();
+        Application.Quit();
     }
 
     public void PlayerGetStar(int starPoint)

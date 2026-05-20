@@ -15,8 +15,18 @@ MonoBehaviour:
   m_GroupName: Sprite
   m_GUID: 2bd3216ae42df2144babb979f55973bf
   m_SerializeEntries:
+  - m_GUID: 19fddb179130dab4987fab1f54e00ac5
+    m_Address: Sprite/BackGround/TitleImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3b852732836be544c9a5e2fbf1abb1ff
-    m_Address: Sprite/MainMenu/TitleTextSprite
+    m_Address: Sprite/BackGround/TitleText
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99fc096149807024a920b540bd27fa5b
+    m_Address: Sprite/MainMenu/MenuBtn
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

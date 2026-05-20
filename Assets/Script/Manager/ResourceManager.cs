@@ -44,31 +44,21 @@ public class ResourceManager : MonoBehaviour
         }
         catch (System.OperationCanceledException)
         {
-            m_handleCountDic.Remove(address);
-            m_handleDic.Remove(address);
-            if (newHandle.IsValid()) Addressables.Release(newHandle);
-
-
+            ReleaseHandle(address, newHandle);
             return null;
         }
         catch (System.Exception ex)
         {
             Debug.LogException(ex);
 
-            if (m_handleDic.ContainsKey(address))
-            {
-                m_handleCountDic.Remove(address);
-                m_handleDic.Remove(address);
-                if (newHandle.IsValid()) Addressables.Release(newHandle);
-            }
-
+            ReleaseHandle(address, newHandle);
             return null;
         }
     }
 
 
     // [UnLoad Asset]
-    public void UnLoadAsset<T>(string address) where T : Object
+    public void UnLoadAsset(string address)
     {
         if (m_handleCountDic.ContainsKey(address))
         {
@@ -78,11 +68,21 @@ public class ResourceManager : MonoBehaviour
             {
                 if (m_handleDic.TryGetValue(address, out AsyncOperationHandle handle))
                 {
-                    Addressables.Release(handle);
-                    m_handleDic.Remove(address);
-                    m_handleCountDic.Remove(address);
+                    ReleaseHandle(address, handle);
                 }
             }
+        }
+    }
+
+    // [Method]
+    private void ReleaseHandle(string address, AsyncOperationHandle handle)
+    {
+        if (m_handleDic.ContainsKey(address))
+        {
+            m_handleCountDic.Remove(address);
+            m_handleDic.Remove(address);
+
+            if (handle.IsValid()) Addressables.Release(handle);
         }
     }
 }

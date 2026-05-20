@@ -3,12 +3,13 @@ using UnityEngine;
 
 public partial class UIManager : MonoBehaviour
 {
-    public string GetPath(UIRootType uiRootType, UIType uiType)
+    private string GetPath(UIRootType uiRootType, UIType uiType)
     {
         string path = $"UI/{uiRootType}/{uiType}";
         return path;
     }
 
+    // [BackGroundUI]
     public async UniTaskVoid OpenBackGroundUI()
     {
         BackGroundUI backGroundUI = CreateUI<BackGroundUI>(UIRootType.BackGroundUI, UIType.BackGround);
@@ -16,19 +17,38 @@ public partial class UIManager : MonoBehaviour
 
         backGroundUI.SetUIName("BackGroundUI");
 
+        if(backGroundUI.m_isAssetLoad)
+        {
+            OpenUI(UIRootType.BackGroundUI, UIType.BackGround);
+            return;
+        }
+
+        try
+        {
+            await backGroundUI.SetAssetAsync();
+        }
+        catch(System.OperationCanceledException)
+        {
+            return;
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogException(e);
+        }
 
         OpenUI(UIRootType.BackGroundUI, UIType.BackGround);
     }
 
-    public async UniTaskVoid OpenMainUI()
-    {
 
+    // [MainMenuUI]
+    public async UniTaskVoid OpenMainMenuUI()
+    {
         MainMenuUI mainMenuUI = CreateUI<MainMenuUI>(UIRootType.MainUI, UIType.MainMenu);
         if (mainMenuUI == null) return;
 
         mainMenuUI.SetUIName("MainMenuUI");
 
-        if(mainMenuUI.isAssetLoad)
+        if(mainMenuUI.m_isAssetLoad)
         {
             OpenUI(UIRootType.MainUI, UIType.MainMenu);
             return;
