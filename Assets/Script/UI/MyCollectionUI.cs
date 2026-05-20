@@ -38,20 +38,22 @@ public class MyCollectionUI : BaseUI
     // [Set Asset]
     public override async UniTask SetAssetAsync()
     {
-        CharacterCollectionBtnImage.sprite = await MenuBtn();
-        CharacterCollectionText.font = await BaseFont();
+        (Sprite menuBtnSprite, TMP_FontAsset baseFont) = await UniTask.WhenAll(MenuBtnSprite(), BaseFont());
+
+        CharacterCollectionBtnImage.sprite = menuBtnSprite;
+        CharacterCollectionText.font = baseFont;
         CharacterCollectionText.text = "캐릭터 컬렉션";
 
-        WeaponCollectionBtnImage.sprite = await MenuBtn();
-        WeaponCollectionText.font = await BaseFont();
+        WeaponCollectionBtnImage.sprite = menuBtnSprite;
+        WeaponCollectionText.font = baseFont;
         WeaponCollectionText.text = "무기 컬렉션";
 
-        ArtifactCollectionBtnImage.sprite = await MenuBtn();
-        ArtifactCollectionText.font = await BaseFont();
+        ArtifactCollectionBtnImage.sprite = menuBtnSprite;
+        ArtifactCollectionText.font = baseFont;
         ArtifactCollectionText.text = "아티팩트 컬렉션";
 
-        ReturnBtnImage.sprite = await MenuBtn();
-        ReturnText.font = await BaseFont();
+        ReturnBtnImage.sprite = menuBtnSprite;
+        ReturnText.font = baseFont;
         ReturnText.text = "돌아가기";
 
     }
@@ -87,6 +89,6 @@ public class MyCollectionUI : BaseUI
     private void OnClick_Return()
     {
         CloseUI(UIType.MyCollection);
-        UIManager.Instance.OpenMainMenuUI().Forget();
+        UIManager.Instance.OpenMainMenuUI();
     }
 }

@@ -33,7 +33,7 @@ public abstract class BaseUI : MonoBehaviour
     public virtual async UniTask SetAssetAsync() { }
 
 
-    protected async UniTask<Sprite> MenuBtn()
+    protected async UniTask<Sprite> MenuBtnSprite()
     {
         Sprite sprite = await LoadUtil.LoadSpriteAsync("Sprite/MainUI/MenuBtn", destroyCancellationToken);
         return sprite;

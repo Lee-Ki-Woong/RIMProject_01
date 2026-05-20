@@ -25,8 +25,11 @@ public class BackGroundUI : BaseUI
     // [Set Asset]
     public override async UniTask SetAssetAsync()
     {
-        BackGroundTitleText.sprite = await LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleText", destroyCancellationToken);
-        BackGroundTitleImage.sprite = await LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleImage", destroyCancellationToken);
+        (Sprite titleTextSprite, Sprite titleImageSprite) = await UniTask.WhenAll(LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleText", destroyCancellationToken),
+                                                                                    LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleImage", destroyCancellationToken));
+
+        BackGroundTitleText.sprite = titleTextSprite;
+        BackGroundTitleImage.sprite = titleImageSprite;
 
         m_isAssetLoad = true;
     }

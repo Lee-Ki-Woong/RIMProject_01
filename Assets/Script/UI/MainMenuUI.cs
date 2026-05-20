@@ -45,25 +45,28 @@ public class MainMenuUI : BaseUI
     // [Set Asset]
     public override async UniTask SetAssetAsync()
     {
-        PlayGameBtnImage.sprite = await MenuBtn();
-        PlayGameText.font = await BaseFont();
+        (Sprite menuBtnSprite, TMP_FontAsset baseFont) = await UniTask.WhenAll(MenuBtnSprite(), BaseFont());
+
+
+        PlayGameBtnImage.sprite = menuBtnSprite;
+        PlayGameText.font = baseFont;
         PlayGameText.text = "게임 시작";
 
 
-        MyCollectionBtnImage.sprite = await MenuBtn();
-        MyCollectionText.font = await BaseFont();
+        MyCollectionBtnImage.sprite = menuBtnSprite;
+        MyCollectionText.font = baseFont;
         MyCollectionText.text = "내 콜렉션";
 
-        ShopBtnImage.sprite = await MenuBtn();
-        ShopText.font = await BaseFont();
+        ShopBtnImage.sprite = menuBtnSprite;
+        ShopText.font = baseFont;
         ShopText.text = "샵";
 
-        GameOptionBtnImage.sprite = await MenuBtn();
-        GameOptionText.font = await BaseFont();
+        GameOptionBtnImage.sprite = menuBtnSprite;
+        GameOptionText.font = baseFont;
         GameOptionText.text = "게임 옵션";
 
-        ExitGameBtnImage.sprite = await MenuBtn();
-        ExitGameText.font = await BaseFont();
+        ExitGameBtnImage.sprite = menuBtnSprite;
+        ExitGameText.font = baseFont;
         ExitGameText.text = "게임 종료";
 
         m_isAssetLoad = true;
@@ -86,13 +89,13 @@ public class MainMenuUI : BaseUI
     private void OnClick_PlayGame()
     {
         CloseUI(UIType.MainMenu);
-        UIManager.Instance.OpenGameStartUI().Forget();
+        UIManager.Instance.OpenGameStartUI();
     }
 
     private void OnClick_OpenMyCollectionUI()
     {
         CloseUI(UIType.MainMenu);
-        UIManager.Instance.OpenMyCollectionUI().Forget();
+        UIManager.Instance.OpenMyCollectionUI();
     }
 
     private void OnClick_OpenShopUI()

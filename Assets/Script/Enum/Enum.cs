@@ -10,9 +10,9 @@
 
     GameOption = 121,
 
-    InGameOptionPopup = 399,
+    InGameOption = 399,
 
-    LoadingPopup = 500,
+    Loading = 500,
 }
 
 public enum UIRootType : byte
@@ -21,5 +21,6 @@ public enum UIRootType : byte
     MainUI = 1,
     ContentUI = 2,
     PopupUI = 3,
+    SkillCutScene = 4,
     TopUI = 5,
 }

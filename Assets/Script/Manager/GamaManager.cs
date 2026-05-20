@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UI.OpenBackGroundUI().Forget();
-        UI.OpenMainMenuUI().Forget();
+        UI.OpenBackGroundUI();
+        UI.OpenMainMenuUI();
     }
 
     private void SavePlayerModel()

@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.CompilerServices;
+using System.Buffers.Text;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public partial class UIManager : MonoBehaviour
 {
@@ -11,114 +10,59 @@ public partial class UIManager : MonoBehaviour
         return path;
     }
 
-    // [BackGroundUI]
-    public async UniTaskVoid OpenBackGroundUI()
+
+    // [Oepn UI Async]
+    public async UniTaskVoid OpenUIAsync<T> (UIRootType uiRootType, UIType uiType, string uiName) where T : BaseUI
     {
-        BackGroundUI backGroundUI = CreateUI<BackGroundUI>(UIRootType.BackGroundUI, UIType.BackGround);
-        if (backGroundUI == null) return;
+        T ui = CreateUI<T>(uiRootType, uiType);
+        if (ui == null) return;
 
-        backGroundUI.SetUIName("BackGroundUI");
-
-        if(backGroundUI.m_isAssetLoad)
+        if(ui.m_isAssetLoad)
         {
-            OpenUI(UIRootType.BackGroundUI, UIType.BackGround);
+            OpenUI(uiRootType, uiType);
             return;
         }
+
 
         try
         {
-            await backGroundUI.SetAssetAsync();
-        }
-        catch(System.OperationCanceledException)
-        {
-            return;
-        }
-        catch(System.Exception e)
-        {
-            Debug.LogException(e);
-        }
-
-        OpenUI(UIRootType.BackGroundUI, UIType.BackGround);
-    }
-
-
-    // [MainMenuUI]
-    public async UniTaskVoid OpenMainMenuUI()
-    {
-        MainMenuUI mainMenuUI = CreateUI<MainMenuUI>(UIRootType.MainUI, UIType.MainMenu);
-        if (mainMenuUI == null) return;
-
-        mainMenuUI.SetUIName("MainMenuUI");
-
-        if(mainMenuUI.m_isAssetLoad)
-        {
-            OpenUI(UIRootType.MainUI, UIType.MainMenu);
-            return;
-        }
-
-        try
-        {
-            await mainMenuUI.SetAssetAsync();
-        }
-        catch(System.OperationCanceledException)
-        {
-            return;
-        }
-
-        OpenUI(UIRootType.MainUI, UIType.MainMenu);
-    }
-
-
-    // [GameStartUI]
-    public async UniTaskVoid OpenGameStartUI()
-    {
-        GameStartUI gameStartUI = CreateUI<GameStartUI>(UIRootType.MainUI, UIType.GameStart);
-        if (gameStartUI == null) return;
-
-        gameStartUI.SetUIName("GameStartUI");
-
-        if(gameStartUI.m_isAssetLoad)
-        {
-            OpenUI(UIRootType.MainUI, UIType.GameStart);
-            return;
-        }
-
-        try
-        {
-            await gameStartUI.SetAssetAsync();
-        }
-        catch(System.OperationCanceledException)
-        {
-            return;
-        }
-
-        OpenUI(UIRootType.MainUI, UIType.GameStart);
-    }
-
-
-    // [MyCollectionUI]
-    public async UniTaskVoid OpenMyCollectionUI()
-    {
-        MyCollectionUI myCollectionUI = CreateUI<MyCollectionUI>(UIRootType.MainUI, UIType.MyCollection);
-        if(myCollectionUI == null) return;
-
-        myCollectionUI.SetUIName("MyCollectionUI");
-
-        if(myCollectionUI.m_isAssetLoad)
-        {
-            OpenUI(UIRootType.MainUI, UIType.MyCollection);
-            return;
-        }
-
-        try
-        {
-            await myCollectionUI.SetAssetAsync();
+            await ui.SetAssetAsync();
         }
         catch (System.OperationCanceledException)
         {
             return;
         }
 
-        OpenUI(UIRootType.MainUI, UIType.MyCollection);
+        ui.SetUIName(uiName);
+        OpenUI(uiRootType, uiType);
+    }
+
+
+
+    // [BackGroundUI]
+    public void OpenBackGroundUI()
+    {
+        OpenUIAsync<BackGroundUI>(UIRootType.BackGroundUI, UIType.BackGround, "BackGroundUI").Forget();
+    }
+
+
+    // [MainMenuUI]
+    public void OpenMainMenuUI()
+    {
+        OpenUIAsync<MainMenuUI>(UIRootType.MainUI, UIType.MainMenu, "MainMenuUI").Forget();
+    }
+    
+
+    // [GameStartUI]
+    public void OpenGameStartUI()
+    {
+        OpenUIAsync<GameStartUI>(UIRootType.MainUI, UIType.GameStart, "GameStartUI").Forget();
+    }
+
+
+    // [MyCollectionUI]
+    public void OpenMyCollectionUI()
+    {
+        OpenUIAsync<MyCollectionUI>(UIRootType.MainUI, UIType.MyCollection, "MyCollectionUI").Forget();
     }
 }

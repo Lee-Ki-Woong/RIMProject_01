@@ -30,18 +30,19 @@ public class GameStartUI : BaseUI
     // [Set Asset]
     public override async UniTask SetAssetAsync()
     {
-        StoryModeBtnImage.sprite = await MenuBtn();
-        StoryModeText.font = await BaseFont();
+        (Sprite menuBtnSprite, TMP_FontAsset baseFont) = await UniTask.WhenAll(MenuBtnSprite(), BaseFont());
+
+
+        StoryModeBtnImage.sprite = menuBtnSprite;
+        StoryModeText.font = baseFont;
         StoryModeText.text = "스토리 모드";
 
-        ReturnBtnImage.sprite = await MenuBtn();
-        ReturnText.font = await BaseFont();
+        ReturnBtnImage.sprite = menuBtnSprite;
+        ReturnText.font = baseFont;
         ReturnText.text = "돌아가기";
 
         m_isAssetLoad = true;
     }
-
-
 
 
     // [Bind All Btn Event]
@@ -62,7 +63,7 @@ public class GameStartUI : BaseUI
     private void OnClick_Return()
     {
         CloseUI(UIType.GameStart);
-        UIManager.Instance.OpenMainMenuUI().Forget();
+        UIManager.Instance.OpenMainMenuUI();
     }
 
 }
