@@ -25,8 +25,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76da6a7b03f5d4e4783eab12f23637a9
+    m_Address: Sprite/CharacterIcon/Luca01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99fc096149807024a920b540bd27fa5b
     m_Address: Sprite/MainUI/MenuBtn
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6291bc189db1bb4091fb52de59214f8
+    m_Address: Sprite/CharacterIcon/Rin01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf0c66e6da809df4397478c4e7e4fe34
+    m_Address: Sprite/CharacterIcon/Hannah01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

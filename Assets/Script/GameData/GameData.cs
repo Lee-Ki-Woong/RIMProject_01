@@ -11,9 +11,17 @@ public class GameDataBase
 public class CharacterData : GameDataBase
 {
     public string Name;
+    public string OtherName;
+    public string Class;
     public string Description;
+
     public int Hp;
-    public int BaseDamage;
+
+    public string[] SkillList;
+    public string UtSkill;
+
+    public string Icon_path;
+    public string GameObject_path;
 }
 
 [Serializable]

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BackGroundUI : BaseUI
 {
     // [SerializeField]
-    [Header("TitleImage")]
+    [Header("Title Image")]
     [SerializeField] private Image Image_BackGroundTitleText;
     [SerializeField] private Image Image_BackGroundTitleImage;
     [SerializeField] private Animation Animation_BackGroundTitle;
@@ -25,8 +25,11 @@ public class BackGroundUI : BaseUI
     // [Set Asset]
     public override async UniTask SetAssetAsync()
     {
-        (Sprite titleTextSprite, Sprite titleImageSprite) = await UniTask.WhenAll(LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleText", destroyCancellationToken),
-                                                                                    LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleImage", destroyCancellationToken));
+        (Sprite titleTextSprite, Sprite titleImageSprite) = await UniTask.WhenAll
+            (
+            LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleText", destroyCancellationToken),
+            LoadUtil.LoadSpriteAsync("Sprite/BackGround/TitleImage", destroyCancellationToken)
+            );
 
         Image_BackGroundTitleText.sprite = titleTextSprite;
         Image_BackGroundTitleImage.sprite = titleImageSprite;

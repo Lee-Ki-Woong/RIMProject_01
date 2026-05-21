@@ -18,9 +18,9 @@
 public enum UIRootType : byte
 {
     BackGroundUI = 0,
-    MainUI = 1,
-    ContentUI = 2,
-    PopupUI = 3,
-    SkillCutScene = 4,
-    TopUI = 5,
+    MainUI = 10,
+    ContentUI = 20,
+    PopupUI = 30,
+    SkillCutScene = 40,
+    TopUI = 50,
 }

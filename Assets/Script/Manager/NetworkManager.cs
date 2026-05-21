@@ -21,6 +21,8 @@ public class NetworkManager : MonoBehaviour
 
     public void RequestSavePlayerModel(PlayerModel playerModel)
     {
+        if (playerModel == null) return;
+
         string json = JsonUtility.ToJson(playerModel, true);
         File.WriteAllText(GetPath(), json);
         Debug.Log("저장 완료!!" + GetPath());
@@ -48,7 +50,6 @@ public class NetworkManager : MonoBehaviour
     {
         PlayerModel playerModel = new PlayerModel();
         playerModel.StarList = 0;
-        playerModel.CoinList = 0;
 
         return playerModel;
     }

@@ -49,7 +49,7 @@ public partial class UIManager : MonoBehaviour
 
 
     // [Create UI]
-    public T CreateUI<T>(UIRootType uiRootType, UIType uiType) where T : BaseUI
+    private T CreateUI<T>(UIRootType uiRootType, UIType uiType) where T : BaseUI
     {
         if(m_uiListDic.TryGetValue(uiType, out BaseUI baseUI))
         {

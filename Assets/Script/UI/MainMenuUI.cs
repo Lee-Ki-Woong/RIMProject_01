@@ -106,6 +106,7 @@ public class MainMenuUI : BaseUI
     private void OnClick_OpenGameOptionUI()
     {
         CloseUI(UIType.MainMenu);
+        UIManager.Instance.OpenGameOptionUI();
     }
 
     private void OnClick_ExitGame()

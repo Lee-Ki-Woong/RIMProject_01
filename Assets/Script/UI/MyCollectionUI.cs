@@ -59,7 +59,7 @@ public class MyCollectionUI : BaseUI
     }
 
 
-    // [Bind All Btn Event]
+    // [Bind All Button Event]
     private void BindAllBtnEvent()
     {
         Button_CharacterCollection.onClick.AddListener(OnClick_CharacterCollection);
@@ -70,7 +70,7 @@ public class MyCollectionUI : BaseUI
     }
 
 
-    // [Bint Btn Event]
+    // [Bind Btn Event]
     private void OnClick_CharacterCollection()
     {
 

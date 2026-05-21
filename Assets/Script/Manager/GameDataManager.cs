@@ -9,12 +9,14 @@ public class GameDataManager : MonoBehaviour
 
 
     // [Field]
-    public Dictionary<string, CharacterData> m_characterDataList { get; private set; } = new();
+    public Dictionary<string, CharacterData> CharacterDataList { get; private set; } = new();
 
+
+    // [Serializable Wrapper]
     [Serializable]
-    private class SerializableWrapper<T>
+    private struct SerializableWrapper<T>
     {
-        public List<T> m_Wrapper;
+        public List<T> m_data;
     }
 
 
@@ -22,10 +24,11 @@ public class GameDataManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null) Instance = this;
+        LoadUtil.LoadAllData();
     }
 
 
-    //[LoadData]
+    // [Load Data In Path]
     private Dictionary<string, T> LoadData<T>(string path) where T : GameDataBase
     {
         string resourcePath = $"Json/{path}";
@@ -41,18 +44,35 @@ public class GameDataManager : MonoBehaviour
         try
         {
             string jsonData = loadTextAsset.text;
-            string wrapperData = "(\"m_Wrapper\":" + jsonData + ")";
+            string wrapperData = "{\"m_data\":" + jsonData + "}";
+            SerializableWrapper<T> wrapper = JsonUtility.FromJson<SerializableWrapper<T>>(wrapperData);
 
+            if (wrapper.m_data != null)
+            {
+                Debug.Log($"{resourcePath}의 데이터가 {wrapper.m_data.Count}만큼 로드 되었습니다!!");
 
+                Dictionary<string, T> newDictionary = new(wrapper.m_data.Count);
 
+                foreach (T data in wrapper.m_data)
+                {
+                    newDictionary.Add(data.Id, data);
+                }
+
+                return newDictionary;
+            }
         }
-        catch(System.Exception e)
+        catch (System.Exception e)
         {
             Debug.LogException(e);
         }
-        
-        
+
         return new Dictionary<string, T>();
     }
 
+
+    // [Load Data]
+    public void LoadCharacterData()
+    {
+        CharacterDataList = LoadData<CharacterData>("CharacterData");
+    }
 }

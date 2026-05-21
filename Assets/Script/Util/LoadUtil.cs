@@ -2,10 +2,16 @@
 using System.Threading;
 using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public static class LoadUtil
 {
+    // [Load All Data]
+    public static void LoadAllData()
+    {
+        GameDataManager.Instance.LoadCharacterData();
+    }
+
+
     // [Load Async]
     public static async UniTask<Sprite> LoadSpriteAsync(string address, CancellationToken token)
     {

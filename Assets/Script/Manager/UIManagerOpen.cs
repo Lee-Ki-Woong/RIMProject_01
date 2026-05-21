@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using System.Buffers.Text;
 using UnityEngine;
 
 public partial class UIManager : MonoBehaviour
@@ -12,12 +11,17 @@ public partial class UIManager : MonoBehaviour
 
 
     // [Oepn UI Async]
-    public async UniTaskVoid OpenUIAsync<T> (UIRootType uiRootType, UIType uiType, string uiName) where T : BaseUI
+    private async UniTaskVoid OpenUIAsync<T> (UIRootType uiRootType, UIType uiType, string uiName) where T : BaseUI
     {
         T ui = CreateUI<T>(uiRootType, uiType);
         if (ui == null) return;
+        
+        if(ui.name != uiName)
+        {
+            ui.SetUIName(uiName);
+        }
 
-        if(ui.m_isAssetLoad)
+        if (ui.m_isAssetLoad)
         {
             OpenUI(uiRootType, uiType);
             return;
@@ -33,36 +37,37 @@ public partial class UIManager : MonoBehaviour
             return;
         }
 
-        ui.SetUIName(uiName);
         OpenUI(uiRootType, uiType);
     }
 
 
-
-    // [BackGroundUI]
+    // [BackGround UI]
     public void OpenBackGroundUI()
     {
         OpenUIAsync<BackGroundUI>(UIRootType.BackGroundUI, UIType.BackGround, "BackGroundUI").Forget();
     }
 
-
-    // [MainMenuUI]
+    // [Main Menu UI]
     public void OpenMainMenuUI()
     {
         OpenUIAsync<MainMenuUI>(UIRootType.MainUI, UIType.MainMenu, "MainMenuUI").Forget();
     }
-    
 
-    // [GameStartUI]
+    // [Game Start UI]
     public void OpenGameStartUI()
     {
         OpenUIAsync<GameStartUI>(UIRootType.MainUI, UIType.GameStart, "GameStartUI").Forget();
     }
 
-
-    // [MyCollectionUI]
+    // [My Collection UI]
     public void OpenMyCollectionUI()
     {
         OpenUIAsync<MyCollectionUI>(UIRootType.MainUI, UIType.MyCollection, "MyCollectionUI").Forget();
+    }
+
+    // [Game Option UI]
+    public void OpenGameOptionUI()
+    {
+        OpenUIAsync<GameOptionUI>(UIRootType.MainUI, UIType.GameOption, "GameOptionUI").Forget();
     }
 }

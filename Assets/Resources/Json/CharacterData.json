@@ -1,0 +1,38 @@
+[
+  {
+    "Id": "Character_Rin_01",
+    "Name": "린",
+    "OtherName": "기억 잃은 엔지니어",
+    "Class": "엔지니어",
+    "Description": "기억을 잃은 엔지니어이다.",
+    "Hp": 150,
+    "SkillList": null,
+    "UtSkill": null,
+    "Icon_path": "Sprite/CharacterIcon/Rin01",
+    "GameObject_path": null
+  },
+  {
+    "Id": "Character_Luca_01",
+    "Name": "루카",
+    "OtherName": "린의 제자",
+    "Class": "엔지니어",
+    "Description": "린의 제자 엔지니어이다.",
+    "Hp": 100,
+    "SkillList": null,
+    "UtSkill": null,
+    "Icon_path": "Sprite/CharacterIcon/Luca01",
+    "GameObject_path": null
+  },
+  {
+    "Id": "Character_Hannah_01",
+    "Name": "한나",
+    "OtherName": "점성술사",
+    "Class": "점성술사",
+    "Description": "점성술사이다.",
+    "Hp": 125,
+    "SkillList": null,
+    "UtSkill": null,
+    "Icon_path": "Sprite/CharacterIcon/Hannah01",
+    "GameObject_path": null
+  }
+]

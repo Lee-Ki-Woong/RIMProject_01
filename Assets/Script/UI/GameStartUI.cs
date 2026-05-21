@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class GameStartUI : BaseUI
 {
     // [SerializeField]
-    [Header("StoryModeBtn")]
+    [Header("Story Mode")]
     [SerializeField] private Button Button_StoryMode;
     [SerializeField] private Image Image_StoryModeButton;
     [SerializeField] private TMP_Text Text_StoryMode;
 
-    [Header("ReturnBtn")]
+    [Header("Endless Mode")]
+    [SerializeField] private Button Button_EndlessMode;
+    [SerializeField] private Image Image_EndlessModeButton;
+    [SerializeField] private TMP_Text Text_EndlessMode;
+
+    [Header("Return")]
     [SerializeField] private Button Button_Return;
     [SerializeField] private Image Image_ReturnButton;
     [SerializeField] private TMP_Text Text_Return;
@@ -36,6 +41,10 @@ public class GameStartUI : BaseUI
         Image_StoryModeButton.sprite = menuBtnSprite;
         Text_StoryMode.font = baseFont;
         Text_StoryMode.text = "스토리 모드";
+
+        Image_EndlessModeButton.sprite = menuBtnSprite;
+        Text_EndlessMode.font = baseFont;
+        Text_EndlessMode.text = "무한 모드";
 
         Image_ReturnButton.sprite = menuBtnSprite;
         Text_Return.font = baseFont;
