@@ -3,9 +3,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuUI : BaseUI
+public class MainMenuUI : BaseMainUI
 {
     // [SerializeField]
+    [System.Serializable]
+    private struct Button_Layout
+    {
+        public Button Button;
+        public Image Image;
+        public TMP_Text Text;
+    }
+
+    [SerializeField] private Button_Layout PlayGame;
+    [SerializeField] private Button_Layout MyCollection;
+    [SerializeField] private Button_Layout Shop;
+    [SerializeField] private Button_Layout GameOption;
+    [SerializeField] private Button_Layout ExitGame;
+
+
     [Header("Play Game")]
     [SerializeField] private Button Button_PlayGame;
     [SerializeField] private Image Image_PlayGameButton;
@@ -37,7 +52,7 @@ public class MainMenuUI : BaseUI
     // [Life Cycle]
     private void Awake()
     {
-        m_isAssetLoad = false;
+        IsAssetLoad = false;
         BindAllBtnEvent();
     }
 
@@ -69,7 +84,7 @@ public class MainMenuUI : BaseUI
         Text_ExitGame.font = baseFont;
         Text_ExitGame.text = "게임 종료";
 
-        m_isAssetLoad = true;
+        IsAssetLoad = true;
     }
 
 

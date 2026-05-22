@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOptionUI : BaseUI
+public class GameOptionUI : BaseMainUI
 {
     // [SerializeField]
     [Header("Game Option")]
@@ -25,7 +25,7 @@ public class GameOptionUI : BaseUI
     // [Life Cycle]
     private void Awake()
     {
-        m_isAssetLoad = false;
+        IsAssetLoad = false;
         BindAllBtnEvent();
     }
 
@@ -46,6 +46,8 @@ public class GameOptionUI : BaseUI
         Image_ReturnButton.sprite = menuBtnSprite;
         Text_Return.font = baseFont;
         Text_Return.text = "돌아가기";
+
+        IsAssetLoad = true;
     }
 
 

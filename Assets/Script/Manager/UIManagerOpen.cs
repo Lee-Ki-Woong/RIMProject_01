@@ -3,15 +3,8 @@ using UnityEngine;
 
 public partial class UIManager : MonoBehaviour
 {
-    private string GetPath(UIRootType uiRootType, UIType uiType)
-    {
-        string path = $"UI/{uiRootType}/{uiType}";
-        return path;
-    }
-
-
     // [Oepn UI Async]
-    private async UniTaskVoid OpenUIAsync<T> (UIRootType uiRootType, UIType uiType, string uiName) where T : BaseUI
+    private async UniTaskVoid OpenUIAsync<T> (UIRootType uiRootType, UIType uiType, string uiName) where T : BaseMainUI
     {
         T ui = CreateUI<T>(uiRootType, uiType);
         if (ui == null) return;
@@ -21,7 +14,7 @@ public partial class UIManager : MonoBehaviour
             ui.SetUIName(uiName);
         }
 
-        if (ui.m_isAssetLoad)
+        if (ui.IsAssetLoad)
         {
             OpenUI(uiRootType, uiType);
             return;
@@ -69,5 +62,11 @@ public partial class UIManager : MonoBehaviour
     public void OpenGameOptionUI()
     {
         OpenUIAsync<GameOptionUI>(UIRootType.MainUI, UIType.GameOption, "GameOptionUI").Forget();
+    }
+
+    // [Character Collection UI]
+    public void OpenCharacterCollectionUI()
+    {
+        OpenUIAsync<CharacterCollectionUI>(UIRootType.ContentUI, UIType.CharacterCollection, "CharacterCollectionUI").Forget();
     }
 }

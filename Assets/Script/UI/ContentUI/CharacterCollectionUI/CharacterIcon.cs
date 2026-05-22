@@ -3,10 +3,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterIcon : BaseUI
+public class CharacterIcon : BasePanel
 {
     // [SerializeField]
-    [Header("Character")]
     [SerializeField] Button Button_Character;
     [SerializeField] Image Image_CharacterButton;
     [SerializeField] GameObject GameObject_Selected;
@@ -14,33 +13,45 @@ public class CharacterIcon : BaseUI
 
 
     // [Event]
-    private event Action<string> m_onClick_Icon;
+    private event Action<string> OnClick_Icon;
+
 
     // [Field]
     private string m_iconDataId;
 
+
     // [Life Cycle]
     private void Awake()
     {
+        IsAssetLoad = false;
         Button_Character.onClick.AddListener(OnClick_CharacterButton);
     }
 
-    // [Load]
+
+    // [Load Asset]
     public override async UniTask SetAssetAsync()
     {
         GameDataManager.Instance.CharacterDataList.TryGetValue(m_iconDataId, out CharacterData value);
 
-        (Image_CharacterButton.sprite, Image_Selected.sprite) =await UniTask.WhenAll
-            (
-            LoadUtil.LoadSpriteAsync(value.Icon_path, destroyCancellationToken),
-            LoadUtil.LoadSpriteAsync("", destroyCancellationToken)
-            );
+        Sprite characterButtonSprite = await  LoadUtil.LoadSpriteAsync(value.Icon_path, destroyCancellationToken);
+
+        Image_CharacterButton.sprite = characterButtonSprite;
+
+        IsAssetLoad = true;
     }
+
+    
+    // [Set IconDataId]
+    public void SetData(string id, Action<string> onClickCallback)
+    {
+        m_iconDataId = id;
+        OnClick_Icon += onClickCallback;
+    }
+
 
     // [Bind Button Event]
     private void OnClick_CharacterButton()
     {
-        m_onClick_Icon?.Invoke(m_iconDataId);
+        OnClick_Icon?.Invoke(m_iconDataId);
     }
-
 }

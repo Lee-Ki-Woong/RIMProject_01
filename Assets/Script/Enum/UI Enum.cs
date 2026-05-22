@@ -10,6 +10,7 @@
 
     GameOption = 121,
 
+    CharacterCollection = 301,
     InGameOption = 399,
 
     Loading = 500,
@@ -24,3 +25,4 @@ public enum UIRootType : byte
     SkillCutScene = 40,
     TopUI = 50,
 }
+

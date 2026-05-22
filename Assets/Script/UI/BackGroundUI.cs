@@ -1,9 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackGroundUI : BaseUI
+public class BackGroundUI : BaseMainUI
 {
     // [SerializeField]
     [Header("Title Image")]
@@ -18,7 +17,7 @@ public class BackGroundUI : BaseUI
     // [Life Cycle]
     private void Awake()
     {
-        m_isAssetLoad = false;
+        IsAssetLoad = false;
     }
 
 
@@ -34,7 +33,7 @@ public class BackGroundUI : BaseUI
         Image_BackGroundTitleText.sprite = titleTextSprite;
         Image_BackGroundTitleImage.sprite = titleImageSprite;
 
-        m_isAssetLoad = true;
+        IsAssetLoad = true;
     }
 
 

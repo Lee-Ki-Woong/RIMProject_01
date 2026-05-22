@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStartUI : BaseUI
+public class GameStartUI : BaseMainUI
 {
     // [SerializeField]
     [Header("Story Mode")]
@@ -27,7 +27,7 @@ public class GameStartUI : BaseUI
     // [Life Cycle]
     private void Awake()
     {
-        m_isAssetLoad = false;
+        IsAssetLoad = false;
         BindAllBtnEvent();
     }
 
@@ -50,7 +50,7 @@ public class GameStartUI : BaseUI
         Text_Return.font = baseFont;
         Text_Return.text = "돌아가기";
 
-        m_isAssetLoad = true;
+        IsAssetLoad = true;
     }
 
 

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MyCollectionUI : BaseUI
+public class MyCollectionUI : BaseMainUI
 {
     // [SerializeField]
     [Header("Character Collection")]
@@ -30,7 +30,7 @@ public class MyCollectionUI : BaseUI
     // [Lift Cycle]
     private void Awake()
     {
-        m_isAssetLoad = false;
+        IsAssetLoad = false;
         BindAllBtnEvent();
     }
 
@@ -56,6 +56,8 @@ public class MyCollectionUI : BaseUI
         Text_Return.font = baseFont;
         Text_Return.text = "돌아가기";
 
+        IsAssetLoad = true;
+
     }
 
 
@@ -73,7 +75,7 @@ public class MyCollectionUI : BaseUI
     // [Bind Btn Event]
     private void OnClick_CharacterCollection()
     {
-
+        UIManager.Instance.OpenCharacterCollectionUI();
     }
 
     private void OnClick_WeaponCollection()

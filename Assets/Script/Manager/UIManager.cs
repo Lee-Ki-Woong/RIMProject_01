@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class UIManager : MonoBehaviour
@@ -40,7 +41,7 @@ public partial class UIManager : MonoBehaviour
             return;
         }
 
-        BaseUI newBaseUI = CreateUI<BaseUI>(uiRootType, uiType);
+        BaseMainUI newBaseUI = CreateUI<BaseMainUI>(uiRootType, uiType);
         if (newBaseUI == null) return;
 
         newBaseUI.SetActiveTrue();
@@ -49,14 +50,14 @@ public partial class UIManager : MonoBehaviour
 
 
     // [Create UI]
-    private T CreateUI<T>(UIRootType uiRootType, UIType uiType) where T : BaseUI
+    private T CreateUI<T>(UIRootType uiRootType, UIType uiType) where T : BaseMainUI
     {
         if(m_uiListDic.TryGetValue(uiType, out BaseUI baseUI))
         {
             return baseUI as T;
         }
 
-        string path = this.GetPath(uiRootType, uiType);
+        string path = this.GetPath(uiType);
 
 
         GameObject prefab = LoadUtil.LoadPrefab(path);
@@ -77,11 +78,11 @@ public partial class UIManager : MonoBehaviour
         }
 
 
-        BaseUI baseUIComponent = Instantiate(prefab, canvas.transform).GetComponent<BaseUI>();
+        BaseMainUI baseUIComponent = Instantiate(prefab, canvas.transform).GetComponent<BaseMainUI>();
 
         if(baseUIComponent == null)
         {
-            Debug.LogError("BaseUI 컴포넌트가 없습니다!!");
+            Debug.LogError($"{this.gameObject.name} : BaseUI 컴포넌트가 없습니다!!");
             return null;
         }
 
@@ -119,7 +120,28 @@ public partial class UIManager : MonoBehaviour
             case UIRootType.TopUI: return TopUICanvas;
             default:
                 {
-                    Debug.LogError($"{uiRootType}에 알맞는 Canvas가 없습니다!! 다시 확인하여 주세요.");
+                    Debug.LogError($"{this.gameObject.name} : {uiRootType}에 알맞는 Canvas가 없습니다!! 다시 확인하여 주세요.");
+                    return null;
+                }
+        }
+    }
+
+
+    // [GetPath]
+    private string GetPath(UIType uiType)
+    {
+        switch (uiType)
+        {
+            case UIType.BackGround: return PathUtil.Sync.UIPreFab.BackGround;
+            case UIType.MainMenu: return PathUtil.Sync.UIPreFab.MainMenu;
+            case UIType.GameStart: return PathUtil.Sync.UIPreFab.GameStart;
+            case UIType.MyCollection: return PathUtil.Sync.UIPreFab.MyCollection;
+            case UIType.GameOption: return PathUtil.Sync.UIPreFab.GameOption;
+            case UIType.CharacterCollection: return PathUtil.Sync.UIPreFab.CharacterCollection;
+                    
+            default:
+                {
+                    Debug.LogError($"{this.gameObject.name} : {uiType}에 알맞는 Path가 없습니다!! 다시 확인하여 주세요.");
                     return null;
                 }
         }
