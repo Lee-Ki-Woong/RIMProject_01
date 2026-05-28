@@ -34,7 +34,7 @@ public class UIManager : BaseManager<UIManager>
             return null;
         }
 
-        GameObject prefab = LoadUtil.LoadPrefab(address);
+        GameObject prefab = LoadUtil.Sync.LoadPrefab(address);
 
         if (prefab == null)
         {

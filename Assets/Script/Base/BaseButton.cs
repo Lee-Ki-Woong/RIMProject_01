@@ -1,14 +1,17 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
 public class BaseButton : BaseUI
 {
-    [SerializeField] Button ThisButton;
-    [SerializeField] Image ThisImage;
+    [SerializeField] private Button ThisButton;
+    [SerializeField] private Image ThisImage;
 
-    Action buttonEvent;
+    [SerializeField] private AssetReference SpriteAddress;
+
+    private event Action m_buttonEvent;
 
 
     private void Awake()
@@ -52,25 +55,26 @@ public class BaseButton : BaseUI
 
     protected override async UniTask LoadAssetAsync()
     {
-        ThisImage.sprite = await ResourceManager.Instance.LoadAssetAsync<Sprite>("Sprite/Button");
+        ThisImage.sprite = await LoadUtil.Async.LoadSpriteAsync(SpriteAddress.RuntimeKey.ToString());
     }
 
     public void GetEvent(Action buttonCallback)
     {
-        buttonEvent = buttonCallback;
+        m_buttonEvent = buttonCallback;
         BindButtonEvent();
     }
 
     private void BindButtonEvent()
     {
-        if (FieldChecking(ref ThisButton))
+        if (FieldChecking(ref ThisButton) == false)
         {
             return;
         }
 
-        if (buttonEvent != null)
+        if (m_buttonEvent != null)
         {
-            ThisButton.onClick.AddListener(buttonEvent.Invoke);
+            ThisButton.onClick.RemoveAllListeners();
+            ThisButton.onClick.AddListener(m_buttonEvent.Invoke);
         }
     }
 }
