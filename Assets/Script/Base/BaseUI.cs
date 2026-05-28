@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class BaseUI : MonoBehaviour
 {
-    protected bool isAssetSyncLoad = false;
-    protected bool isAssetAsyncLoad = false;
+    public bool isAssetSyncLoad { get; private set; } = false;
+    public bool isAssetAsyncLoad { get; private set; } = false;
 
     protected virtual async UniTask LoadAssetAsync()
     {
