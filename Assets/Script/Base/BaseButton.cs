@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +47,12 @@ public class BaseButton : BaseUI
 
     private void StartSetting()
     {
+        LoadAssetAsync().Forget();
+    }
 
+    protected override async UniTask LoadAssetAsync()
+    {
+        ThisImage.sprite = await ResourceManager.Instance.LoadAssetAsync<Sprite>("Sprite/Button");
     }
 
     public void GetEvent(Action buttonCallback)
