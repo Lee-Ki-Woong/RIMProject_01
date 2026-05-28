@@ -4,9 +4,7 @@
     {
         public static class UIType
         {
-            public const string BackGround = "UI/Background";
             public const string MainMenu = "UI/MainMenu";
-            public const string CharacterCollection = "UI/CharacterCollection";
         }
     }
 

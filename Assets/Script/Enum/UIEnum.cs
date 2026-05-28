@@ -1,7 +1,6 @@
 ﻿public enum UIType : byte
 {
     None,
-    BackGround,
     MainMenu,
     CharacterCollection,
 }

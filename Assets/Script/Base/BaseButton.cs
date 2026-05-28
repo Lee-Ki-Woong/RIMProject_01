@@ -35,8 +35,8 @@ public class BaseButton : BaseUI
                 return true;
             }
 
-            this.LogError($"{typeof(T).Name} 가 null입니다. 인스펙터에서 확인해주세요!!");
-            this.gameObject.SetActive(false);
+            this.LogError($"{typeof(T).Name} 가 null입니다. 인스펙터에서 확인해주세요!! 임시로 이 오브젝트를 끄겠습니다!!");
+            this.ActiveFalse();
             return false;
         }
 
@@ -56,6 +56,7 @@ public class BaseButton : BaseUI
     protected override async UniTask LoadAssetAsync()
     {
         ThisImage.sprite = await LoadUtil.Async.LoadSpriteAsync(SpriteAddress.RuntimeKey.ToString());
+        base.LoadAssetAsync().Forget();
     }
 
     public void GetEvent(Action buttonCallback)

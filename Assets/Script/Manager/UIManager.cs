@@ -119,17 +119,9 @@ public class UIManager : BaseManager<UIManager>
     {
         switch (uiType)
         {
-            case UIType.BackGround:
-                {
-                    return AddressUtil.Sync.UIType.BackGround;
-                }
             case UIType.MainMenu:
                 {
                     return AddressUtil.Sync.UIType.MainMenu;
-                }
-            case UIType.CharacterCollection:
-                {
-                    return AddressUtil.Sync.UIType.CharacterCollection;
                 }
             default:
                 {
@@ -143,15 +135,7 @@ public class UIManager : BaseManager<UIManager>
     {
         switch (uiType)
         {
-            case UIType.BackGround:
-                {
-                    return UIRootType.Background;
-                }
             case UIType.MainMenu:
-                {
-                    return UIRootType.Main;
-                }
-            case UIType.CharacterCollection:
                 {
                     return UIRootType.Main;
                 }
