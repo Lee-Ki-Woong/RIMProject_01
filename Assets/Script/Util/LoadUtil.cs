@@ -8,14 +8,17 @@ public static class LoadUtil
     {
         public static GameObject LoadPrefab(string address)
         {
-            GameObject prefab = ResourceManager.Instance.LoadAssetSync<GameObject>(address);
+            return LoadGeneric<GameObject>(address);
+        }
 
-            if (prefab == null)
+        public static T LoadGeneric<T>(string address) where T : Object
+        {
+            T asset = ResourceManager.Instance.LoadAssetSync<T>(address);
+            if (asset == null)
             {
                 return null;
             }
-
-            return prefab;
+            return asset;
         }
     }
 
@@ -23,26 +26,22 @@ public static class LoadUtil
     {
         public static async UniTask<Sprite> LoadSpriteAsync(string address)
         {
-            Sprite sprite = await ResourceManager.Instance.LoadAssetAsync<Sprite>(address);
-
-            if (sprite == null)
-            {
-                return null;
-            }
-
-            return sprite;
+            return await LoadGenericAsync<Sprite>(address);
         }
 
         public static async UniTask<TMP_FontAsset> LoadFontAssetAsync(string address)
         {
-            TMP_FontAsset fontAsset = await ResourceManager.Instance.LoadAssetAsync<TMP_FontAsset>(address);
+            return await LoadGenericAsync<TMP_FontAsset>(address);
+        }
 
-            if (fontAsset == null)
+        public static async UniTask<T> LoadGenericAsync<T>(string address) where T : Object
+        {
+            T asset = await ResourceManager.Instance.LoadAssetAsync<T>(address);
+            if (asset == null)
             {
                 return null;
             }
-
-            return fontAsset;
+            return asset;
         }
     }
 }
