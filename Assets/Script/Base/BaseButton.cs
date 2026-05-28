@@ -27,7 +27,7 @@ public class BaseButton : BaseUI
         {
             if (component = this.gameObject.GetComponent<T>())
             {
-                Log($"임시로 이 오브젝트의 {typeof(T).Name}를 GetComponent를 사용하여 할당하였습니다!!");
+                LogWarning($"임시로 이 오브젝트의 {typeof(T).Name}를 GetComponent를 사용하여 할당하였습니다!!");
                 return true;
             }
 

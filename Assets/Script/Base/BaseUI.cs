@@ -8,17 +8,17 @@ public class BaseUI : MonoBehaviour
 
     protected void Log(string text)
     {
-        Debug.Log($"{this.gameObject} : " + text);
+        Debug.Log($"{this.gameObject.name} : " + text);
     }
 
     protected void LogWarning(string text)
     {
-        Debug.LogWarning($"{this.gameObject} : " + text);
+        Debug.LogWarning($"{this.gameObject.name} : " + text);
     }
 
     protected void LogError(string text)
     {
-        Debug.LogError($"{this.gameObject} : " + text);
+        Debug.LogError($"{this.gameObject.name} : " + text);
     }
 
     protected virtual async UniTask LoadAssetAsync()
