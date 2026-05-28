@@ -11,6 +11,11 @@ public static class LoadUtil
             return LoadGeneric<GameObject>(address);
         }
 
+        public static TextAsset LoadTextAsset(string address)
+        {
+            return LoadGeneric<TextAsset>(address);
+        }
+
         public static T LoadGeneric<T>(string address) where T : Object
         {
             T asset = ResourceManager.Instance.LoadAssetSync<T>(address);

@@ -26,7 +26,6 @@ public class UIManager : BaseManager<UIManager>
             return null;
         }
 
-
         Canvas canvas = SetCanvas(GetUIRootType(uiType));
 
         if (canvas == null)
@@ -35,12 +34,6 @@ public class UIManager : BaseManager<UIManager>
         }
 
         GameObject prefab = LoadUtil.Sync.LoadPrefab(address);
-
-        if (prefab == null)
-        {
-            return null;
-        }
-
         GameObject instantiateGameObject = this.InstantiateGameObject(prefab, canvas.transform);
 
         if (instantiateGameObject == null)
