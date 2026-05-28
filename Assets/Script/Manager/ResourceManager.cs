@@ -33,6 +33,34 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    public T LoadAssetSync<T>(string address) where T : Object
+    {
+        if (m_assetHandle.TryGetValue(address, out AsyncOperationHandle operationHandle) && operationHandle.IsValid())
+        {
+            m_assetLoadCount[address]++;
+            T asset = operationHandle.WaitForCompletion() as T;
+
+            return asset;
+        }
+
+        AsyncOperationHandle newOperationHandle = Addressables.LoadAssetAsync<T>(address);
+        m_assetHandle.Add(address, newOperationHandle);
+        m_assetLoadCount.Add(address, 1);
+        try
+        {
+            T newAsset = newOperationHandle.WaitForCompletion() as T;
+            return newAsset;
+
+        }
+        catch (System.Exception e)
+        {
+            this.LogError("에셋 로드 중 예외가 발생하였습니다!!");
+            UnLoadAsset(address);
+            Debug.LogException(e);
+            return null;
+        }
+    }
+
     public async UniTask<T> LoadAssetAsync<T>(string address) where T : Object
     {
         if(m_assetHandle.TryGetValue(address, out AsyncOperationHandle operationHandle) && operationHandle.IsValid())
@@ -41,6 +69,9 @@ public class ResourceManager : MonoBehaviour
 
             if (operationHandle.Status == AsyncOperationStatus.Failed)
             {
+
+                this.LogError("에셋 로드에 실패한 에셋을 불러오기 하였습니다!!");
+                UnLoadAsset(address);
                 return null;
             }
 
@@ -59,11 +90,13 @@ public class ResourceManager : MonoBehaviour
         }
         catch (System.OperationCanceledException)
         {
+            this.LogWarning("에셋 로드를 취소하였습니다!!");
             UnLoadAsset(address);
             return null;
         }
         catch (System.Exception e)
         {
+            this.LogError("에셋 로드 중 예외가 발생하였습니다!!");
             UnLoadAsset(address);
             Debug.LogException(e);
             return null;

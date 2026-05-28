@@ -27,11 +27,11 @@ public class BaseButton : BaseUI
         {
             if (component = this.gameObject.GetComponent<T>())
             {
-                LogWarning($"임시로 이 오브젝트의 {typeof(T).Name}를 GetComponent를 사용하여 할당하였습니다!!");
+                this.LogWarning($"임시로 이 오브젝트의 {typeof(T).Name}를 GetComponent를 사용하여 할당하였습니다!!");
                 return true;
             }
 
-            LogError($"{typeof(T).Name} 가 null입니다. 인스펙터에서 확인해주세요!!");
+            this.LogError($"{typeof(T).Name} 가 null입니다. 인스펙터에서 확인해주세요!!");
             this.gameObject.SetActive(false);
             return false;
         }
