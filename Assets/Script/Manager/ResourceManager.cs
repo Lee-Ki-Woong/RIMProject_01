@@ -4,34 +4,10 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : BaseManager<ResourceManager>
 {
-    public static ResourceManager Instance {  get; private set; }
-
     private Dictionary<string, AsyncOperationHandle> m_assetHandle = new();
     private Dictionary<string, int> m_assetLoadCount = new();
-
-    private void Awake()
-    {
-        AwakeSetting();
-    }
-
-    private void AwakeSetting()
-    {
-        SingleTon();
-    }
-
-    private void SingleTon()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
 
     public T LoadAssetSync<T>(string address) where T : Object
     {
