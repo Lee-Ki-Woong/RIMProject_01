@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 7249909698a83584d86b0f2928f3d048
   m_SerializeEntries:
   - m_GUID: 419f40309b5e34d49ab051937ace893f
-    m_Address: Prefab/UI/BackGround/MainMenuBackground
+    m_Address: Prefab/UI/MainMenu
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

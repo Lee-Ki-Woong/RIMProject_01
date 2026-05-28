@@ -4,7 +4,7 @@
     {
         public static class UIType
         {
-            public const string MainMenu = "UI/MainMenu";
+            public const string MainMenu = "Prefab/UI/MainMenu";
         }
     }
 

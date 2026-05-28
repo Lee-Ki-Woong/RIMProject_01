@@ -56,7 +56,7 @@ public class BaseButton : BaseUI
     protected override async UniTask LoadAssetAsync()
     {
         ThisImage.sprite = await LoadUtil.Async.LoadSpriteAsync(SpriteAddress.RuntimeKey.ToString());
-        base.LoadAssetAsync().Forget();
+        await base.LoadAssetAsync();
     }
 
     public void GetEvent(Action buttonCallback)
