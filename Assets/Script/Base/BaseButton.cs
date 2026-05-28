@@ -13,7 +13,7 @@ public class BaseButton : BaseUI
 
     private void Awake()
     {
-        AwakeSetting();    
+        AwakeSetting();
     }
 
     private void AwakeSetting()

@@ -8,6 +8,7 @@
 
 public enum  UIRootType : byte
 {
+    None,
     Background,
     Main,
     Popup,

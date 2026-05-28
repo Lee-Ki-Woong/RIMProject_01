@@ -39,7 +39,7 @@ public class ResourceManager : BaseManager<ResourceManager>
 
     public async UniTask<T> LoadAssetAsync<T>(string address) where T : Object
     {
-        if(m_assetHandle.TryGetValue(address, out AsyncOperationHandle operationHandle) && operationHandle.IsValid())
+        if (m_assetHandle.TryGetValue(address, out AsyncOperationHandle operationHandle) && operationHandle.IsValid())
         {
             await operationHandle.ToUniTask();
 
@@ -81,7 +81,7 @@ public class ResourceManager : BaseManager<ResourceManager>
 
     public void UnLoadAsset(string address)
     {
-        if(m_assetLoadCount.ContainsKey(address))
+        if (m_assetLoadCount.ContainsKey(address))
         {
             m_assetLoadCount[address]--;
 
@@ -94,7 +94,7 @@ public class ResourceManager : BaseManager<ResourceManager>
 
     private void ReleaseAsset(string address)
     {
-        if(m_assetHandle.TryGetValue(address, out AsyncOperationHandle operationHandle))
+        if (m_assetHandle.TryGetValue(address, out AsyncOperationHandle operationHandle))
         {
             m_assetHandle.Remove(address);
             m_assetLoadCount.Remove(address);
