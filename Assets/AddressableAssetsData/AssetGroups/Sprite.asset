@@ -10,13 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Sprite-Button
+  m_Name: Sprite
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: Sprite-Button
+  m_GroupName: Sprite
   m_GUID: 43c9f5db7678a944aa5f1dc50c56ced1
   m_SerializeEntries:
+  - m_GUID: 556fdad024f04204eae9117cd364b62e
+    m_Address: Sprite/UI/Background/MainMenuBackground/TitleImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9bc8a848a27027a4f9ff6876c0e92ec0
     m_Address: Sprite/Button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc36cb65a21f7a94683249fedaa9805d
+    m_Address: Sprite/UI/Background/MainMenuBackground/TitleText
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
