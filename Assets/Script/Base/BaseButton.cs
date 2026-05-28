@@ -17,40 +17,21 @@ public class BaseButton : BaseUI
 
     private void AwakeSetting()
     {
-        ButtonChecking();
-        ImageChecking();
+        FieldChecking(ref ThisButton);
+        FieldChecking(ref ThisImage);
     }
 
-    private bool ButtonChecking()
+    private bool FieldChecking<T>(ref T component) where T : Component
     {
-        if (ThisButton == null)
+        if (component == null)
         {
-
-            if (ThisButton = this.gameObject.GetComponent<Button>())
+            if (component = this.gameObject.GetComponent<T>())
             {
-                Log("임시로 이 오브젝트의 버튼을 GetComponent를 사용하여 할당하였습니다!!");
+                Log($"임시로 이 오브젝트의 {typeof(T).Name}를 GetComponent를 사용하여 할당하였습니다!!");
                 return true;
             }
 
-            LogError("ThisButton이 null입니다. 인스펙터에서 확인해주세요!!");
-            this.gameObject.SetActive(false);
-            return false;
-        }
-
-        return true;
-    }
-
-    private bool ImageChecking()
-    {
-        if (ThisImage == null)
-        {
-            if (ThisImage = this.gameObject.GetComponent<Image>())
-            {
-                Log("임시로 이 오브젝트의 Image를 GetComponent를 사용하여 할당하였습니다!!");
-                return true;
-            }
-
-            LogError("ThisImager가 null입니다. 인스펙터에서 확인해주세요!!");
+            LogError($"{typeof(T).Name} 가 null입니다. 인스펙터에서 확인해주세요!!");
             this.gameObject.SetActive(false);
             return false;
         }
@@ -76,7 +57,7 @@ public class BaseButton : BaseUI
 
     private void BindButtonEvent()
     {
-        if (ButtonChecking())
+        if (FieldChecking(ref ThisButton))
         {
             return;
         }
