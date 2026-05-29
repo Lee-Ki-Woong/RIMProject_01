@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 public class GameManager : BaseManager<GameManager>
 {
@@ -52,6 +53,6 @@ public class GameManager : BaseManager<GameManager>
             return;
         }
 
-        UI.OpenUI<MainMenu>(UIType.MainMenu);
+        UI.OpenUI<MainMenu>(UIType.MainMenu).Forget();
     }
 }
