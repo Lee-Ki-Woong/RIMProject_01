@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : BaseManager<UIManager>
@@ -10,13 +11,14 @@ public class UIManager : BaseManager<UIManager>
 
     private Dictionary<UIType, BaseUI> m_uiDic = new();
     private HashSet<UIType> m_activeUI = new();
+    private Dictionary<UIType, UIData> m_uiDataDic = new();
     private Dictionary<UIRootType, bool> m_activeCanvas = new();
 
-    private BaseUI CreateUI(UIType uiType)
+    private T CreateUI<T>(UIType uiType) where T : BaseUI
     {
         if (m_uiDic.TryGetValue(uiType, out BaseUI baseUI))
         {
-            return baseUI;
+            return baseUI as T;
         }
 
         string address = GetAddress(uiType);
@@ -51,42 +53,89 @@ public class UIManager : BaseManager<UIManager>
 
         newBaseUI.ActiveFalse();
         m_uiDic.Add(uiType, newBaseUI);
-        return newBaseUI;
+        return newBaseUI as T;
     }
 
-    public T OpenUI<T>(UIType uiType) where T : BaseUI
+    public async UniTask OpenUI<T>(UIType uiType) where T : BaseUI
+    {
+        if(m_activeCanvas.TryGetValue(GetUIRootType(uiType), out bool value))
+        {
+            if (value)
+            {
+                return;
+            }
+        }
+
+        if (m_activeUI.Contains(uiType))
+        {
+            return;
+        }
+
+        T ui = CreateUI<T>(uiType);
+        if (ui == null) return;
+
+        if (ui.IsAssetSyncLoad == false)
+        {
+            ui.LoadAssetSync();
+        }
+
+        if (ui.isActiveAndEnabled == false)
+        {
+            try
+            {
+                await ui.LoadAssetAsync();
+            }
+            catch (System.OperationCanceledException)
+            {
+                return;
+            }
+        }
+
+        ui.ActiveTrue();
+        m_activeUI.Add(uiType);
+        m_activeCanvas[GetUIRootType(uiType)] = true;
+    }
+
+    public async UniTask OpenUI<T>(UIType uiType, UIData uiData) where T : BaseUI
     {
         if (m_activeUI.Contains(uiType))
         {
-            this.LogWarning($"{uiType}의 UI는 열려있습니다!!");
-            return null;
+            if (m_uiDataDic.TryGetValue(uiType, out UIData existingUIData))
+            {
+                if (existingUIData == uiData) return;
+            }
         }
 
-        if(m_activeCanvas.TryGetValue(GetUIRootType(uiType), out bool isActive) && isActive)
+        T ui = CreateUI<T>(uiType);
+        if (ui == null) return;
+
+        if (ui.IsAssetSyncLoad == false)
         {
-            this.LogWarning($"{GetUIRootType(uiType)} Canvas에는 이미 열려있는 UI가 있습니다!!");
-            return null;
+            ui.LoadAssetSync();
         }
 
-        BaseUI ui = CreateUI(uiType);
-
-        if (ui == null)
+        if (ui.isActiveAndEnabled == false)
         {
-            return null;
+            try
+            {
+                await ui.LoadAssetAsync();
+            }
+            catch (System.OperationCanceledException)
+            {
+                return;
+            }
         }
 
-        T castedUI = ui as T;
-
-        if(castedUI == null)
-        {
-            this.LogError($"{uiType}의 UI는 {typeof(T)}로 캐스팅할 수 없습니다!!");
-            return null;
-        }
-
-        castedUI.ActiveTrue();
+        RefreshUIData(ui, uiType, uiData);
+        ui.ActiveTrue();
         m_activeUI.Add(uiType);
         m_activeCanvas[GetUIRootType(uiType)] = true;
-        return castedUI;
+    }
+
+    private void RefreshUIData<T>(T ui, UIType uiType, UIData uiData) where T : BaseUI
+    {
+        m_uiDataDic[uiType] = uiData;
+        ui.SetData(uiData);
     }
 
     public void CloseUI(UIType uiType)
