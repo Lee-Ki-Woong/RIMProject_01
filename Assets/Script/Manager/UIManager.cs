@@ -34,18 +34,18 @@ public class UIManager : BaseManager<UIManager>
         }
 
         GameObject prefab = LoadUtil.Sync.LoadPrefab(address);
-        GameObject instantiateGameObject = this.InstantiateGameObject(prefab, canvas.transform);
+        this.TryGetInstantiate(prefab, canvas.transform, out GameObject ui);
 
-        if (instantiateGameObject == null)
+        if (ui == null)
         {
             return null;
         }
 
-        BaseUI newBaseUI = instantiateGameObject.GetComponent<BaseUI>();
+        BaseUI newBaseUI = ui.GetComponent<BaseUI>();
 
         if (newBaseUI == null)
         {
-            this.LogError($"{instantiateGameObject.name}에 BaseUI 컴포넌트가 없습니다!!");
+            this.LogError($"{ui.name}에 BaseUI 컴포넌트가 없습니다!!");
             return null;
         }
 
