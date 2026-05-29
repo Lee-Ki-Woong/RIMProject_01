@@ -3,27 +3,16 @@ using UnityEngine;
 
 public class BaseUI : MonoBehaviour
 {
-    public bool isAssetSyncLoad { get; private set; } = false;
-    public bool isAssetAsyncLoad { get; private set; } = false;
+    public bool IsAssetSyncLoad { get; protected set; } = false;
+    public bool IsAssetAsyncLoad { get; protected set; } = false;
 
-    public virtual void ActiveTrue()
+    public virtual async UniTask LoadAssetAsync()
     {
-        this.gameObject.SetActive(true);
+        IsAssetAsyncLoad = true;
     }
 
-    public virtual void ActiveFalse()
+    public virtual void LoadAssetSync()
     {
-        this.gameObject.SetActive(false);
-    }
-
-
-    protected virtual async UniTask LoadAssetAsync()
-    {
-        isAssetAsyncLoad = true;
-    }
-
-    protected virtual void LoadAssetSync()
-    {
-        isAssetSyncLoad = true;
+        IsAssetSyncLoad = true;
     }
 }

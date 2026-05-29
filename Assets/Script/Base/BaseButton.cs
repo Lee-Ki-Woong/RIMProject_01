@@ -53,7 +53,7 @@ public class BaseButton : BaseUI
         LoadAssetAsync().Forget();
     }
 
-    protected override async UniTask LoadAssetAsync()
+    public override async UniTask LoadAssetAsync()
     {
         ThisImage.sprite = await LoadUtil.Async.LoadSpriteAsync(SpriteAddress.RuntimeKey.ToString());
         await base.LoadAssetAsync();
