@@ -15,4 +15,9 @@ public class BaseUI : MonoBehaviour
     {
         IsAssetSyncLoad = true;
     }
+
+    public virtual void SetData(UIData uiData)
+    {
+
+    }
 }
