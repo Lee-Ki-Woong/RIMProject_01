@@ -15,18 +15,23 @@ MonoBehaviour:
   m_GroupName: Sprite
   m_GUID: 43c9f5db7678a944aa5f1dc50c56ced1
   m_SerializeEntries:
-  - m_GUID: 556fdad024f04204eae9117cd364b62e
-    m_Address: Sprite/UI/Background/MainMenuBackground/TitleImage
+  - m_GUID: 2a85b35feff18194abf6ce827f590167
+    m_Address: Sprite/UI/MainMenu/Button_Empty
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9bc8a848a27027a4f9ff6876c0e92ec0
-    m_Address: Sprite/Button
+  - m_GUID: 556fdad024f04204eae9117cd364b62e
+    m_Address: Sprite/UI/MainMenu/TitleImage
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc36cb65a21f7a94683249fedaa9805d
-    m_Address: Sprite/UI/Background/MainMenuBackground/TitleText
+    m_Address: Sprite/UI/MainMenu/TitleText
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb2f5e53a65200e42a78717db7b48146
+    m_Address: Sprite/UI/MainMenu/Button
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
