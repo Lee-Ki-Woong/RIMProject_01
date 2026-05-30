@@ -10,9 +10,10 @@ public class UIManager : BaseManager<UIManager>
     [SerializeField] private Canvas LoadingCanvas;
 
     private Dictionary<UIType, BaseUI> m_uiDic = new();
-    private HashSet<UIType> m_activeUI = new();
     private Dictionary<UIType, UIData> m_uiDataDic = new();
-    private Dictionary<UIRootType, bool> m_activeCanvas = new();
+
+    private HashSet<UIType> m_activeUI = new();
+    private HashSet<UIRootType> m_activeCanvas = new();
 
     private T CreateUI<T>(UIType uiType) where T : BaseUI
     {
@@ -58,12 +59,11 @@ public class UIManager : BaseManager<UIManager>
 
     public async UniTask OpenUI<T>(UIType uiType) where T : BaseUI
     {
-        if(m_activeCanvas.TryGetValue(GetUIRootType(uiType), out bool value))
+        UIRootType uiRootType = GetUIRootType(uiType);
+
+        if (m_activeCanvas.Contains(uiRootType))
         {
-            if (value)
-            {
-                return;
-            }
+            return;
         }
 
         if (m_activeUI.Contains(uiType))
@@ -93,7 +93,7 @@ public class UIManager : BaseManager<UIManager>
 
         ui.ActiveTrue();
         m_activeUI.Add(uiType);
-        m_activeCanvas[GetUIRootType(uiType)] = true;
+        m_activeCanvas.Add(uiRootType);
     }
 
     public async UniTask OpenUI<T>(UIType uiType, UIData uiData) where T : BaseUI
@@ -129,7 +129,7 @@ public class UIManager : BaseManager<UIManager>
         RefreshUIData(ui, uiType, uiData);
         ui.ActiveTrue();
         m_activeUI.Add(uiType);
-        m_activeCanvas[GetUIRootType(uiType)] = true;
+        m_activeCanvas.Add(GetUIRootType(uiType));
     }
 
     private void RefreshUIData<T>(T ui, UIType uiType, UIData uiData) where T : BaseUI
@@ -154,7 +154,7 @@ public class UIManager : BaseManager<UIManager>
 
         baseUI.ActiveFalse();
         m_activeUI.Remove(uiType);
-        m_activeCanvas[GetUIRootType(uiType)] = false;
+        m_activeCanvas.Remove(GetUIRootType(uiType));
     }
 
     private string GetAddress(UIType uiType)
