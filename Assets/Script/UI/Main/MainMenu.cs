@@ -11,22 +11,22 @@ public class MainMenu : BaseUI
     [SerializeField] private Image Sprite_TitleText;
     [SerializeField] private Image Sprite_TitleImage;
 
-    [SerializeField] private AssetReferenceT<Sprite> AR_Sprite_TitleText;
-    [SerializeField] private AssetReferenceT<Sprite> AR_Sprite_TitleImage;
-    [SerializeField] private AssetReferenceT<Sprite> AR_Sprite_Menu;
-    [SerializeField] private AssetReferenceT<Sprite> AR_Sprite_HighlightedMenu;
-    [SerializeField] private AssetReferenceT<TMP_FontAsset> AR_Font_Menu;
+    [SerializeField] private AssetReferenceT<Sprite> Asset_TitleText;
+    [SerializeField] private AssetReferenceT<Sprite> Asset_TitleImage;
+    [SerializeField] private AssetReferenceT<Sprite> Asset_MenuSprite;
+    [SerializeField] private AssetReferenceT<Sprite> Asset_MenuHighlightedSprite;
+    [SerializeField] private AssetReferenceT<TMP_FontAsset> Asset_MenuFont;
 
     [System.Serializable]
-    private class Menu_Layout
+    private class MainMenuButton
     {
         public GameObject gameObject;
-        public Button Button;
-        public Image Image;
-        public TMP_Text Text;
+        public Button button;
+        public Image image;
+        public TMP_Text text;
     }
 
-    [SerializeField] private Menu_Layout[] menus;
+    [SerializeField] private MainMenuButton[] Menus;
 
     private void Awake()
     {
@@ -49,23 +49,23 @@ public class MainMenu : BaseUI
 
     public override async UniTask LoadAssetAsync()
     {
-        (Sprite titleText, Sprite titleImage, Sprite loadedSprite, Sprite loadedHighlightedSprite, TMP_FontAsset loadedFont) = await UniTask.WhenAll
+        var (titleText, titleImage, loadedSprite, loadedHighlightedSprite, loadedFont) = await UniTask.WhenAll
             (
-            LoadUtil.Async.LoadSpriteAsync(AR_Sprite_TitleText.RuntimeKey.ToString()),
-            LoadUtil.Async.LoadSpriteAsync(AR_Sprite_TitleImage.RuntimeKey.ToString()),
-            LoadUtil.Async.LoadSpriteAsync(AR_Sprite_Menu.RuntimeKey.ToString()),
-            LoadUtil.Async.LoadSpriteAsync(AR_Sprite_HighlightedMenu.RuntimeKey.ToString()),
-            LoadUtil.Async.LoadFontAssetAsync(AR_Font_Menu.RuntimeKey.ToString())
+            LoadUtil.Async.LoadSpriteAsync(Asset_TitleText.RuntimeKey.ToString()),
+            LoadUtil.Async.LoadSpriteAsync(Asset_TitleImage.RuntimeKey.ToString()),
+            LoadUtil.Async.LoadSpriteAsync(Asset_MenuSprite.RuntimeKey.ToString()),
+            LoadUtil.Async.LoadSpriteAsync(Asset_MenuHighlightedSprite.RuntimeKey.ToString()),
+            LoadUtil.Async.LoadFontAssetAsync(Asset_MenuFont.RuntimeKey.ToString())
             );
 
         Sprite_TitleText.sprite = titleText;
         Sprite_TitleImage.sprite = titleImage;
 
-        foreach (Menu_Layout menu in menus)
+        foreach (MainMenuButton menu in Menus)
         {
-            menu.Image.sprite = loadedSprite;
-            menu.Button.SetButtonSprite(loadedHighlightedSprite);
-            menu.Text.font = loadedFont;
+            menu.image.sprite = loadedSprite;
+            menu.button.SetButtonSprite(loadedHighlightedSprite);
+            menu.text   .font = loadedFont;
         }
 
         IsAssetAsyncLoad = true;
@@ -82,7 +82,7 @@ public class MainMenu : BaseUI
             return;
         }
 
-        for (int i = 0; i < Math.Min(texts.Length, menus.Length); i++)
+        for (int i = 0; i < Math.Min(texts.Length, Menus.Length); i++)
         {
             if (string.IsNullOrEmpty(texts[i]) || actions[i] == null)
             {
@@ -96,18 +96,18 @@ public class MainMenu : BaseUI
                     Debug.LogWarning($"{this.gameObject} : action {i}의 값이 null이거나 Empty입니다!!");
                 }
 
-                menus[i].gameObject.SetActive(false);
+                Menus[i].gameObject.SetActive(false);
                 continue;
             }
 
-            if (menus[i].gameObject.activeSelf == false)
+            if (Menus[i].gameObject.activeSelf == false)
             {
-                menus[i].gameObject.SetActive(true);
+                Menus[i].gameObject.SetActive(true);
             }
 
-            menus[i].Text.text = texts[i];
-            menus[i].Button.onClick.RemoveAllListeners();
-            menus[i].Button.onClick.AddListener(actions[i].Invoke);
+            Menus[i].text.text = texts[i];
+            Menus[i].button.onClick.RemoveAllListeners();
+            Menus[i].button.onClick.AddListener(actions[i].Invoke);
         }
     }
 
@@ -143,7 +143,6 @@ public class MainMenu : BaseUI
     }
 
 
-    // [OnClick Event]
     private void OnClick_MainMenuButton()
     {
         OpenMainMenu();
@@ -173,7 +172,6 @@ public class MainMenu : BaseUI
     {
     }
 
-    // [Open Menu]
     private void OpenMainMenu()
     {
         string[] mainMenuText = CreateStringArray("게임시작", "내 콜렉션", "샵", "게임 옵션", "게임 종료");
@@ -187,7 +185,7 @@ public class MainMenu : BaseUI
     private void OpenGameStartMenu()
     {
         string[] gameStartMenuText = CreateStringArray("스토리 모드", "무한 모드", "", "", "돌아가기");
-        Action[] gameStartMenuAction = CreateActionArray(null, null, null, null, OpenMainMenu);
+        Action[] gameStartMenuAction = CreateActionArray(null, null, null, null, OnClick_MainMenuButton);
 
         UIData gameStartMenuData = CreateMainMenuUIData(MainMenuType.GameStart, gameStartMenuText, gameStartMenuAction);
 
@@ -198,7 +196,7 @@ public class MainMenu : BaseUI
     private void OpenMyCollectionMenu()
     {
         string[] myCollectionMenuText = CreateStringArray("캐릭터 콜렉션", "무기 콜렉션", "아티팩트 콜렉션", "", "돌아가기");
-        Action[] myCollectionMenuAction = CreateActionArray(OpenCharacterCollectionUI, null, null, null, OpenMainMenu);
+        Action[] myCollectionMenuAction = CreateActionArray(null, null, null, null, OnClick_MainMenuButton);
 
         UIData myCollectionMenuData = CreateMainMenuUIData(MainMenuType.MyCollection, myCollectionMenuText, myCollectionMenuAction);
 
@@ -208,7 +206,7 @@ public class MainMenu : BaseUI
     private void OpenShopMenu()
     {
         string[] shopMenuText = CreateStringArray("캐릭터 샵", "무기 샵", "아티팩트 샵", "", "돌아가기");
-        Action[] shopMenuAction = CreateActionArray(null, null, null, null, OpenMainMenu);
+        Action[] shopMenuAction = CreateActionArray(null, null, null, null, OnClick_MainMenuButton);
 
         UIData shopMenuData = CreateMainMenuUIData(MainMenuType.Shop, shopMenuText, shopMenuAction);
 
