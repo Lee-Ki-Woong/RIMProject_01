@@ -1,23 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class BaseUI : MonoBehaviour
+public abstract class BaseUI : MonoBehaviour
 {
-    public bool IsAssetSyncLoad { get; protected set; } = false;
-    public bool IsAssetAsyncLoad { get; protected set; } = false;
+    public bool IsSetAsset { get; protected set; } = false;
 
-    public virtual async UniTask LoadAssetAsync()
-    {
-        IsAssetAsyncLoad = true;
-    }
 
-    public virtual void LoadAssetSync()
-    {
-        IsAssetSyncLoad = true;
-    }
-
-    public virtual void SetData(UIData uiData)
-    {
-
-    }
+    public abstract void SetData(UIData uiData);
 }

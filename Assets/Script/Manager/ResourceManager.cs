@@ -26,7 +26,6 @@ public class ResourceManager : BaseManager<ResourceManager>
         {
             T newAsset = newOperationHandle.WaitForCompletion() as T;
             return newAsset;
-
         }
         catch (System.Exception e)
         {
@@ -45,7 +44,6 @@ public class ResourceManager : BaseManager<ResourceManager>
 
             if (operationHandle.Status == AsyncOperationStatus.Failed)
             {
-
                 this.LogError("에셋 로드에 실패한 에셋을 불러오기 하였습니다!!");
                 UnLoadAsset(address);
                 return null;

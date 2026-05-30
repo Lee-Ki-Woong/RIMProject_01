@@ -40,19 +40,8 @@ public class GameManager : BaseManager<GameManager>
     {
         StartSetting();
     }
-    
+
     private void StartSetting()
     {
-        OpenFirstUI();
-    }
-
-    private void OpenFirstUI()
-    {
-        if(UI == null)
-        {
-            return;
-        }
-
-        UI.OpenUI<MainMenu>(UIType.MainMenu).Forget();
     }
 }

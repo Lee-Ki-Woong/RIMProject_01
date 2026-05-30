@@ -2,6 +2,8 @@
 {
     None,
     MainMenu,
+    InGame,
+    EndlessGameMode,
     CharacterCollection,
 }
 

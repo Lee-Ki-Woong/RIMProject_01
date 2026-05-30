@@ -883,58 +883,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Background
   Sprite_TitleText: {fileID: 6026695695393770979}
   Sprite_TitleImage: {fileID: 7426262209972118345}
-  AR_Sprite_TitleText:
+  Asset_TitleText:
     m_AssetGUID: dc36cb65a21f7a94683249fedaa9805d
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  AR_Sprite_TitleImage:
+  Asset_TitleImage:
     m_AssetGUID: 556fdad024f04204eae9117cd364b62e
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  AR_Sprite_Menu:
+  Asset_MenuSprite:
     m_AssetGUID: 2a85b35feff18194abf6ce827f590167
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  AR_Sprite_HighlightedMenu:
+  Asset_MenuHighlightedSprite:
     m_AssetGUID: fb2f5e53a65200e42a78717db7b48146
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  AR_Font_Menu:
+  Asset_MenuFont:
     m_AssetGUID: aeb000ee20120aa4f8ae3c17c9d7ba0a
     m_SubObjectName: 
-    m_SubObjectType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  menus:
+  Menus:
   - gameObject: {fileID: 7209659781861923059}
-    Button: {fileID: 4713834974886392004}
-    Image: {fileID: 5317481220130424226}
-    Text: {fileID: 3130744515554517643}
+    button: {fileID: 4713834974886392004}
+    image: {fileID: 5317481220130424226}
+    text: {fileID: 3130744515554517643}
   - gameObject: {fileID: 653667080002245692}
-    Button: {fileID: 6439765861809364109}
-    Image: {fileID: 6663664088833509848}
-    Text: {fileID: 5641947790507369919}
+    button: {fileID: 6439765861809364109}
+    image: {fileID: 6663664088833509848}
+    text: {fileID: 5641947790507369919}
   - gameObject: {fileID: 6836556782756298650}
-    Button: {fileID: 1763525605391426699}
-    Image: {fileID: 6240468363669218189}
-    Text: {fileID: 408529532768753166}
+    button: {fileID: 1763525605391426699}
+    image: {fileID: 6240468363669218189}
+    text: {fileID: 408529532768753166}
   - gameObject: {fileID: 8782861294020344341}
-    Button: {fileID: 84552119196364054}
-    Image: {fileID: 6818738271591189643}
-    Text: {fileID: 2543940668495341094}
+    button: {fileID: 84552119196364054}
+    image: {fileID: 6818738271591189643}
+    text: {fileID: 2543940668495341094}
   - gameObject: {fileID: 1034323430995909026}
-    Button: {fileID: 500609017839738506}
-    Image: {fileID: 2742851346688139010}
-    Text: {fileID: 2751127943200875235}
+    button: {fileID: 500609017839738506}
+    image: {fileID: 2742851346688139010}
+    text: {fileID: 2751127943200875235}
 --- !u!1 &6836556782756298650
 GameObject:
   m_ObjectHideFlags: 0

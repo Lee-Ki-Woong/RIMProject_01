@@ -1,8 +1,7 @@
-﻿using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : BaseManager<UIManager>
+public partial class UIManager : BaseManager<UIManager>
 {
     [SerializeField] private Canvas BackgroundCanvas;
     [SerializeField] private Canvas MainCanvas;
@@ -10,12 +9,11 @@ public class UIManager : BaseManager<UIManager>
     [SerializeField] private Canvas LoadingCanvas;
 
     private Dictionary<UIType, BaseUI> m_uiDic = new();
-    private Dictionary<UIType, UIData> m_uiDataDic = new();
 
     private HashSet<UIType> m_activeUI = new();
     private HashSet<UIRootType> m_activeCanvas = new();
 
-    private T CreateUI<T>(UIType uiType) where T : BaseUI
+    public T CreateUI<T>(UIType uiType) where T : BaseUI
     {
         if (m_uiDic.TryGetValue(uiType, out BaseUI baseUI))
         {
@@ -57,87 +55,6 @@ public class UIManager : BaseManager<UIManager>
         return newBaseUI as T;
     }
 
-    public async UniTask OpenUI<T>(UIType uiType) where T : BaseUI
-    {
-        UIRootType uiRootType = GetUIRootType(uiType);
-
-        if (m_activeCanvas.Contains(uiRootType))
-        {
-            return;
-        }
-
-        if (m_activeUI.Contains(uiType))
-        {
-            return;
-        }
-
-        T ui = CreateUI<T>(uiType);
-        if (ui == null) return;
-
-        if (ui.IsAssetSyncLoad == false)
-        {
-            ui.LoadAssetSync();
-        }
-
-        if (ui.isActiveAndEnabled == false)
-        {
-            try
-            {
-                await ui.LoadAssetAsync();
-            }
-            catch (System.OperationCanceledException)
-            {
-                return;
-            }
-        }
-
-        ui.ActiveTrue();
-        m_activeUI.Add(uiType);
-        m_activeCanvas.Add(uiRootType);
-    }
-
-    public async UniTask OpenUI<T>(UIType uiType, UIData uiData) where T : BaseUI
-    {
-        if (m_activeUI.Contains(uiType))
-        {
-            if (m_uiDataDic.TryGetValue(uiType, out UIData existingUIData))
-            {
-                if (existingUIData == uiData) return;
-            }
-        }
-
-        T ui = CreateUI<T>(uiType);
-        if (ui == null) return;
-
-        if (ui.IsAssetSyncLoad == false)
-        {
-            ui.LoadAssetSync();
-        }
-
-        if (ui.isActiveAndEnabled == false)
-        {
-            try
-            {
-                await ui.LoadAssetAsync();
-            }
-            catch (System.OperationCanceledException)
-            {
-                return;
-            }
-        }
-
-        RefreshUIData(ui, uiType, uiData);
-        ui.ActiveTrue();
-        m_activeUI.Add(uiType);
-        m_activeCanvas.Add(GetUIRootType(uiType));
-    }
-
-    private void RefreshUIData<T>(T ui, UIType uiType, UIData uiData) where T : BaseUI
-    {
-        m_uiDataDic[uiType] = uiData;
-        ui.SetData(uiData);
-    }
-
     public void CloseUI(UIType uiType)
     {
         if (m_activeUI.Contains(uiType) == false)
@@ -163,7 +80,19 @@ public class UIManager : BaseManager<UIManager>
         {
             case UIType.MainMenu:
                 {
-                    return AddressUtil.Sync.UIType.MainMenu;
+                    return AddressUtil.Sync.Prefab.UI.MainMenu;
+                }
+                case UIType.InGame:
+                {
+                    return AddressUtil.Sync.Prefab.UI.InGame;
+                }
+                case UIType.CharacterCollection:
+                {
+                    return AddressUtil.Sync.Prefab.UI.CharacterCollection;
+                }
+            case UIType.EndlessGameMode:
+                {
+                    return AddressUtil.Sync.Prefab.UI.EndlessGameMode;
                 }
             default:
                 {
