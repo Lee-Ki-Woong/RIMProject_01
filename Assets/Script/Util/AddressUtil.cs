@@ -18,12 +18,20 @@
     {
         public static class Sprite
         {
-            public static class MainMenu
+            public static class UI
             {
-                public const string TitleText = "Sprite/UI/MainMenu/TitleText";
-                public const string TitleImage = "Sprite/UI/MainMenu/TitleImage";
-                public const string MenuButton = "Sprite/UI/MainMenu/Button_Empty";
-                public const string MenuButton_Highlighted = "Sprite/UI/MainMenu/Button";
+                public static class MainMenu
+                {
+                    public const string TitleText = "Sprite/UI/MainMenu/TitleText";
+                    public const string TitleImage = "Sprite/UI/MainMenu/TitleImage";
+                    public const string MenuButton = "Sprite/UI/MainMenu/Button_Empty";
+                    public const string MenuButton_Highlighted = "Sprite/UI/MainMenu/Button";
+                }
+
+                public static class CharacterButton
+                {
+                    public const string Edge = "Sprite/UI/";
+                }
             }
         }
 

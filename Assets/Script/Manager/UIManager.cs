@@ -3,9 +3,9 @@ using UnityEngine;
 
 public partial class UIManager : BaseManager<UIManager>
 {
-    [SerializeField] private Canvas BackgroundCanvas;
     [SerializeField] private Canvas MainCanvas;
     [SerializeField] private Canvas PopupCanvas;
+    [SerializeField] private Canvas ContentCanvas;
     [SerializeField] private Canvas LoadingCanvas;
 
     private Dictionary<UIType, BaseUI> m_uiDic = new();
@@ -110,6 +110,18 @@ public partial class UIManager : BaseManager<UIManager>
                 {
                     return UIRootType.Main;
                 }
+            case UIType.InGame:
+                {
+                    return UIRootType.Main;
+                }
+                case UIType.CharacterCollection:
+                {
+                    return UIRootType.Content;
+                }
+            case UIType.EndlessGameMode:
+                {
+                    return UIRootType.Content;
+                }
             default:
                 {
                     this.LogError($"{uiType}에 알맞는 UIRootType이 없습니다!!");
@@ -122,13 +134,13 @@ public partial class UIManager : BaseManager<UIManager>
     {
         switch (uiRootType)
         {
-            case UIRootType.Background:
-                {
-                    return BackgroundCanvas;
-                }
             case UIRootType.Main:
                 {
                     return MainCanvas;
+                }
+            case UIRootType.Content:
+                {
+                    return ContentCanvas;
                 }
             case UIRootType.Popup:
                 {

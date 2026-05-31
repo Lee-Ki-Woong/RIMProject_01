@@ -29,10 +29,10 @@ public class MainMenuPresenter : BasePresenter
 
         var (titleText, titleImage, menuButtonSprite, menuButtonHighlightedSprite, menuFont) = await UniTask.WhenAll
             (
-            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.MainMenu.TitleText),
-            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.MainMenu.TitleImage),
-            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.MainMenu.MenuButton),
-            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.MainMenu.MenuButton_Highlighted),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.TitleText),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.TitleImage),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.MenuButton),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.MenuButton_Highlighted),
             LoadUtil.Async.LoadFontAssetAsync(AddressUtil.Async.Font.Base)
             );
 

@@ -1,15 +1,12 @@
 ﻿using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
-public class BaseButton : BaseUI
+public class BaseButton : MonoBehaviour
 {
-    [SerializeField] private Button ThisButton;
-    [SerializeField] private Image ThisImage;
-
-    [SerializeField] private AssetReference SpriteAddress;
+    [SerializeField] private Button Button_This;
+    [SerializeField] private Image Image_This;
 
     private event Action m_buttonEvent;
 
@@ -21,45 +18,22 @@ public class BaseButton : BaseUI
 
     private void AwakeSetting()
     {
-        FieldChecking(ref ThisButton);
-        FieldChecking(ref ThisImage);
+        this.ComponentChecking(ref Button_This);
+        this.ComponentChecking(ref Image_This);
     }
 
-    private bool FieldChecking<T>(ref T component) where T : Component
+    public void SetAsset(Sprite buttonSprite, Sprite buttonHighlightedSprite)
     {
-        if (component == null)
+        if (this.ComponentChecking(ref Button_This) == false || this.ComponentChecking(ref Image_This) == false)
         {
-            if (component = this.gameObject.GetComponent<T>())
-            {
-                this.LogWarning($"임시로 이 오브젝트의 {typeof(T).Name}를 GetComponent를 사용하여 할당하였습니다!!");
-                return true;
-            }
-
-            this.LogError($"{typeof(T).Name} 가 null입니다. 인스펙터에서 확인해주세요!! 임시로 이 오브젝트를 끄겠습니다!!");
-            this.ActiveFalse();
-            return false;
+            return;
         }
 
-        return true;
+        Image_This.sprite = buttonSprite;
+        Button_This.SetButtonSprite(buttonHighlightedSprite);
     }
 
-    private void Start()
-    {
-        StartSetting();
-    }
-
-    private void StartSetting()
-    {
-        LoadAssetAsync().Forget();
-    }
-
-    public override async UniTask LoadAssetAsync()
-    {
-        ThisImage.sprite = await LoadUtil.Async.LoadSpriteAsync(SpriteAddress.RuntimeKey.ToString());
-        await base.LoadAssetAsync();
-    }
-
-    public void GetEvent(Action buttonCallback)
+    public void SetEvent(Action buttonCallback)
     {
         m_buttonEvent = buttonCallback;
         BindButtonEvent();
@@ -67,15 +41,21 @@ public class BaseButton : BaseUI
 
     private void BindButtonEvent()
     {
-        if (FieldChecking(ref ThisButton) == false)
+        if (this.ComponentChecking(ref Button_This) == false)
         {
             return;
         }
 
         if (m_buttonEvent != null)
         {
-            ThisButton.onClick.RemoveAllListeners();
-            ThisButton.onClick.AddListener(m_buttonEvent.Invoke);
+            Button_This.onClick.RemoveAllListeners();
         }
+
+        Button_This.onClick.AddListener(OnClick_Button);
+    }
+
+    private void OnClick_Button()
+    {
+        m_buttonEvent?.Invoke();
     }
 }

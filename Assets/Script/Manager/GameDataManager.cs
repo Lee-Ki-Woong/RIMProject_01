@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameDataManager : BaseManager<GameDataManager>
 {
     public Dictionary<string, UIData> UIDataList { get; private set; } = new();
+    public Dictionary<string, CharacterData> CharacterDataList { get; private set; } = new();
 
     protected override void Awake()
     {
@@ -25,6 +26,11 @@ public class GameDataManager : BaseManager<GameDataManager>
     private void LoadUIData()
     {
         UIDataList = LoadData<UIData>("UIData");
+    }
+
+    private void LoadCharacterData()
+    {
+        CharacterDataList = LoadData<CharacterData>("CharacterData");
     }
 
     [Serializable]
