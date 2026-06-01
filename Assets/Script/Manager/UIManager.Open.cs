@@ -17,7 +17,7 @@ public partial class UIManager
 
         await m_mainMenuPresenter.LoadAndSetAssetAsync();
 
-        m_mainMenuPresenter.MainMenu.ActiveTrue();
+        m_mainMenuPresenter.MainMenuUI.ActiveTrue();
         m_mainMenuPresenter.GoMainMenu();
     }
 
@@ -46,8 +46,8 @@ public partial class UIManager
 
         await m_characterCollectionPresenter.LoadAndSetAssetAsync();
 
-        m_characterCollectionPresenter.CharacterCollection.ActiveTrue();
-        m_characterCollectionPresenter.GoCharacterCollection();
+        m_characterCollectionPresenter.CharacterCollectionUI.ActiveTrue();
+        m_characterCollectionPresenter.SetCharacterCollection();
     }
 
     public async UniTask OpenEndlessGameMode()

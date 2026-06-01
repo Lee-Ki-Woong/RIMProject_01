@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class UIManager : BaseManager<UIManager>
@@ -35,7 +36,50 @@ public partial class UIManager : BaseManager<UIManager>
         }
 
         GameObject prefab = LoadUtil.Sync.LoadPrefab(address);
-        this.TryGetInstantiate(prefab, canvas.transform, out GameObject ui);
+        this.TryInstantiate(prefab, canvas.transform, out GameObject ui);
+
+        if (ui == null)
+        {
+            return null;
+        }
+
+        BaseUI newBaseUI = ui.GetComponent<BaseUI>();
+
+        if (newBaseUI == null)
+        {
+            this.LogError($"{ui.name}에 BaseUI 컴포넌트가 없습니다!!");
+            return null;
+        }
+
+        newBaseUI.ActiveFalse();
+        m_uiDic.Add(uiType, newBaseUI);
+        return newBaseUI as T;
+    }
+
+    public async UniTask<T> CreateUIAsync<T>(UIType uiType) where T : BaseUI
+    {
+
+        if (m_uiDic.TryGetValue(uiType, out BaseUI baseUI))
+        {
+            return baseUI as T;
+        }
+
+        string address = GetAddress(uiType);
+
+        if (string.IsNullOrEmpty(address))
+        {
+            return null;
+        }
+
+        Canvas canvas = SetCanvas(GetUIRootType(uiType));
+
+        if (canvas == null)
+        {
+            return null;
+        }
+
+        GameObject prefab = await LoadUtil.Async.LoadPrefabAsync(address);
+        this.TryInstantiate(prefab, canvas.transform, out GameObject ui);
 
         if (ui == null)
         {
