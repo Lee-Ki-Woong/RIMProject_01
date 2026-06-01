@@ -26,7 +26,7 @@
             public static class Panel
             {
                 public const string CharacterInfo = "Prefab/Panel/CharacterInfo";
-                public const string CharacterSkill = "Prefab/Panel/ChracterSkill";
+                public const string CharacterSkill = "Prefab/Panel/CharacterSkill";
             }
         }
 
@@ -46,8 +46,9 @@
                 {
                     public const string Background = "Sprite/UI/CharacterCollection/Background";
                     public const string MenuButton = "Sprite/UI/MainMenu/Button_Empty";
-                    public const string MenuButton_Highlighted = "Sprite/UI/MainMenu/Button";
-                    public const string ExitButton = "Sprite/UI/CharacterCollection/Button_Exit";
+                    public const string MenuButton_Highlighted = "Sprite/UI/CharacterCollection/Highlighted";
+                    public const string MenuButton_Selected = "Sprite/UI/CharacterCollection/Selected";
+                    public const string ExitButton = "Sprite/UI/CharacterCollection/ExitButton";
                 }
 
                 public static class CharacterButton

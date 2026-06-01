@@ -17,6 +17,7 @@ public partial class UIManager
 
         await m_mainMenuPresenter.LoadAndSetAssetAsync();
 
+        m_activeUI.Add(UIType.MainMenu);
         m_mainMenuPresenter.MainMenuUI.ActiveTrue();
         m_mainMenuPresenter.GoMainMenu();
     }
@@ -32,6 +33,7 @@ public partial class UIManager
 
         await m_inGamePresenter.LoadAndSetAssetAsync();
 
+        m_activeUI.Add(UIType.InGame);
         m_inGamePresenter.InGame.ActiveTrue();
     }
 
@@ -46,12 +48,9 @@ public partial class UIManager
 
         await m_characterCollectionPresenter.LoadAndSetAssetAsync();
 
+        m_activeUI.Add(UIType.CharacterCollection);
         m_characterCollectionPresenter.CharacterCollectionUI.ActiveTrue();
         m_characterCollectionPresenter.SetCharacterCollection();
-    }
-
-    public async UniTask OpenEndlessGameMode()
-    {
     }
 
     private void Start()

@@ -1,16 +1,6 @@
-﻿using UnityEngine;
-
-public class EndlessGameMode : MonoBehaviour
+﻿public class EndlessGameMode : BaseUI
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void SetData(UIData uiData)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

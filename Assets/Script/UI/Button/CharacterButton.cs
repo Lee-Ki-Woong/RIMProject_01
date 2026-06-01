@@ -7,19 +7,14 @@ public class CharacterButton : MonoBehaviour
 {
     [SerializeField] private Button Button_This;
     [SerializeField] private Image Image_Edge;
+    [SerializeField] private Image Image_Mask;
     [SerializeField] private Image Image_Character;
     [SerializeField] private GameObject GameObject_Selected;
     [SerializeField] private Image Image_Selected;
 
-
-    // [Event]
     private event Action<string> m_buttonEvent;
 
-
-    // [Field]
     private string m_iconDataId;
-
-
 
     private void Awake()
     {
@@ -34,24 +29,27 @@ public class CharacterButton : MonoBehaviour
         this.ComponentChecking(ref Image_Selected);
     }
 
-    // [Load Asset]
     public async UniTask LoadAssetAsync(CharacterData value)
     {
 
-        var (edgeSprite, characterSprite) = await UniTask.WhenAll
+        var (edgeSprite, maskSprite, characterSprite, selectedSprite) = await UniTask.WhenAll
             (
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterButton.Edge),
-            LoadUtil.Async.LoadSpriteAsync(value.CharacterIconPath)
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterButton.Mask),
+            LoadUtil.Async.LoadSpriteAsync(value.CharacterIconPath),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterButton.Selected)
             );
 
         Image_Edge.sprite = edgeSprite;
+        Image_Mask.sprite = maskSprite;
         Image_Character.sprite = characterSprite;
+        Image_Selected.sprite = selectedSprite;
     }
 
-    public void SetEvent(string id, Action<string> onClickCallback)
+    public void SetEvent(string id, Action<string> action)
     {
         m_iconDataId = id;
-        m_buttonEvent += onClickCallback;
+        m_buttonEvent += action;
 
         BindButtonEvent();
     }

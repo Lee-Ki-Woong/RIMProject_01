@@ -177,6 +177,5 @@ public class MainMenuPresenter : BasePresenter
 
     private void OpenEndlessGameMode()
     {
-        UIManager.Instance.OpenEndlessGameMode().Forget();
     }
 }
