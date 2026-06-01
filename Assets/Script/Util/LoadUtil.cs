@@ -39,6 +39,11 @@ public static class LoadUtil
             return await LoadGenericAsync<TMP_FontAsset>(address);
         }
 
+        public static async UniTask<GameObject> LoadPrefabAsync(string address)
+        {
+            return await LoadGenericAsync<GameObject>(address);
+        }
+
         public static async UniTask<T> LoadGenericAsync<T>(string address) where T : Object
         {
             T asset = await ResourceManager.Instance.LoadAssetAsync<T>(address);
