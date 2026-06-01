@@ -15,8 +15,18 @@ MonoBehaviour:
   m_GroupName: Sprite
   m_GUID: 43c9f5db7678a944aa5f1dc50c56ced1
   m_SerializeEntries:
+  - m_GUID: 144a1e84fce1833448f2d1787932cb01
+    m_Address: Sprite/UI/CharacterCollection/BackGround
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a85b35feff18194abf6ce827f590167
     m_Address: Sprite/UI/MainMenu/Button_Empty
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41ddc7e82fbd8b644bc67a9ea2bfa1b7
+    m_Address: Sprite/UI/CharacterButton/Mask
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -25,8 +35,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bac17f70be79e0f46ac3ccfae6eba83f
+    m_Address: Sprite/UI/CharacterButton/Edge
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2f69e794cd2e7b45a345930aa5ba3fc
+    m_Address: Sprite/UI/CharacterButton/Selected
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc36cb65a21f7a94683249fedaa9805d
     m_Address: Sprite/UI/MainMenu/TitleText
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8d3ea8f228444b4eb282fc1cb9fc17d
+    m_Address: Sprite/UI/CharacterCollection/ExitButton
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
