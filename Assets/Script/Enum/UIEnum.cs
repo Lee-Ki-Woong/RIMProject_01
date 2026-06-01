@@ -15,3 +15,11 @@ public enum  UIRootType : byte
     Popup,
     Loading,
 }
+public enum MainMenuType : byte
+{
+    MainMenu,
+    GameStart,
+    MyCollection,
+    Shop,
+    GameOption
+}

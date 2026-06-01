@@ -20,7 +20,7 @@ public class GameDataManager : BaseManager<GameDataManager>
 
     private void LoadAllData()
     {
-        LoadUIData();
+        LoadCharacterData();
     }
 
     private void LoadUIData()

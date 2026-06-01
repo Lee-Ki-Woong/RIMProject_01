@@ -19,15 +19,20 @@ public class MainMenu : BaseUI
 
     [SerializeField] private MainMenuButton[] Menus;
 
-    public void SetAsset(Sprite titleTextSprite, Sprite titleImageSprite, Sprite menuButtonSprite, Sprite menuButtonHighlightedSprite, TMP_FontAsset menuButtonFont)
+    public void SetAsset(Sprite titleText, Sprite titleImage, Sprite menuButton, Sprite menuButtonHighlighted, TMP_FontAsset menuButtonFont)
     {
-        Image_TitleText.sprite = titleTextSprite;
-        Image_TitleImage.sprite = titleImageSprite;
+        if(IsSetAsset)
+        {
+            return;
+        }
+
+        Image_TitleText.sprite = titleText;
+        Image_TitleImage.sprite = titleImage;
 
         foreach (MainMenuButton menu in Menus)
         {
-            menu.Image.sprite = menuButtonSprite;
-            menu.Button.SetButtonSprite(menuButtonHighlightedSprite);
+            menu.Image.sprite = menuButton;
+            menu.Button.SetButtonSprite(menuButtonHighlighted);
             menu.Text.font = menuButtonFont;
         }
 

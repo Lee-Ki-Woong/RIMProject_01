@@ -12,7 +12,7 @@ public static class MonoBehaviourExtension
         monoBehaviour.gameObject.SetActive(false);
     }
 
-    public static bool TryGetInstantiate(this MonoBehaviour monoBehaviour, GameObject prefab, Transform parent, out GameObject instance)
+    public static bool TryInstantiate(this MonoBehaviour monoBehaviour, GameObject prefab, Transform parent, out GameObject instance)
     {
         if (prefab == null)
         {

@@ -1,25 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
 
+
+[Serializable]
 public class GameDataBase
 {
-    public string Id { get; set; }
+    public string Id;
 }
 
+[Serializable]
 public class UIData : GameDataBase
 {
-    public string[] Texts { get; set; }
-    public System.Action[] Actions { get; set; }
+    public string[] Texts;
+    public System.Action[] Actions;
 }
 
+[Serializable]
 public class CharacterData : GameDataBase
 {
-    public string Name { get; set; }
-    public string OtherName { get; set; }
-    public string Class { get; set; }
-    public string Description { get; set; }
-    public int MaxHp { get; set; }
-    public string[] SkillList { get; set; }
-    public string UltimateSkill { get; set; }
-    public string CharacterIconPath { get; set; }
-    public string PlayerObjectPath { get; set; }
+    public string Name;
+    public string OtherName;
+    public string Class;
+    public string Description;
+    public int MaxHp;
+    public string[] SkillList;
+    public string UltimateSkill;
+    public string CharacterIconPath;
+    public string PlayerObjectPath;
 }

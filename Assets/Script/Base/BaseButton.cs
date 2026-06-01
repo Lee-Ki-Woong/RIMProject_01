@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,6 @@ public class BaseButton : MonoBehaviour
     [SerializeField] private Image Image_This;
 
     private event Action m_buttonEvent;
-
 
     private void Awake()
     {

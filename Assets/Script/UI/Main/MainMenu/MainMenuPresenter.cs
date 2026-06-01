@@ -7,27 +7,29 @@ using UnityEngine;
 public class MainMenuPresenter : BasePresenter
 {
 
-    public MainMenu MainMenu { get; private set; }
+    public MainMenu MainMenuUI { get; private set; }
 
     private Sprite Sprite_TitleText;
     private Sprite Sprite_TitleImage;
     private Sprite Sprite_MenuButton;
     private Sprite Sprite_MenuButton_Highlighted;
+
     private TMP_FontAsset TMPFont_MenuFont;
 
     public void InitMainMenu(MainMenu mainMenu)
     {
-        MainMenu = mainMenu;
+        MainMenuUI = mainMenu;
     }
 
     public override async UniTask LoadAndSetAssetAsync()
     {
         if (IsAssetLoad)
         {
+            MainMenuUI.SetAsset(Sprite_TitleText, Sprite_TitleImage, Sprite_MenuButton, Sprite_MenuButton_Highlighted, TMPFont_MenuFont);
             return;
         }
 
-        var (titleText, titleImage, menuButtonSprite, menuButtonHighlightedSprite, menuFont) = await UniTask.WhenAll
+        var (titleText, titleImage, menuButton, menuButtonHighlighted, menuFont) = await UniTask.WhenAll
             (
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.TitleText),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.TitleImage),
@@ -38,13 +40,13 @@ public class MainMenuPresenter : BasePresenter
 
         Sprite_TitleText = titleText;
         Sprite_TitleImage = titleImage;
-        Sprite_MenuButton = menuButtonSprite;
-        Sprite_MenuButton_Highlighted = menuButtonHighlightedSprite;
+        Sprite_MenuButton = menuButton;
+        Sprite_MenuButton_Highlighted = menuButtonHighlighted;
         TMPFont_MenuFont = menuFont;
 
         IsAssetLoad = true;
 
-        MainMenu.SetAsset(Sprite_TitleText, Sprite_TitleImage, Sprite_MenuButton, Sprite_MenuButton_Highlighted, TMPFont_MenuFont);
+        MainMenuUI.SetAsset(Sprite_TitleText, Sprite_TitleImage, Sprite_MenuButton, Sprite_MenuButton_Highlighted, TMPFont_MenuFont);
     }
 
     public void GoMainMenu()
@@ -57,26 +59,8 @@ public class MainMenuPresenter : BasePresenter
         UIManager.Instance.CloseUI(UIType.MainMenu);
     }
 
-    private enum MainMenuType
-    {
-        MainMenu,
-        GameStart,
-        MyCollection,
-        Shop,
-        GameOption
-    }
 
     private Dictionary<MainMenuType, UIData> m_mainMenuDataDic = new();
-
-    private string[] CreateStringArray(params string[] strings)
-    {
-        return strings;
-    }
-
-    private Action[] CreateActionArray(params Action[] actions)
-    {
-        return actions;
-    }
 
     private UIData CreateMainMenuUIData(MainMenuType mainMenuType, string[] stringArray, Action[] actionArray)
     {
@@ -137,53 +121,53 @@ public class MainMenuPresenter : BasePresenter
 
     private void OpenMainMenu()
     {
-        string[] mainMenuText = CreateStringArray("게임시작", "내 콜렉션", "샵", "게임 옵션", "게임 종료");
-        Action[] mainMenuAction = CreateActionArray(OnClick_GameStartButton, OnClick_MyCollectionButton, OnClick_ShopButton, OnClick_GameOptionButton, OnClick_GameExitButton);
+        string[] mainMenuText = { "게임시작", "내 콜렉션", "샵", "게임 옵션", "게임 종료" };
+        Action[] mainMenuAction = { OnClick_GameStartButton, OnClick_MyCollectionButton, OnClick_ShopButton, OnClick_GameOptionButton, OnClick_GameExitButton };
 
         UIData mainMenuData = CreateMainMenuUIData(MainMenuType.MainMenu, mainMenuText, mainMenuAction);
 
-        MainMenu.SetData(mainMenuData);
+        MainMenuUI.SetData(mainMenuData);
     }
 
     private void OpenGameStartMenu()
     {
-        string[] gameStartMenuText = CreateStringArray("스토리 모드", "무한 모드", "", "", "돌아가기");
-        Action[] gameStartMenuAction = CreateActionArray(null, OnClick_EndlessGameModeButton, null, null, OnClick_ReturnButton);
+        string[] gameStartMenuText = { "스토리 모드", "무한 모드", "", "", "돌아가기" };
+        Action[] gameStartMenuAction = { null, OnClick_EndlessGameModeButton, null, null, OnClick_ReturnButton };
 
         UIData gameStartMenuData = CreateMainMenuUIData(MainMenuType.GameStart, gameStartMenuText, gameStartMenuAction);
 
-        MainMenu.SetData(gameStartMenuData);
+        MainMenuUI.SetData(gameStartMenuData);
     }
 
     private void OpenMyCollectionMenu()
     {
-        string[] myCollectionMenuText = CreateStringArray("캐릭터 콜렉션", "무기 콜렉션", "아티팩트 콜렉션", "", "돌아가기");
-        Action[] myCollectionMenuAction = CreateActionArray(null, null, null, null, OnClick_ReturnButton);
+        string[] myCollectionMenuText = { "캐릭터 콜렉션", "무기 콜렉션", "아티팩트 콜렉션", "", "돌아가기" };
+        Action[] myCollectionMenuAction = { OnClick_CharacterCollectionButton, null, null, null, OnClick_ReturnButton };
 
         UIData myCollectionMenuData = CreateMainMenuUIData(MainMenuType.MyCollection, myCollectionMenuText, myCollectionMenuAction);
 
-        MainMenu.SetData(myCollectionMenuData);
+        MainMenuUI.SetData(myCollectionMenuData);
     }
 
     private void OpenShopMenu()
     {
-        string[] shopMenuText = CreateStringArray("캐릭터 샵", "무기 샵", "아티팩트 샵", "", "돌아가기");
-        Action[] shopMenuAction = CreateActionArray(OnClick_CharacterCollectionButton, null, null, null, OnClick_ReturnButton);
+        string[] shopMenuText = { "캐릭터 샵", "무기 샵", "아티팩트 샵", "", "돌아가기" };
+        Action[] shopMenuAction = { null, null, null, null, OnClick_ReturnButton };
 
         UIData shopMenuData = CreateMainMenuUIData(MainMenuType.Shop, shopMenuText, shopMenuAction);
 
-        MainMenu.SetData(shopMenuData);
+        MainMenuUI.SetData(shopMenuData);
 
     }
 
     private void OpenGameOptionMenu()
     {
-        string[] gameOptionMenuText = CreateStringArray("게임 옵션", "사운드 옵션", "", "", "돌아가기");
-        Action[] gameOptionMenuAction = CreateActionArray(null, null, null, null, OnClick_ReturnButton);
+        string[] gameOptionMenuText = { "게임 옵션", "사운드 옵션", "", "", "돌아가기" };
+        Action[] gameOptionMenuAction = { null, null, null, null, OnClick_ReturnButton };
 
         UIData gameOptionMenuData = CreateMainMenuUIData(MainMenuType.GameOption, gameOptionMenuText, gameOptionMenuAction);
 
-        MainMenu.SetData(gameOptionMenuData);
+        MainMenuUI.SetData(gameOptionMenuData);
     }
 
     private void OpenCharacterCollection()

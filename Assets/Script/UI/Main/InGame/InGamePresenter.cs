@@ -5,8 +5,8 @@ public class InGamePresenter : BasePresenter
 {
     public InGame InGame { get; private set; }
 
-    private Sprite Sprite_Menu;
-    private Sprite Sprite_Misson;
+    private Sprite Sprite_MenuButton;
+    private Sprite Sprite_MissonButton;
 
 
     public void InitInGame(InGame inGame)
@@ -22,16 +22,16 @@ public class InGamePresenter : BasePresenter
 
         var (menuSprite, missonSprite) = await UniTask.WhenAll
             (
-            LoadUtil.Async.LoadSpriteAsync("Sprite/UI/InGame/Menu"),
-            LoadUtil.Async.LoadSpriteAsync("Sprite/UI/Main/Misson")
+            LoadUtil.Async.LoadSpriteAsync("Sprite/UI/InGame/MenuButton"),
+            LoadUtil.Async.LoadSpriteAsync("Sprite/UI/Main/MissonButton")
             );
 
-        Sprite_Menu = menuSprite;
-        Sprite_Misson = missonSprite;
+        Sprite_MenuButton = menuSprite;
+        Sprite_MissonButton = missonSprite;
 
         IsAssetLoad = true;
 
-        InGame.SetAsset(Sprite_Menu, Sprite_Misson);
+        InGame.SetAsset(Sprite_MenuButton, Sprite_MissonButton);
     }
 
     public void LeaveInGame()
