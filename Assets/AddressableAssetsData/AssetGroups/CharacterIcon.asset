@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CharacterIcon
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: CharacterIcon
+  m_GUID: 9731d456908fa9e4386ddefb8ef0b48a
+  m_SerializeEntries:
+  - m_GUID: 4c97ce4994575d744aaafc0b74c9af9c
+    m_Address: Sprite/CharacterIcon/Character04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a402257de56e463469e7ab8645fa49aa
+    m_Address: Sprite/CharacterIcon/Character06
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a665eb841ec08f84e938b29450926d49
+    m_Address: Sprite/CharacterIcon/Character03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5a4aadd96f85ea4197414b32fe0c7a5
+    m_Address: Sprite/CharacterIcon/Character01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b78e1db1a5fdee149a94f8823db21b48
+    m_Address: Sprite/CharacterIcon/Character07
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c73e895a4f4a7d94ab01cbd09358a1c3
+    m_Address: Sprite/CharacterIcon/Character08
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d390481d6537a334baadbdb5cef09324
+    m_Address: Sprite/CharacterIcon/Character05
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e36c0f177fb1da749aa211278e871024
+    m_Address: Sprite/CharacterIcon/Character02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 163596ff93415fc4e9a6296a1045b9de, type: 2}
+    - {fileID: 11400000, guid: 41231053b1e14ac4990eb58f0cda535e, type: 2}

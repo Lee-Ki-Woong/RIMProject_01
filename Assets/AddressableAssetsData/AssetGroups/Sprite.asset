@@ -16,12 +16,17 @@ MonoBehaviour:
   m_GUID: 43c9f5db7678a944aa5f1dc50c56ced1
   m_SerializeEntries:
   - m_GUID: 144a1e84fce1833448f2d1787932cb01
-    m_Address: Sprite/UI/CharacterCollection/BackGround
+    m_Address: Sprite/UI/CharacterCollection/Background
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a85b35feff18194abf6ce827f590167
     m_Address: Sprite/UI/MainMenu/Button_Empty
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b01e64122be9d4468184eec82d6ec10
+    m_Address: Sprite/UI/CharacterCollection/Selected
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -32,6 +37,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 556fdad024f04204eae9117cd364b62e
     m_Address: Sprite/UI/MainMenu/TitleImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b24cedbb7e031ef499680b06b229e83e
+    m_Address: Sprite/UI/CharacterCollection/Highlighted
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterButton
   Button_This: {fileID: 8630187032869102014}
-  Image_Edge: {fileID: 3567371225781643457}
+  Image_Edge: {fileID: 4530978550274910093}
   Image_Mask: {fileID: 8573906036729061436}
   Image_Character: {fileID: 6072452808005309039}
   GameObject_Selected: {fileID: 6589505364564195564}
