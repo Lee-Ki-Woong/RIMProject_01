@@ -3,13 +3,17 @@
     "Id": "Character_01",
     "Name": "캐릭터1",
     "OtherName": "이명1",
-    "Class": "엔지니어",
+    "Class": "암흑술사",
     "Description": "대충 설명1",
     "MaxHp": 150,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_DarkMage_01",
+      "Skill_DarkMage_02",
+      "Skill_DarkMage_03"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character01",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/01"
   },
   {
     "Id": "Character_02",
@@ -18,10 +22,14 @@
     "Class": "엔지니어",
     "Description": "대충 설명2",
     "MaxHp": 100,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_Engineer_01",
+      "Skill_Engineer_02",
+      "Skill_Engineer_03"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character02",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/02"
   },
   {
     "Id": "Character_03",
@@ -30,10 +38,14 @@
     "Class": "점성술사",
     "Description": "대충 설명3",
     "MaxHp": 125,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_Astrogist_01",
+      "Skill_Astrogist_02",
+      "Skill_Astrogist_03"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character03",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/03"
   },
   {
     "Id": "Character_04",
@@ -42,10 +54,14 @@
     "Class": "마법사",
     "Description": "대충 설명4",
     "MaxHp": 100,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_Mage_01",
+      "Skill_Mage_02",
+      "Skill_Mage_03"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character04",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/04"
   },
   {
     "Id": "Character_05",
@@ -54,10 +70,14 @@
     "Class": "아처",
     "Description": "대충 설명5",
     "MaxHp": 125,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_Archer_01",
+      "Skill_Archer_02",
+      "Skill_Archer_03"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character05",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/05"
   },
   {
     "Id": "Character_06",
@@ -66,10 +86,14 @@
     "Class": "아처",
     "Description": "대충 설명6",
     "MaxHp": 125,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_Archer_04",
+      "Skill_Archer_05",
+      "Skill_Archer_06"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character06",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/06"
   },
   {
     "Id": "Character_07",
@@ -78,10 +102,14 @@
     "Class": "마법사",
     "Description": "대충 설명7",
     "MaxHp": 100,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_Mage_04",
+      "Skill_Mage_05",
+      "SKill_Mage_06"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character07",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/07"
   },
   {
     "Id": "Character_08",
@@ -90,9 +118,13 @@
     "Class": "점성술사",
     "Description": "대충 설명8",
     "MaxHp": 100,
-    "SkillList": null,
+    "SkillList": [
+      "Skill_Astrogist_01",
+      "Skill_Astrogist_04",
+      "Skill_Astrogist_05"
+    ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character08",
-    "PlayerObjectPath": null
+    "PlayerObjectPath": "Prefab/Character/08"
   }
 ]

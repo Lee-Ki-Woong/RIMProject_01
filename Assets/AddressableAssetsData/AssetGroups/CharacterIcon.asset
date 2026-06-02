@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: CharacterIcon
   m_GUID: 9731d456908fa9e4386ddefb8ef0b48a
   m_SerializeEntries:
+  - m_GUID: 2a35c7ead6d480846beb294ee5e8ff64
+    m_Address: Sprite/CharacterIcon/Character01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4c97ce4994575d744aaafc0b74c9af9c
     m_Address: Sprite/CharacterIcon/Character04
     m_ReadOnly: 0
@@ -27,11 +32,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a665eb841ec08f84e938b29450926d49
     m_Address: Sprite/CharacterIcon/Character03
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b5a4aadd96f85ea4197414b32fe0c7a5
-    m_Address: Sprite/CharacterIcon/Character01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
