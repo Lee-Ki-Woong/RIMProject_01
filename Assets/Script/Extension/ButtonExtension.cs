@@ -7,7 +7,6 @@ public static class ButtonExtension
     {
         SpriteState state = button.spriteState;
         state.highlightedSprite = highlightedAndPressedSprite;
-        state.pressedSprite =  highlightedAndPressedSprite;
         
         button.spriteState = state;
     }

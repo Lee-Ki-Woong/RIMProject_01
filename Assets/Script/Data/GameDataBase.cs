@@ -27,3 +27,11 @@ public class CharacterData : GameDataBase
     public string CharacterIconPath;
     public string PlayerObjectPath;
 }
+
+[Serializable]
+public class SkillData : GameDataBase
+{
+    public string Name;
+    public string Description;
+    public string SkillIconPath;
+}
