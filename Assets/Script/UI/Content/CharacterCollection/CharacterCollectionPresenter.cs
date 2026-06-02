@@ -102,7 +102,28 @@ public class CharacterCollectionPresenter : BasePresenter
         if (GameDataManager.Instance.CharacterDataList.TryGetValue(id, out CharacterData characterData))
         {
             m_chracterCollectionInfo.SetData(characterData);
-            m_chracterCollectionSkillList.SetData(characterData);
+
+            if(characterData.SkillList == null || characterData.SkillList.Length == 0)
+            {
+                Debug.LogError(characterData.Name + "캐릭터의 스킬 리스트가 비어있습니다.");
+                return;
+            }
+
+            SkillData[] skillDataList = new SkillData[characterData.SkillList.Length];
+
+            for(int i = 0; i < skillDataList.Length; i++)
+            {
+                if (GameDataManager.Instance.SkillDataList.TryGetValue(characterData.SkillList[i], out SkillData skillData))
+                {
+                    skillDataList[i] = skillData;
+                }
+                else
+                {
+                    Debug.LogError(characterData.Name + $"캐릭터의 {i}번째 스킬 데이터를 찾을 수 없습니다.");
+                }
+
+                m_chracterCollectionSkillList.SetData(skillDataList);
+            }
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,24 +14,38 @@ public class CharacterCollectionSkillList : MonoBehaviour
         public TMP_Text Text_Skill;
     }
 
-    [SerializeField] private SkillList[] Skills;
+    [SerializeField] private SkillList FirstSkill;
+    [SerializeField] private SkillList SecondSkill;
+    [SerializeField] private SkillList ThirdSkill;
 
-    public void SetData(CharacterData characterData)
+    string[] SkillId;
+
+    public void SetData(SkillData[] skillData)
     {
-        string[] skillList = characterData.SkillList;
+        SkillId = new string[] { skillData[0].Id, skillData[1].Id, skillData[2].Id };
 
-        for (int i = 0; i < Math.Min(skillList.Length, Skills.Length); i++)
-        {
-            Skills[i].Text_Skill.text = skillList[i];
-        }
+        InitData(FirstSkill, skillData[0]);
+        InitData(SecondSkill, skillData[1]);
+        InitData(ThirdSkill, skillData[2]);
+    }
+
+    private void InitData(SkillList skillList, SkillData skillData)
+    {
+        skillList.Text_Skill.text = skillData.Name;
+    }
+
+    private async UniTask LoadSprite(string address)
+    {
+        await LoadUtil.Async.LoadSpriteAsync(address);
     }
 
     public void SetAsset(TMP_FontAsset fontAsset)
     {
-        for (int i = 0; i < Skills.Length; i++)
-        {
-            Skills[i].Text_Skill.font = fontAsset;
-        }
+
     }
 
+    private void InitAsset()
+    {
+
+    }
 }
