@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SkillIcon
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: SkillIcon
+  m_GUID: a0e6d02fb5d48554e87c9ad5f75826e7
+  m_SerializeEntries:
+  - m_GUID: 37386c633ed681f49b1aba2cf4f3915c
+    m_Address: Sprite/SkillIcon/Archer04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 449be5b3e868fdd46b2ed2ee4ae128a7
+    m_Address: Sprite/SkillIcon/DarkMage01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 529cad7e06e26904988ea85352f425ba
+    m_Address: Sprite/SkillIcon/Astrogist03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5666d531f32d9464e8f727432fbfa5f7
+    m_Address: Sprite/SkillIcon/DarkMage02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 630ced44db57dce4eaad6490ce0496bf
+    m_Address: Sprite/SkillIcon/Astrogist04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 701c52f6aa9255d47b0776e2b5da233d
+    m_Address: Sprite/SkillIcon/Archer01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d19d25ddd7fc8047b3d3bf7d8bbb0bc
+    m_Address: Sprite/SkillIcon/Astrogist01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6b4c3f26be48804b9c62a1f3b9bcaf8
+    m_Address: Sprite/SkillIcon/Archer02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bcdd0bf38a91ba04b8c9d1d1db14f2ac
+    m_Address: Sprite/SkillIcon/DarkMage03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c074a5e20d53cee419017ee6b74bba19
+    m_Address: Sprite/SkillIcon/Archer03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2a28cf9d28481549b4ef5694c161886
+    m_Address: Sprite/SkillIcon/Astrogist02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3d14aca1e8510ca429e07f9ce433add9, type: 2}
+    - {fileID: 11400000, guid: fc12dd481b0fa9f448f2d66d542a0feb, type: 2}

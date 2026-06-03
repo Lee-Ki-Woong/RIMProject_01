@@ -21,7 +21,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a85b35feff18194abf6ce827f590167
-    m_Address: Sprite/UI/MainMenu/Button_Empty
+    m_Address: Sprite/UI/Button_Empty
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -37,6 +37,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 556fdad024f04204eae9117cd364b62e
     m_Address: Sprite/UI/MainMenu/TitleImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8dfe78231d0909140b12ef9d63d2c9b8
+    m_Address: Sprite/UI/SkillButton/Selected
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

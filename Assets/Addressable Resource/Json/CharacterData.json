@@ -19,17 +19,17 @@
     "Id": "Character_02",
     "Name": "캐릭터2",
     "OtherName": "이명2",
-    "Class": "엔지니어",
+    "Class": "아처",
     "Description": "대충 설명2",
-    "MaxHp": 100,
+    "MaxHp": 125,
     "SkillList": [
-      "Skill_Engineer_01",
-      "Skill_Engineer_02",
-      "Skill_Engineer_03"
+      "Skill_Archer_01",
+      "Skill_Archer_02",
+      "Skill_Archer_03"
     ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character02",
-    "PlayerObjectPath": "Prefab/Character/02"
+    "PlayerObjectPath": "Prefab/Character/05"
   },
   {
     "Id": "Character_03",
@@ -37,7 +37,7 @@
     "OtherName": "이명3",
     "Class": "점성술사",
     "Description": "대충 설명3",
-    "MaxHp": 125,
+    "MaxHp": 100,
     "SkillList": [
       "Skill_Astrogist_01",
       "Skill_Astrogist_02",
@@ -67,17 +67,17 @@
     "Id": "Character_05",
     "Name": "캐릭터5",
     "OtherName": "이명5",
-    "Class": "아처",
+    "Class": "엔지니어",
     "Description": "대충 설명5",
     "MaxHp": 125,
     "SkillList": [
-      "Skill_Archer_01",
-      "Skill_Archer_02",
-      "Skill_Archer_03"
+      "Skill_Engineer_01",
+      "Skill_Engineer_02",
+      "Skill_Engineer_03"
     ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character05",
-    "PlayerObjectPath": "Prefab/Character/05"
+    "PlayerObjectPath": "Prefab/Character/02"
   },
   {
     "Id": "Character_06",
@@ -87,9 +87,9 @@
     "Description": "대충 설명6",
     "MaxHp": 125,
     "SkillList": [
-      "Skill_Archer_04",
-      "Skill_Archer_05",
-      "Skill_Archer_06"
+      "Skill_Archer_01",
+      "Skill_Archer_02",
+      "Skill_Archer_04"
     ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character06",
@@ -103,9 +103,9 @@
     "Description": "대충 설명7",
     "MaxHp": 100,
     "SkillList": [
-      "Skill_Mage_04",
-      "Skill_Mage_05",
-      "SKill_Mage_06"
+      "Skill_Mage_01",
+      "Skill_Mage_02",
+      "SKill_Mage_04"
     ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character07",
@@ -120,8 +120,8 @@
     "MaxHp": 100,
     "SkillList": [
       "Skill_Astrogist_01",
-      "Skill_Astrogist_04",
-      "Skill_Astrogist_05"
+      "Skill_Astrogist_02",
+      "Skill_Astrogist_04"
     ],
     "UltimateSkill": null,
     "CharacterIconPath": "Sprite/CharacterIcon/Character08",

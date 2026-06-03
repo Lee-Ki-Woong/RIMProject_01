@@ -30,8 +30,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ca70d4efd9536174d886abb5596868b9
-    m_Address: Prefab/Panel/CharacterSkill
+  - m_GUID: 55d4f1ffacd8eb346a3f261b28968457
+    m_Address: Prefab/Button/Skill
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

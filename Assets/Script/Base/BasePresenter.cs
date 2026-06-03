@@ -2,7 +2,9 @@
 
 public abstract class BasePresenter
 {
-    public bool IsAssetLoad { get; protected set; }
+    public bool IsAssetLoad { get; protected set; } = false;
+
+    public BasePresenter() { }
 
     public abstract UniTask LoadAndSetAssetAsync();
 }

@@ -4,6 +4,8 @@
     {
         public static class Prefab
         {
+            public static string BasePrefab = "Base/Prefab";
+
             public static class UI
             {
                 public const string MainMenu = "Prefab/UI/MainMenu";
@@ -18,9 +20,12 @@
     {
         public static class Prefab
         {
+            public static string BasePrefab = "Base/Prefab";
+
             public static class Button
             {
                 public const string Character = "Prefab/Button/Character";
+                public const string Skill = "Prefab/Button/Skill";
             }
 
             public static class Panel
@@ -32,20 +37,22 @@
 
         public static class Sprite
         {
+            public static string BaseSprite = "Base/Sprite";
+
             public static class UI
             {
+                public const string Button_Empty = "Sprite/UI/Button_Empty";
+
                 public static class MainMenu
                 {
                     public const string TitleText = "Sprite/UI/MainMenu/TitleText";
                     public const string TitleImage = "Sprite/UI/MainMenu/TitleImage";
-                    public const string MenuButton = "Sprite/UI/MainMenu/Button_Empty";
                     public const string MenuButton_Highlighted = "Sprite/UI/MainMenu/Button";
                 }
 
                 public static class CharacterCollection
                 {
                     public const string Background = "Sprite/UI/CharacterCollection/Background";
-                    public const string MenuButton = "Sprite/UI/MainMenu/Button_Empty";
                     public const string MenuButton_Highlighted = "Sprite/UI/CharacterCollection/Highlighted";
                     public const string MenuButton_Selected = "Sprite/UI/CharacterCollection/Selected";
                     public const string ExitButton = "Sprite/UI/CharacterCollection/ExitButton";
@@ -57,12 +64,32 @@
                     public const string Mask = "Sprite/UI/CharacterButton/Mask";
                     public const string Selected = "Sprite/UI/CharacterButton/Selected";
                 }
+
+                public static class SkillButton
+                {
+                    public const string Selected = "Sprite/UI/SkillButton/Selected";
+                }
+
+                public static class EndlessGameMode
+                {
+                    public const string Background = "Sprite/UI/EndlessGameMode/Background";
+                    public const string SelectCharacterButton = "Sprite/UI/EndlessGameMode/SelectCharacterButton";
+                    public const string StartGameButton = "Sprite/UI/EndlessGameMode/StartGameButton";
+                    public const string ExitButton = "Sprite/UI/CharacterCollection/ExitButton";
+                }
+
+                public static class InGame
+                {
+                    public const string MenuPopupButton = "Sprite/UI/InGame/MenuPopupButton";
+                    public const string Misson = "Sprite/UI/InGame/Misson";
+
+                }
             }
         }
 
         public static class Font
         {
-            public const string Base = "Font/Base";
+            public static string BaseFont = "Base/Font";
         }
     }
 }
