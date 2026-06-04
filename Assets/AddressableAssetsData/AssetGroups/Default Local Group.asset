@@ -14,22 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 61eba34407ba67b4d8b3f245dbc12bbe
-  m_SerializeEntries:
-  - m_GUID: 06a788992989f3d4c89ab892f6899b65
-    m_Address: Sprite/UI/EndlessGameMode/SelectedCharacterButton
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8e9e885300c56d949a59903ac07de047
-    m_Address: Sprite/UI/EndlessGameMode/Background
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 90cd3137adfb6064ab861571c24d1a62
-    m_Address: Sprite/UI/EndlessGameMode/SelectCharacterButton
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
   m_SchemaSet:

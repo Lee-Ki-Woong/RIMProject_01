@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Sprite
   m_GUID: 43c9f5db7678a944aa5f1dc50c56ced1
   m_SerializeEntries:
+  - m_GUID: 06a788992989f3d4c89ab892f6899b65
+    m_Address: Sprite/UI/EndlessGameMode/SelectCharacterIcon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 144a1e84fce1833448f2d1787932cb01
     m_Address: Sprite/UI/CharacterCollection/Background
     m_ReadOnly: 0
@@ -40,8 +45,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ec215d66ae83e043bcc82f7a2ff6db0
+    m_Address: Sprite/UI/EndlessGameMode/StartGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8dfe78231d0909140b12ef9d63d2c9b8
     m_Address: Sprite/UI/SkillButton/Selected
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e9e885300c56d949a59903ac07de047
+    m_Address: Sprite/UI/EndlessGameMode/Background
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90cd3137adfb6064ab861571c24d1a62
+    m_Address: Sprite/UI/EndlessGameMode/SelectCharacter
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -66,7 +86,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8d3ea8f228444b4eb282fc1cb9fc17d
-    m_Address: Sprite/UI/CharacterCollection/ExitButton
+    m_Address: Sprite/UI/CharacterCollection/Exit
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

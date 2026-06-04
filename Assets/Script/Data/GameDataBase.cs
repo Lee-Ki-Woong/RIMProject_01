@@ -22,6 +22,7 @@ public class CharacterData : GameDataBase
     public string Class;
     public string Description;
     public int MaxHp;
+    public int MoveSpeed;
     public string[] SkillList;
     public string UltimateSkill;
     public string CharacterIconPath;
@@ -33,5 +34,17 @@ public class SkillData : GameDataBase
 {
     public string Name;
     public string Description;
+    public int Damage;
+    public int Cooldown;
+
     public string SkillIconPath;
+}
+
+[Serializable]
+public class EnemyData : GameDataBase
+{
+    public string Name;
+    public int MaxHp;
+    public int Damage;
+    public string MonsterObjectPath;
 }

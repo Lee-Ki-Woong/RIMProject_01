@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Json
   m_GUID: 44edbca6c28fcef4f87651512bf03d95
   m_SerializeEntries:
-  - m_GUID: e648a7a0c392d9349bac2ac018baf173
+  - m_GUID: 0052fb31ccedd1a449f4ef77d7a44cd4
     m_Address: Json/CharacterData
     m_ReadOnly: 0
     m_SerializedLabels: []

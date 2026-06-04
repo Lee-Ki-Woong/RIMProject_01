@@ -31,7 +31,7 @@
             public static class Panel
             {
                 public const string CharacterInfo = "Prefab/Panel/CharacterInfo";
-                public const string CharacterSkill = "Prefab/Panel/CharacterSkill";
+                public const string EndlessCharacterInfo = "Prefab/Panel/EndlessCharacterInfo";
             }
         }
 
@@ -55,7 +55,7 @@
                     public const string Background = "Sprite/UI/CharacterCollection/Background";
                     public const string MenuButton_Highlighted = "Sprite/UI/CharacterCollection/Highlighted";
                     public const string MenuButton_Selected = "Sprite/UI/CharacterCollection/Selected";
-                    public const string ExitButton = "Sprite/UI/CharacterCollection/ExitButton";
+                    public const string ExitButton = "Sprite/UI/CharacterCollection/Exit";
                 }
 
                 public static class CharacterButton
@@ -73,9 +73,9 @@
                 public static class EndlessGameMode
                 {
                     public const string Background = "Sprite/UI/EndlessGameMode/Background";
-                    public const string SelectCharacterButton = "Sprite/UI/EndlessGameMode/SelectCharacterButton";
-                    public const string StartGameButton = "Sprite/UI/EndlessGameMode/StartGameButton";
-                    public const string ExitButton = "Sprite/UI/CharacterCollection/ExitButton";
+                    public const string SelectCharacterButton = "Sprite/UI/EndlessGameMode/SelectCharacter";
+                    public const string StartGameButton = "Sprite/UI/EndlessGameMode/StartGame";
+                    public const string ExitButton = "Sprite/UI/CharacterCollection/Exit";
                 }
 
                 public static class InGame
