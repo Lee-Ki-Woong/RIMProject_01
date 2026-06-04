@@ -5,6 +5,7 @@
     "OtherName": "이명1",
     "Class": "암흑술사",
     "Description": "대충 설명1",
+    "MoveSpeed": 5,
     "MaxHp": 150,
     "SkillList": [
       "Skill_DarkMage_01",
@@ -21,6 +22,7 @@
     "OtherName": "이명2",
     "Class": "아처",
     "Description": "대충 설명2",
+    "MoveSpeed": 7,
     "MaxHp": 125,
     "SkillList": [
       "Skill_Archer_01",
@@ -37,6 +39,7 @@
     "OtherName": "이명3",
     "Class": "점성술사",
     "Description": "대충 설명3",
+    "MoveSpeed": 5,
     "MaxHp": 100,
     "SkillList": [
       "Skill_Astrogist_01",
@@ -53,6 +56,7 @@
     "OtherName": "이명4",
     "Class": "마법사",
     "Description": "대충 설명4",
+    "MoveSpeed": 5,
     "MaxHp": 100,
     "SkillList": [
       "Skill_Mage_01",
@@ -69,6 +73,7 @@
     "OtherName": "이명5",
     "Class": "엔지니어",
     "Description": "대충 설명5",
+    "MoveSpeed": 4,
     "MaxHp": 125,
     "SkillList": [
       "Skill_Engineer_01",
@@ -85,6 +90,7 @@
     "OtherName": "이명6",
     "Class": "아처",
     "Description": "대충 설명6",
+    "MoveSpeed": 7,
     "MaxHp": 125,
     "SkillList": [
       "Skill_Archer_01",
@@ -101,6 +107,7 @@
     "OtherName": "이명7",
     "Class": "마법사",
     "Description": "대충 설명7",
+    "MoveSpeed": 4,
     "MaxHp": 100,
     "SkillList": [
       "Skill_Mage_01",
@@ -117,6 +124,7 @@
     "OtherName": "이명8",
     "Class": "점성술사",
     "Description": "대충 설명8",
+    "MoveSpeed": 4,
     "MaxHp": 100,
     "SkillList": [
       "Skill_Astrogist_01",

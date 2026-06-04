@@ -25,7 +25,7 @@
   },
   {
     "Id": "Skill_DarkMage_03",
-    "SkillIconPath": "Sprite/SkillIcon/DarkMange03",
+    "SkillIconPath": "Sprite/SkillIcon/DarkMage03",
     "Name": "검은 창",
     "Description": "검은 창을 생성하여 적을 꿰뚫는다.",
     "Damage": 200,
@@ -72,6 +72,18 @@
     "SkillObjectPath": null
   },
   {
+    "Id": "Skill_Archer_04",
+    "SkillIconPath": "Sprite/SkillIcon/Archer04",
+    "Name": "저격",
+    "Description": "집중하여 강력한 화살을 발사한다",
+    "Damage": 500,
+    "DamageUp": null,
+    "tic": null,
+    "CoolDown": 10,
+    "Duration": null,
+    "SkillObjectPath": null
+  },
+  {
     "Id": "Skill_Astrogist_01",
     "SkillIconPath": "Sprite/SkillIcon/Astrogist01",
     "Name": "별빛",
@@ -103,7 +115,19 @@
     "Damage": 30,
     "DamageUp": null,
     "tic": 1,
-    "CoolDown": null,
+    "CoolDown": 10,
+    "Duration": 5,
+    "SkillObjectPath": null
+  },
+  {
+    "Id": "Skill_Astrogist_04",
+    "SkillIconPath": "Sprite/SkillIcon/Astrogist04",
+    "Name": "별무리",
+    "Description": "별무리를 소환하여 적을 타격한다.",
+    "Damage": 100,
+    "DamageUp": null,
+    "tic": null,
+    "CoolDown": 10,
     "Duration": null,
     "SkillObjectPath": null
   },
@@ -141,6 +165,18 @@
     "tic": null,
     "CoolDown": 20,
     "Duration": 10,
+    "SkillObjectPath": null
+  },
+  {
+    "Id": "Skill_Mage_04",
+    "SkillIconPath": "Sprite/SkillIcon/Mage04",
+    "Name": "서리 폭발",
+    "Description": "주변에 거대한 서리 영역을 생성한 후 적을 공격한다",
+    "Damage": 250,
+    "DamageUp": null,
+    "tic": null,
+    "CoolDown": 10,
+    "Duration": null,
     "SkillObjectPath": null
   },
   {
