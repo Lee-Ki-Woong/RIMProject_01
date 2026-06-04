@@ -2,9 +2,10 @@
 
 public partial class UIManager
 {
-    public MainMenuPresenter m_mainMenuPresenter;
-    public InGamePresenter m_inGamePresenter;
-    public CharacterCollectionPresenter m_characterCollectionPresenter;
+    public MainMenuPresenter m_mainMenuPresenter { get; private set; }
+    public InGamePresenter m_inGamePresenter { get; private set; }
+    public CharacterCollectionPresenter m_characterCollectionPresenter { get; private set; }
+    public EndlessGameModePresenter m_endlessGameModePresenter { get; private set; }
 
     public async UniTask OpenMainMenu()
     {
@@ -19,7 +20,7 @@ public partial class UIManager
 
         m_activeUI.Add(UIType.MainMenu);
         m_mainMenuPresenter.MainMenuUI.ActiveTrue();
-        m_mainMenuPresenter.GoMainMenu();
+        m_mainMenuPresenter.OpenMainMenuUI();
     }
 
     public async UniTask OpenInGame()
@@ -37,6 +38,19 @@ public partial class UIManager
         m_inGamePresenter.InGame.ActiveTrue();
     }
 
+    public async UniTask OpenEndlessGameMode()
+            {
+        if (m_endlessGameModePresenter == null)
+        {
+            m_endlessGameModePresenter = new EndlessGameModePresenter();
+        }
+        m_endlessGameModePresenter.InitEndlessGameMode(CreateUI<EndlessGameMode>(UIType.EndlessGameMode));
+        await m_endlessGameModePresenter.LoadAndSetAssetAsync();
+        m_activeUI.Add(UIType.EndlessGameMode);
+        m_endlessGameModePresenter.EndlessGameModeUI.ActiveTrue();
+        m_endlessGameModePresenter.OpenEndlessGameModeUI();
+    }
+
     public async UniTask OpenCharacterCollection()
     {
         if (m_characterCollectionPresenter == null)
@@ -50,11 +64,7 @@ public partial class UIManager
 
         m_activeUI.Add(UIType.CharacterCollection);
         m_characterCollectionPresenter.CharacterCollectionUI.ActiveTrue();
-        m_characterCollectionPresenter.SetCharacterCollection();
+        m_characterCollectionPresenter.OpenCharacterCollectionUI();
     }
 
-    private void Start()
-    {
-        OpenMainMenu().Forget();
-    }
 }

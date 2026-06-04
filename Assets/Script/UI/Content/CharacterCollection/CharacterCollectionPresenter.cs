@@ -8,24 +8,41 @@ public class CharacterCollectionPresenter : BasePresenter
 {
     public CharacterCollection CharacterCollectionUI { get; private set; }
 
-    private GameObject Prefab_CharacterButton;
-    private GameObject Prefab_CharacterInfo;
-    private GameObject Prefab_characterSkillList;
+    private GameObject m_prefab_characterBtuuon;
+    private GameObject m_prefab_skillButton;
+    private GameObject m_prefab_characterInfo;
 
-    private Sprite Sprite_Backgorund;
-    private Sprite Sprite_MenuButton;
-    private Sprite Sprite_MenuButton_Highlighted;
-    private Sprite Sprite_MenuButton_Selected;
-    private Sprite Sprite_ExitButton;
+    private Sprite m_sprite_background;
+    private Sprite m_sprite_menuButton;
+    private Sprite m_sprite_menuButton_Highlighted;
+    private Sprite m_sprite_menuButton_Selected;
+    private Sprite m_sprite_exitButton;
 
     private TMP_FontAsset Font_MenuFont;
 
     private CharacterCollectionInfo m_chracterCollectionInfo;
-    private CharacterCollectionSkillList m_chracterCollectionSkillList;
+    private Transform m_skillSlot;
 
     public void InitCharacterCollection(CharacterCollection characterCollection)
     {
         CharacterCollectionUI = characterCollection;
+        m_skillSlot = characterCollection.SkillIconSlot;
+    }
+
+    public void OpenCharacterCollectionUI()
+    {
+        string[] texts = { "캐릭터 정보", "캐릭터 스킬" };
+        Action[] actions = { OnClick_CharacterInfoButton, OnClick_ChracterSkillListButton, OnClick_ExitButton };
+
+        UIData characterCollectionData = new()
+        {
+            Texts = texts,
+            Actions = actions
+        };
+
+        CharacterCollectionUI.SetData(characterCollectionData);
+        OnClick_CharacterInfoButton();
+        OnClick_CharacterButton(CharacterCollectionUI.m_characterButtons[0].m_iconDataId);
     }
 
     public override async UniTask LoadAndSetAssetAsync()
@@ -35,48 +52,34 @@ public class CharacterCollectionPresenter : BasePresenter
             return;
         }
 
-        var (sprite_background, sprite_menuButton, sprite_menuButtonHighlighted, sprite_menuButtonSelected, sprite_exitButton, caracterButton, caracterInfo, caracterSkillList, baseFont) = await UniTask.WhenAll
+        var (sprite_background, sprite_menuButton, sprite_menuButtonHighlighted, sprite_menuButtonSelected, sprite_exitButton, characterButton, skillButton, characterInfo, baseFont) = await UniTask.WhenAll
             (
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterCollection.Background),
-            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterCollection.MenuButton),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.Button_Empty),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterCollection.MenuButton_Highlighted),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterCollection.MenuButton_Selected),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterCollection.ExitButton),
-
             LoadUtil.Async.LoadPrefabAsync(AddressUtil.Async.Prefab.Button.Character),
+            LoadUtil.Async.LoadPrefabAsync(AddressUtil.Async.Prefab.Button.Skill),
             LoadUtil.Async.LoadPrefabAsync(AddressUtil.Async.Prefab.Panel.CharacterInfo),
-            LoadUtil.Async.LoadPrefabAsync(AddressUtil.Async.Prefab.Panel.CharacterSkill),
-            LoadUtil.Async.LoadFontAssetAsync(AddressUtil.Async.Font.Base)
+            LoadUtil.Async.LoadFontAssetAsync(AddressUtil.Async.Font.BaseFont)
             );
 
-        Sprite_Backgorund = sprite_background;
-        Sprite_MenuButton = sprite_menuButton;
-        Sprite_MenuButton_Highlighted = sprite_menuButtonHighlighted;
-        Sprite_MenuButton_Selected = sprite_menuButtonSelected;
-        Sprite_ExitButton = sprite_exitButton;
-        Prefab_CharacterButton = caracterButton;
-        Prefab_CharacterInfo = caracterInfo;
-        Prefab_characterSkillList = caracterSkillList;
+        m_sprite_background = sprite_background;
+        m_sprite_menuButton = sprite_menuButton;
+        m_sprite_menuButton_Highlighted = sprite_menuButtonHighlighted;
+        m_sprite_menuButton_Selected = sprite_menuButtonSelected;
+        m_sprite_exitButton = sprite_exitButton;
+        m_prefab_characterBtuuon = characterButton;
+        m_prefab_skillButton = skillButton;
+        m_prefab_characterInfo = characterInfo;
         Font_MenuFont = baseFont;
 
-        CharacterCollectionUI.SetAsset(Sprite_Backgorund, Sprite_MenuButton, Sprite_MenuButton_Highlighted ,Sprite_MenuButton_Selected, Sprite_ExitButton, Font_MenuFont);
+        CharacterCollectionUI.SetAsset(m_sprite_background, m_sprite_menuButton, m_sprite_menuButton_Highlighted ,m_sprite_menuButton_Selected, m_sprite_exitButton, Font_MenuFont);
         CreatePanelAndButtons();
 
         IsAssetLoad = true;
-    }
 
-    public void SetCharacterCollection()
-    {
-        string[] texts = { "캐릭터 정보", "캐릭터 스킬", "나가기" };
-        Action[] actions = { OnClick_CharacterInfoButton, OnClick_ChracterSkillListButton, OnClick_ExitButton};
-
-        UIData characterCollectionData = new()
-        {
-            Texts = texts,
-            Actions = actions
-        };
-
-        CharacterCollectionUI.SetData(characterCollectionData);
     }
 
     private void CreatePanelAndButtons()
@@ -87,14 +90,11 @@ public class CharacterCollectionPresenter : BasePresenter
             CharacterData data = dataKV.Value;
             if (data == null || data.Id == null) continue;
 
-            CharacterCollectionUI.CreateButtons(Prefab_CharacterButton, data, OnClick_CharacterButton);
+            CharacterCollectionUI.CreateCharacterButtons(m_prefab_characterBtuuon, data, OnClick_CharacterButton);
         }
 
-        m_chracterCollectionInfo = CharacterCollectionUI.CreateCharacterInfo(Prefab_CharacterInfo);
+        m_chracterCollectionInfo = CharacterCollectionUI.CreateCharacterInfo(m_prefab_characterInfo);
         m_chracterCollectionInfo.SetAsset(Font_MenuFont);
-
-        m_chracterCollectionSkillList = CharacterCollectionUI.CreateCharacterSkillList(Prefab_characterSkillList);
-        m_chracterCollectionSkillList.SetAsset(Font_MenuFont);
     }
 
     private void OnClick_CharacterButton(string id)
@@ -109,28 +109,35 @@ public class CharacterCollectionPresenter : BasePresenter
                 return;
             }
 
+            CharacterCollectionUI.DestroyAllSkillButtons();
+
             SkillData[] skillDataList = new SkillData[characterData.SkillList.Length];
 
             for(int i = 0; i < skillDataList.Length; i++)
             {
-                if (GameDataManager.Instance.SkillDataList.TryGetValue(characterData.SkillList[i], out SkillData skillData))
+                GameDataManager.Instance.SkillDataList.TryGetValue(characterData.SkillList[i], out SkillData skillData);
+                skillDataList[i] = skillData;
+
+                if(skillData == null)
                 {
-                    skillDataList[i] = skillData;
-                }
-                else
-                {
-                    Debug.LogError(characterData.Name + $"캐릭터의 {i}번째 스킬 데이터를 찾을 수 없습니다.");
+                    Debug.LogError(characterData.Name + $"캐릭터의 {i}번째 스킬 데이터가 존재하지 않습니다.");
+                    continue;
                 }
 
-                m_chracterCollectionSkillList.SetData(skillDataList);
+                CharacterCollectionUI.CreateSkillButtons(m_prefab_skillButton, skillDataList[i], OnClick_SkillButton);
             }
         }
     }
 
+    private void OnClick_SkillButton(string id)
+    {
+
+    }
+
     private void OnClick_CharacterInfoButton()
     {
-        m_chracterCollectionSkillList.ActiveFalse();
         m_chracterCollectionInfo.ActiveTrue();
+        m_skillSlot.gameObject.SetActive(false);
 
         CharacterCollectionUI.SelectedCharacterInfo();
     }
@@ -138,7 +145,7 @@ public class CharacterCollectionPresenter : BasePresenter
     private void OnClick_ChracterSkillListButton()
     {
         m_chracterCollectionInfo.ActiveFalse();
-        m_chracterCollectionSkillList.ActiveTrue();
+        m_skillSlot.gameObject.SetActive(true);
 
         CharacterCollectionUI.SelectedCharacterSkillList();
     }
@@ -147,4 +154,11 @@ public class CharacterCollectionPresenter : BasePresenter
     {
         UIManager.Instance.CloseUI(UIType.CharacterCollection);
     }
+
+
+    public void CloseCharacterCollectionUI()
+    {
+        UIManager.Instance.CloseUI(UIType.CharacterCollection);
+    }
+
 }

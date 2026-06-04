@@ -17,7 +17,7 @@ public class CharacterCollectionInfo : MonoBehaviour
 
     public void SetData(CharacterData data)
     {
-        string[] datas = { data.Name, data.OtherName, data.Class, data.MaxHp.ToString() };
+        string[] datas = { data.Name, data.OtherName, data.Class, data.MaxHp.ToString(), data.MoveSpeed.ToString() };
 
         for(int i = 0; i < Math.Min(Texts.Length, datas.Length); i++)
         {

@@ -14,7 +14,7 @@ public class CharacterButton : MonoBehaviour
 
     private event Action<string> m_buttonEvent;
 
-    private string m_iconDataId;
+    public string m_iconDataId { get; private set; }
 
     private void Awake()
     {
@@ -29,14 +29,14 @@ public class CharacterButton : MonoBehaviour
         this.ComponentChecking(ref Image_Selected);
     }
 
-    public async UniTask LoadAssetAsync(CharacterData value)
+    public async UniTask LoadAssetAsync(CharacterData characterData)
     {
 
         var (edgeSprite, maskSprite, characterSprite, selectedSprite) = await UniTask.WhenAll
             (
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterButton.Edge),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterButton.Mask),
-            LoadUtil.Async.LoadSpriteAsync(value.CharacterIconPath),
+            LoadUtil.Async.LoadSpriteAsync(characterData.CharacterIconPath),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.CharacterButton.Selected)
             );
 
@@ -46,11 +46,11 @@ public class CharacterButton : MonoBehaviour
         Image_Selected.sprite = selectedSprite;
     }
 
-    public void SetEvent(string id, Action<string> action)
+    public void SetEvent(CharacterData characterData, Action<string> action)
     {
-        m_iconDataId = id;
-        m_buttonEvent += action;
-
+        m_iconDataId = characterData.Id;
+        m_buttonEvent = action;
+        UnBindButtonEvent();
         BindButtonEvent();
     }
 
@@ -61,12 +61,17 @@ public class CharacterButton : MonoBehaviour
             return;
         }
 
-        if (m_buttonEvent != null)
+        Button_This.onClick.AddListener(OnClick_Button);
+    }
+
+    private void UnBindButtonEvent()
+    {
+        if (this.ComponentChecking(ref Button_This) == false)
         {
-            Button_This.onClick.RemoveAllListeners();
+            return;
         }
 
-        Button_This.onClick.AddListener(OnClick_Button);
+        Button_This.onClick.RemoveListener(OnClick_Button);
     }
 
     private void OnClick_Button()

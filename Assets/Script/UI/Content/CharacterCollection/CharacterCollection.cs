@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
-using NUnit.Framework.Internal;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class CharacterCollection : BaseUI
 {
     [SerializeField] private Transform CharacterIconSlot;
+    [field: SerializeField] public Transform SkillIconSlot { get; private set; }
     [SerializeField] private Image Image_Background;
 
     [SerializeField] private Button Button_Exit;
@@ -25,6 +26,9 @@ public class CharacterCollection : BaseUI
 
     [SerializeField] private MenuButton CharacterInfo;
     [SerializeField] private MenuButton CharacterSkillList;
+
+    public List<CharacterButton> m_characterButtons { get; private set; } = new();
+    public List<SkillButton> m_skillButtons { get; private set; } = new();
 
     public void SetAsset(Sprite background, Sprite menuButton, Sprite menuButtonHighlighted, Sprite menuButtonSelected, Sprite exitButton, TMP_FontAsset font)
     {
@@ -54,12 +58,6 @@ public class CharacterCollection : BaseUI
     {
         string[] texts = uiData.Texts;
         Action[] actions = uiData.Actions;
-
-        if (texts.Length != actions.Length)
-        {
-            Debug.LogError($"{this.gameObject} : 전달받은 texts와 Actions의 Length 값이 동일하지 않습니다!!");
-            return;
-        }
 
         InitData(CharacterInfo, texts[0], actions[0]);
         InitData(CharacterSkillList, texts[1], actions[1]);
@@ -100,7 +98,7 @@ public class CharacterCollection : BaseUI
         button.onClick.AddListener(action.Invoke);
     }
 
-    public void CreateButtons(GameObject prefab, CharacterData data, Action<string> action)
+    public void CreateCharacterButtons(GameObject prefab, CharacterData data, Action<string> action)
     {
         if(this.TryInstantiate(prefab, CharacterIconSlot, out GameObject buttonInstance) == false)
         {
@@ -112,12 +110,59 @@ public class CharacterCollection : BaseUI
             this.LogError("CharacterButton에 CharacterButton 컴포넌트가 없습니다!!");
             return;
         }
-
+        m_characterButtons.Add(characterButton);
         characterButton.LoadAssetAsync(data).Forget();
 
-        string id = data.Id;
+        characterButton.SetEvent(data, action);
+    }
 
-        characterButton.SetEvent(id, action);
+    public void DestroyCharacterButtons()
+    {
+        for (int i = 0; i < m_characterButtons.Count; i++)
+        {
+            if (m_characterButtons[i] != null)
+            {
+                Destroy(m_characterButtons[i].gameObject);
+            }
+        }
+        m_characterButtons.Clear();
+    }
+
+    public void CreateSkillButtons(GameObject prefab, SkillData data, Action<string> action)
+    {
+        if (this.TryInstantiate(prefab, SkillIconSlot, out GameObject buttonInstance) == false)
+        {
+            return;
+        }
+
+        if (buttonInstance.TryGetComponent(out SkillButton skillButton) == false)
+        {
+            this.LogError("SkillButton에 SkillButton 컴포넌트가 없습니다!!");
+            return;
+        }
+
+        if(data == null)
+        {
+            this.LogError("스킬 데이터가 없습니다!!");
+            return;
+        }
+
+        m_skillButtons.Add(skillButton);
+        skillButton.LoadAssetAsync(data).Forget();
+
+        skillButton.SetEvent(data, action);
+    }
+
+    public void DestroyAllSkillButtons()
+    {
+        for (int i = 0; i < m_skillButtons.Count; i++)
+        {
+            if (m_skillButtons[i] != null)
+            {
+                Destroy(m_skillButtons[i].gameObject);
+            }
+        }
+        m_skillButtons.Clear();
     }
 
     public CharacterCollectionInfo CreateCharacterInfo(GameObject prefab)
@@ -134,22 +179,6 @@ public class CharacterCollection : BaseUI
         }
 
         return info;
-    }
-
-    public CharacterCollectionSkillList CreateCharacterSkillList(GameObject prefab)
-    {
-        if (this.TryInstantiate(prefab, this.transform, out GameObject instance) == false)
-        {
-            return null;
-        }
-
-        if (instance.TryGetComponent(out CharacterCollectionSkillList skillList) == false)
-        {
-            this.LogError($"{instance.name} 프리팹에 CharacterCollectionSkillList 컴포넌트가 없습니다!! 확인해주세요!!");
-            return null;
-        }
-
-        return skillList;
     }
 
     public void SelectedCharacterInfo()

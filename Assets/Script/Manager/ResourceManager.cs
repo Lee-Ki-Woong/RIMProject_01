@@ -68,11 +68,10 @@ public class ResourceManager : BaseManager<ResourceManager>
             UnLoadAsset(address);
             return null;
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
             this.LogError("에셋 로드 중 예외가 발생하였습니다!!");
             UnLoadAsset(address);
-            Debug.LogException(e);
             return null;
         }
     }

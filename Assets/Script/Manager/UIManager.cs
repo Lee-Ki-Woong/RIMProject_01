@@ -14,6 +14,18 @@ public partial class UIManager : BaseManager<UIManager>
     private HashSet<UIType> m_activeUI = new();
     private HashSet<UIRootType> m_activeCanvas = new();
 
+    private void Start()
+    {
+        StartSetting();
+    }
+
+    private void StartSetting()
+    {
+        CreateUI<MainMenu>(UIType.MainMenu);
+        CreateUIAsync<CharacterCollection>(UIType.CharacterCollection).Forget();
+        OpenMainMenu().Forget();
+    }
+
     public T CreateUI<T>(UIType uiType) where T : BaseUI
     {
         if (m_uiDic.TryGetValue(uiType, out BaseUI baseUI))
