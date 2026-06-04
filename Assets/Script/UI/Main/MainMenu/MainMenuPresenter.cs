@@ -33,9 +33,9 @@ public class MainMenuPresenter : BasePresenter
             (
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.TitleText),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.TitleImage),
-            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.MenuButton),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.Button_Empty),
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.MenuButton_Highlighted),
-            LoadUtil.Async.LoadFontAssetAsync(AddressUtil.Async.Font.Base)
+            LoadUtil.Async.LoadFontAssetAsync(AddressUtil.Async.Font.BaseFont)
             );
 
         Sprite_TitleText = titleText;
@@ -48,17 +48,6 @@ public class MainMenuPresenter : BasePresenter
 
         MainMenuUI.SetAsset(Sprite_TitleText, Sprite_TitleImage, Sprite_MenuButton, Sprite_MenuButton_Highlighted, TMPFont_MenuFont);
     }
-
-    public void GoMainMenu()
-    {
-        OpenMainMenu();
-    }
-
-    public void LeaveMainMenu()
-    {
-        UIManager.Instance.CloseUI(UIType.MainMenu);
-    }
-
 
     private Dictionary<MainMenuType, UIData> m_mainMenuDataDic = new();
 
@@ -177,5 +166,16 @@ public class MainMenuPresenter : BasePresenter
 
     private void OpenEndlessGameMode()
     {
+        UIManager.Instance.OpenEndlessGameMode().Forget();
+    }
+
+    public void OpenMainMenuUI()
+    {
+        OpenMainMenu();
+    }
+
+    public void CloseMainMenuUI()
+    {
+        UIManager.Instance.CloseUI(UIType.MainMenu);
     }
 }
