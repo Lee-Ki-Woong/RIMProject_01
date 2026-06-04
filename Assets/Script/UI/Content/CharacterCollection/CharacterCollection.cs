@@ -14,6 +14,8 @@ public class CharacterCollection : BaseUI
     [SerializeField] private Button Button_Exit;
     [SerializeField] private Image Image_Exit;
 
+    [SerializeField] private Image Image_CharacterStanding;
+
     [System.Serializable]
     private class MenuButton
     {
@@ -44,6 +46,11 @@ public class CharacterCollection : BaseUI
         InitAsset(CharacterSkillList, menuButton, menuButtonHighlighted, menuButtonSelected, font);
 
         IsSetAsset = true;
+    }
+
+    public void SetCharacterStandingAsset(Sprite sprite)
+    {
+        Image_CharacterStanding.sprite = sprite;
     }
 
     private void InitAsset(MenuButton menu, Sprite menuButton, Sprite menuButtonHighlighted, Sprite menuButtonSelected, TMP_FontAsset font)
@@ -112,6 +119,7 @@ public class CharacterCollection : BaseUI
         }
         m_characterButtons.Add(characterButton);
         characterButton.LoadAssetAsync(data).Forget();
+
 
         characterButton.SetEvent(data, action);
     }

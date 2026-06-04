@@ -23,6 +23,9 @@ public class CharacterCollectionPresenter : BasePresenter
     private CharacterCollectionInfo m_chracterCollectionInfo;
     private Transform m_skillSlot;
 
+    private Sprite m_sprite_characterStanding;
+    private Dictionary<Sprite, string> m_characterStandingAssetAddressDic = new();
+
     public void InitCharacterCollection(CharacterCollection characterCollection)
     {
         CharacterCollectionUI = characterCollection;
@@ -99,6 +102,8 @@ public class CharacterCollectionPresenter : BasePresenter
 
     private void OnClick_CharacterButton(string id)
     {
+
+
         if (GameDataManager.Instance.CharacterDataList.TryGetValue(id, out CharacterData characterData))
         {
             m_chracterCollectionInfo.SetData(characterData);
@@ -108,6 +113,9 @@ public class CharacterCollectionPresenter : BasePresenter
                 Debug.LogError(characterData.Name + "캐릭터의 스킬 리스트가 비어있습니다.");
                 return;
             }
+
+            Sprite characterStaindingSprite = LoadUtil.Sync.LoadGeneric<Sprite>(characterData.CharacterStandPath);
+            CharacterCollectionUI.SetCharacterStandingAsset(characterStaindingSprite);
 
             CharacterCollectionUI.DestroyAllSkillButtons();
 

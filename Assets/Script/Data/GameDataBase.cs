@@ -26,6 +26,7 @@ public class CharacterData : GameDataBase
     public string[] SkillList;
     public string UltimateSkill;
     public string CharacterIconPath;
+    public string CharacterStandPath;
     public string PlayerObjectPath;
 }
 
@@ -46,5 +47,6 @@ public class EnemyData : GameDataBase
     public string Name;
     public int MaxHp;
     public int Damage;
+    public int MoveSpeed;
     public string MonsterObjectPath;
 }

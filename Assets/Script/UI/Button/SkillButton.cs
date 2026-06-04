@@ -83,6 +83,6 @@ public class SkillButton : MonoBehaviour
 
     private void OnClick_Button()
     {
-        m_buttonEvent.Invoke(m_iconDataId);
+        m_buttonEvent?.Invoke(m_iconDataId);
     }
 }

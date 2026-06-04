@@ -10,6 +10,7 @@ public class EndlessGameMode : BaseUI
 {
     [SerializeField] private Transform CharacterIconSlot;
     [SerializeField] private Transform SkillIconSlot;
+    [SerializeField] private Transform CharacterSlot;
     [SerializeField] private Image Image_Background;
 
     [SerializeField] private TMP_Text TMPText_ScoreTitle;
@@ -23,22 +24,17 @@ public class EndlessGameMode : BaseUI
         public TMP_Text TMPText_This;
     }
 
+    [SerializeField] private Image Image_CharacterStanding;
+
     [SerializeField] private Menu Menu_StartGame;
     [SerializeField] private Menu Menu_SelectCharacter;
 
     [SerializeField] private Button Button_Exit;
     [SerializeField] private Image Image_Exit;
 
-    [Serializable]
-    private class Party
-    {
-        public Button Button;
-        public Image Image_CharacterIcon;
-    }
-
-    public List<Character> Characters { get; private set; } = new();
     public List<CharacterButton> CharacterButtons { get; private set; } = new();
     public List<SkillButton> SkillButtons { get; private set; } = new();
+    public Dictionary<CharacterData, PartySlotButton> PartySlotButtons { get; private set; } = new();
 
     public void SetAsset(Sprite background, Sprite selectCharacterButton, Sprite startGameButton, Sprite exitButton, TMP_FontAsset font)
     {
@@ -49,10 +45,10 @@ public class EndlessGameMode : BaseUI
 
         Image_Background.sprite = background;
 
-        Menu_StartGame.Image_This.sprite = selectCharacterButton;
+        Menu_StartGame.Image_This.sprite = startGameButton;
         Menu_StartGame.TMPText_This.font = font;
 
-        Menu_SelectCharacter.Image_This.sprite = startGameButton;
+        Menu_SelectCharacter.Image_This.sprite = selectCharacterButton;
         Menu_SelectCharacter.TMPText_This.font = font;
 
         TMPText_ScoreData.font = font;
@@ -68,9 +64,8 @@ public class EndlessGameMode : BaseUI
         string[] texts = uiData.Texts;
         Action[] actions = uiData.Actions;
 
-        InitData(Menu_SelectCharacter, texts[0], actions[0]);
-        InitData(Menu_StartGame, texts[1], actions[1]);
-        InitData(Button_Exit, actions[2]);
+        InitData(Menu_StartGame, texts[0], actions[0]);
+        InitData(Button_Exit, actions[1]);
     }
 
     public void SetScore(PlayerModel playerModel)
@@ -100,6 +95,11 @@ public class EndlessGameMode : BaseUI
         menu.Button_This.onClick.AddListener(action.Invoke);
     }
 
+    public void SetAssetCharacterStanding(Sprite sprite)
+    {
+        Image_CharacterStanding.sprite = sprite;
+    }
+
     private void InitData(Button button, Action action)
     {
         if (action == null)
@@ -126,7 +126,6 @@ public class EndlessGameMode : BaseUI
         }
         CharacterButtons.Add(characterButton);
         characterButton.LoadAssetAsync(data).Forget();
-
         characterButton.SetEvent(data, action);
     }
 
@@ -158,6 +157,43 @@ public class EndlessGameMode : BaseUI
         return info;
     }
 
+    public void CreatePartySlot(GameObject prefab, CharacterData characterData, Action<string> action)
+    {
+        if (PartySlotButtons.ContainsKey(characterData))
+        {
+            this.LogError($"{characterData.Name}은 이미 파티에 있습니다!!");
+            return;
+        }
+
+        if (this.TryInstantiate(prefab, CharacterSlot, out GameObject instance) == false)
+        {
+            return;
+        }
+
+        if (instance.TryGetComponent(out PartySlotButton partySlotButton) == false)
+        {
+            this.LogError("PartySlotButton에 PartySlotButton 컴포넌트가 없습니다!!");
+            return;
+        }
+
+        PartySlotButtons.Add(characterData, partySlotButton);
+        partySlotButton.SetData(characterData);
+        partySlotButton.LoadAssetAsync(characterData).Forget();
+        partySlotButton.SetEvent(action);
+    }
+
+    public void DestroyPartySlot(CharacterData characterData)
+    {
+        if (PartySlotButtons.TryGetValue(characterData, out PartySlotButton partySlotButton) == false)
+        {
+            this.LogError($"{characterData.Name}과 매칭되는 PartySlot이 없습니다!!");
+            return;
+        }
+
+        PartySlotButtons.Remove(characterData);
+        Destroy(partySlotButton.gameObject);
+    }
+
     public void CreateSkillButtons(GameObject prefab, SkillData data, Action<string> action)
     {
         if (this.TryInstantiate(prefab, SkillIconSlot, out GameObject buttonInstance) == false)
@@ -179,7 +215,6 @@ public class EndlessGameMode : BaseUI
 
         SkillButtons.Add(skillButton);
         skillButton.LoadAssetAsync(data).Forget();
-
         skillButton.SetEvent(data, action);
     }
 
@@ -195,4 +230,38 @@ public class EndlessGameMode : BaseUI
         SkillButtons.Clear();
     }
 
+    public void BindSelectCharacterButtonEvent(CharacterData characterData, Action<string> action)
+    {
+        Menu_SelectCharacter.Button_This.onClick.RemoveAllListeners();
+        Menu_SelectCharacter.Button_This.onClick.AddListener(() => action?.Invoke(characterData.Id));
+    }
+
+    //public Transform SetCharacterSlotTransform()
+    //{
+    //    if (CharacterSlot[0] == null)
+    //    {
+    //        return CharacterSlot[0];
+    //    }
+    //    else if(CharacterSlot[1] == null)
+    //    {
+    //        return CharacterSlot[1];
+    //    }
+    //    else if (CharacterSlot[2] == null)
+    //    {
+    //        return CharacterSlot[2];
+    //    }
+    //    else if (CharacterSlot[3] == null)
+    //    {
+    //        return CharacterSlot[3];
+    //    }
+    //    else if (CharacterSlot[4] == null)
+    //    {
+    //        return CharacterSlot[4];
+    //    }
+    //    else
+    //    {
+    //        this.LogError("캐릭터 슬롯이 전부 꽉 찬 상태입니다!!");
+    //        return null;
+    //    }
+    //}
 }
