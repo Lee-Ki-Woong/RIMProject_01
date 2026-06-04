@@ -2,14 +2,20 @@
 
 public class GameManager : BaseManager<GameManager>
 {
-    [SerializeField] GameObject Prefab_UIManager;
-    [SerializeField] GameObject Prefab_ResourceManager;
-    [SerializeField] GameObject Prefab_GameDataManager;
+    [SerializeField] private GameObject Prefab_UIManager;
+    [SerializeField] private GameObject Prefab_ResourceManager;
+    [SerializeField] private GameObject Prefab_GameDataManager;
+    [SerializeField] private GameObject Prefab_GmeObjectManager;
+    [SerializeField] private GameObject Prefab_NetWorkManager;
 
 
     private UIManager UI;
     private ResourceManager Resource;
     private GameDataManager GameData;
+    private GameObjectManager GameObject;
+    private NetworkManager Network;
+
+    private PlayerModel m_playerModel;
 
     protected override void Awake()
     {
@@ -19,6 +25,7 @@ public class GameManager : BaseManager<GameManager>
 
     private void AwakeSetting()
     {
+        QualitySettings.vSyncCount = 1;
         ManagerCheck();
         DontDestroyGameManager();
     }
@@ -38,6 +45,16 @@ public class GameManager : BaseManager<GameManager>
         if (Prefab_GameDataManager == null)
         {
             this.LogError("GameDataManager가 할당되지 않았습니다!!");
+        }
+
+        if (Prefab_GmeObjectManager == null)
+        {
+            this.LogError("GameObjectManager가 할당되지 않았습니다!!");
+        }
+
+        if (Prefab_NetWorkManager == null)
+        {
+            this.LogError("NetworkManager가 할당되지 않았습니다!!");
         }
     }
 
@@ -88,5 +105,60 @@ public class GameManager : BaseManager<GameManager>
                 this.LogError("GameDataManager Prefab에 GameDataManager 컴포넌트가 없습니다!!");
             }
         }
+
+        if (this.TryInstantiate(Prefab_GmeObjectManager, this.transform, out GameObject gameObjectManagerInstance))
+        {
+            if(gameDataManagerInstance.TryGetComponent(out GameObjectManager gameObjectManager))
+            {
+                GameObject = gameObjectManager;
+            }
+            else
+            {
+                this.LogError("GameObjectManager Prefab에 GameObjectManager 컴포넌트가 없습니다!!");
+            }
+        }
+
+        if (this.TryInstantiate(Prefab_NetWorkManager, this.transform, out GameObject networkNamagerInstance))
+        {
+            if(networkNamagerInstance.TryGetComponent(out NetworkManager networkManager))
+            {
+                Network = networkManager;
+            }
+            else
+            {
+                this.LogError("NetworkManager Prefab에 NetworkManager 컴포넌트가 없습니다!!");
+            }
+        }
+    }
+
+    private void SavePlayerModel()
+    {
+        Network.RequestSavePlayerModel(m_playerModel);
+    }
+
+    private void LoadPlayerModel()
+    {
+        m_playerModel = Network.RequestLoadPlayerModel();
+    }
+
+    public void Save()
+    {
+        SavePlayerModel();
+    }
+
+    public void Load()
+    {
+        LoadPlayerModel();
+    }
+
+    public void GameQuit()
+    {
+        Save();
+        Application.Quit();
+    }
+
+    public void PlayerGetStar(int starPoint)
+    {
+        m_playerModel.Score = starPoint;
     }
 }
