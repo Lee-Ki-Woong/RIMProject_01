@@ -41,9 +41,9 @@ public class NetworkManager : BaseManager<NetworkManager>
         }
     }
 
-    public PlayerModel CreateNewPlayerModel()
+    private PlayerModel CreateNewPlayerModel()
     {
-        PlayerModel playerModel = new PlayerModel();
+        PlayerModel playerModel = new();
         playerModel.Score = 0;
 
         return playerModel;

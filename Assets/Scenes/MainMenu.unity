@@ -702,6 +702,8 @@ MonoBehaviour:
   Prefab_UIManager: {fileID: 7675409480464157691, guid: fc93c653e8022e1488903d8454321715, type: 3}
   Prefab_ResourceManager: {fileID: 6334707249800496124, guid: 27c5baa1140deb64399d9c727e886083, type: 3}
   Prefab_GameDataManager: {fileID: 5163473079859340208, guid: e862a69547fb4e9428013f89814a86c5, type: 3}
+  Prefab_GameObjectManager: {fileID: 7719688620043612230, guid: 114ebb5b80c72e04295bad7f808621c8, type: 3}
+  Prefab_NetWorkManager: {fileID: 8419539071126546239, guid: 217c826bc5fe2624595413c43f8ec64e, type: 3}
 --- !u!4 &1444049875
 Transform:
   m_ObjectHideFlags: 0

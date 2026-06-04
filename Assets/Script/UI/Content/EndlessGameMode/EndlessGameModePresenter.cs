@@ -42,6 +42,7 @@ public class EndlessGameModePresenter : BasePresenter
         };
 
         EndlessGameModeUI.SetData(endlessGameModeData);
+        EndlessGameModeUI.SetScore(GameManager.Instance.PlayerModel);
     }
 
     public override async UniTask LoadAndSetAssetAsync()

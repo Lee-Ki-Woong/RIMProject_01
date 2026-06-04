@@ -5,7 +5,7 @@ public class GameManager : BaseManager<GameManager>
     [SerializeField] private GameObject Prefab_UIManager;
     [SerializeField] private GameObject Prefab_ResourceManager;
     [SerializeField] private GameObject Prefab_GameDataManager;
-    [SerializeField] private GameObject Prefab_GmeObjectManager;
+    [SerializeField] private GameObject Prefab_GameObjectManager;
     [SerializeField] private GameObject Prefab_NetWorkManager;
 
 
@@ -15,7 +15,7 @@ public class GameManager : BaseManager<GameManager>
     private GameObjectManager GameObject;
     private NetworkManager Network;
 
-    private PlayerModel m_playerModel;
+    public PlayerModel PlayerModel {  get; private set; }
 
     protected override void Awake()
     {
@@ -28,6 +28,7 @@ public class GameManager : BaseManager<GameManager>
         QualitySettings.vSyncCount = 1;
         ManagerCheck();
         DontDestroyGameManager();
+        CreateManagerAndCheckManagerScript();
     }
 
     private void ManagerCheck()
@@ -47,7 +48,7 @@ public class GameManager : BaseManager<GameManager>
             this.LogError("GameDataManager가 할당되지 않았습니다!!");
         }
 
-        if (Prefab_GmeObjectManager == null)
+        if (Prefab_GameObjectManager == null)
         {
             this.LogError("GameObjectManager가 할당되지 않았습니다!!");
         }
@@ -58,18 +59,9 @@ public class GameManager : BaseManager<GameManager>
         }
     }
 
-    private void DontDestroyGameManager()
+    private void CreateManagerAndCheckManagerScript()
     {
-        DontDestroyOnLoad(this.gameObject);
-    }
 
-    private void Start()
-    {
-        StartSetting();
-    }
-
-    private void StartSetting()
-    {
         if (this.TryInstantiate(Prefab_UIManager, this.transform, out GameObject uiManagerInstance))
         {
             if (uiManagerInstance.TryGetComponent(out UIManager uiManager))
@@ -106,9 +98,9 @@ public class GameManager : BaseManager<GameManager>
             }
         }
 
-        if (this.TryInstantiate(Prefab_GmeObjectManager, this.transform, out GameObject gameObjectManagerInstance))
+        if (this.TryInstantiate(Prefab_GameObjectManager, this.transform, out GameObject gameObjectManagerInstance))
         {
-            if(gameDataManagerInstance.TryGetComponent(out GameObjectManager gameObjectManager))
+            if (gameObjectManagerInstance.TryGetComponent(out GameObjectManager gameObjectManager))
             {
                 GameObject = gameObjectManager;
             }
@@ -120,7 +112,7 @@ public class GameManager : BaseManager<GameManager>
 
         if (this.TryInstantiate(Prefab_NetWorkManager, this.transform, out GameObject networkNamagerInstance))
         {
-            if(networkNamagerInstance.TryGetComponent(out NetworkManager networkManager))
+            if (networkNamagerInstance.TryGetComponent(out NetworkManager networkManager))
             {
                 Network = networkManager;
             }
@@ -131,14 +123,31 @@ public class GameManager : BaseManager<GameManager>
         }
     }
 
+    private void DontDestroyGameManager()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
+        StartSetting();
+    }
+
+    private void StartSetting()
+    {
+
+        Load();
+    }
+
+
     private void SavePlayerModel()
     {
-        Network.RequestSavePlayerModel(m_playerModel);
+        Network.RequestSavePlayerModel(PlayerModel);
     }
 
     private void LoadPlayerModel()
     {
-        m_playerModel = Network.RequestLoadPlayerModel();
+        PlayerModel = Network.RequestLoadPlayerModel();
     }
 
     public void Save()
@@ -159,6 +168,6 @@ public class GameManager : BaseManager<GameManager>
 
     public void PlayerGetStar(int starPoint)
     {
-        m_playerModel.Score = starPoint;
+        PlayerModel.Score = starPoint;
     }
 }

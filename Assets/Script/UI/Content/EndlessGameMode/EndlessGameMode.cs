@@ -12,6 +12,9 @@ public class EndlessGameMode : BaseUI
     [SerializeField] private Transform SkillIconSlot;
     [SerializeField] private Image Image_Background;
 
+    [SerializeField] private TMP_Text TMPText_ScoreTitle;
+    [SerializeField] private TMP_Text TMPText_ScoreData;
+
     [Serializable]
     private class Menu
     {
@@ -52,11 +55,13 @@ public class EndlessGameMode : BaseUI
         Menu_SelectCharacter.Image_This.sprite = startGameButton;
         Menu_SelectCharacter.TMPText_This.font = font;
 
+        TMPText_ScoreData.font = font;
+        TMPText_ScoreTitle.font = font;
+
         Image_Exit.sprite = exitButton;
 
         IsSetAsset = true;
     }
-
 
     public override void SetData(UIData uiData)
     {
@@ -66,6 +71,11 @@ public class EndlessGameMode : BaseUI
         InitData(Menu_SelectCharacter, texts[0], actions[0]);
         InitData(Menu_StartGame, texts[1], actions[1]);
         InitData(Button_Exit, actions[2]);
+    }
+
+    public void SetScore(PlayerModel playerModel)
+    {
+        TMPText_ScoreData.text = $"{playerModel.Score}";
     }
 
     private void InitData(Menu menu, string text, Action action)

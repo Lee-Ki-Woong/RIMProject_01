@@ -96,6 +96,7 @@ public class MainMenuPresenter : BasePresenter
 
     private void OnClick_GameExitButton()
     {
+        GameManager.Instance.GameQuit();
     }
 
     private void OnClick_CharacterCollectionButton()
