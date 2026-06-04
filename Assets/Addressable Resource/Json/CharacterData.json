@@ -13,6 +13,7 @@
       "Skill_DarkMage_03"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter01",
     "CharacterIconPath": "Sprite/CharacterIcon/Character01",
     "PlayerObjectPath": "Prefab/Character/01"
   },
@@ -30,6 +31,7 @@
       "Skill_Archer_03"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter02",
     "CharacterIconPath": "Sprite/CharacterIcon/Character02",
     "PlayerObjectPath": "Prefab/Character/05"
   },
@@ -47,6 +49,7 @@
       "Skill_Astrogist_03"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter03",
     "CharacterIconPath": "Sprite/CharacterIcon/Character03",
     "PlayerObjectPath": "Prefab/Character/03"
   },
@@ -64,6 +67,7 @@
       "Skill_Mage_03"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter04",
     "CharacterIconPath": "Sprite/CharacterIcon/Character04",
     "PlayerObjectPath": "Prefab/Character/04"
   },
@@ -81,6 +85,7 @@
       "Skill_Engineer_03"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter05",
     "CharacterIconPath": "Sprite/CharacterIcon/Character05",
     "PlayerObjectPath": "Prefab/Character/02"
   },
@@ -98,6 +103,7 @@
       "Skill_Archer_04"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter06",
     "CharacterIconPath": "Sprite/CharacterIcon/Character06",
     "PlayerObjectPath": "Prefab/Character/06"
   },
@@ -115,6 +121,7 @@
       "SKill_Mage_04"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter07",
     "CharacterIconPath": "Sprite/CharacterIcon/Character07",
     "PlayerObjectPath": "Prefab/Character/07"
   },
@@ -132,6 +139,7 @@
       "Skill_Astrogist_04"
     ],
     "UltimateSkill": null,
+    "CharacterStandPath": "Sprite/CharacterStand/Charcter08",
     "CharacterIconPath": "Sprite/CharacterIcon/Character08",
     "PlayerObjectPath": "Prefab/Character/08"
   }

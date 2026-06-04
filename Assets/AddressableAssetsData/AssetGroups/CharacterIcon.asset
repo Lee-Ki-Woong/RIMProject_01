@@ -25,13 +25,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a402257de56e463469e7ab8645fa49aa
-    m_Address: Sprite/CharacterIcon/Character06
+  - m_GUID: 87ab6173e52b4114b91db4031acd6686
+    m_Address: Sprite/CharacterIcon/Character03
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a665eb841ec08f84e938b29450926d49
-    m_Address: Sprite/CharacterIcon/Character03
+  - m_GUID: a402257de56e463469e7ab8645fa49aa
+    m_Address: Sprite/CharacterIcon/Character06
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e36c0f177fb1da749aa211278e871024
+  - m_GUID: e8e24c11e3aeff543b8f036164543402
     m_Address: Sprite/CharacterIcon/Character02
     m_ReadOnly: 0
     m_SerializedLabels: []

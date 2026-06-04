@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c8a3de7b5c4e214cae13d694e5d3836
+    m_Address: Sprite/CharacterStand/Charcter02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 144a1e84fce1833448f2d1787932cb01
     m_Address: Sprite/UI/CharacterCollection/Background
     m_ReadOnly: 0
@@ -27,6 +32,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a85b35feff18194abf6ce827f590167
     m_Address: Sprite/UI/Button_Empty
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c1bab6f58de0ce42a3f67d5aea1bcd1
+    m_Address: Sprite/CharacterStand/Charcter03
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -42,6 +52,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 556fdad024f04204eae9117cd364b62e
     m_Address: Sprite/UI/MainMenu/TitleImage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 574c99311e6a51645a9ba095b3b4e9b1
+    m_Address: Sprite/CharacterStand/Charcter01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
