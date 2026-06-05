@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2c746528f0029d498ac703d86503639
+    m_Address: Json/EnemyData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ece8b102ef3d24549a4222d2fd787049
     m_Address: Json/SkillData
     m_ReadOnly: 0
