@@ -7,6 +7,8 @@ public class GameDataManager : BaseManager<GameDataManager>
     public Dictionary<string, UIData> UIDataList { get; private set; } = new();
     public Dictionary<string, CharacterData> CharacterDataList { get; private set; } = new();
     public Dictionary<string, SkillData> SkillDataList { get; private set; } = new();
+    public Dictionary<string, EnemyData> EnemyDataList {  get; private set; } = new();
+
 
     protected override void Awake()
     {
@@ -23,6 +25,7 @@ public class GameDataManager : BaseManager<GameDataManager>
     {
         LoadCharacterData();
         LoadSkillData();
+        LoadEnemyData();
     }
 
     private void LoadUIData()
@@ -38,6 +41,11 @@ public class GameDataManager : BaseManager<GameDataManager>
     private void LoadSkillData()
     {
         SkillDataList = LoadData<SkillData>("SkillData");
+    }
+
+    private void LoadEnemyData()
+    {
+        EnemyDataList = LoadData<EnemyData>("EnemyData");
     }
 
     [Serializable]

@@ -12,6 +12,7 @@
                 public const string InGame = "Prefab/UI/InGame";
                 public const string EndlessGameMode = "Prefab/UI/EndlessGameMode";
                 public const string CharacterCollection = "Prefab/UI/CharacterCollection";
+                public const string InGamePopup = "Prefab/UI/InGamePopup";
             }
         }
     }
@@ -26,6 +27,7 @@
             {
                 public const string Character = "Prefab/Button/Character";
                 public const string Skill = "Prefab/Button/Skill";
+                public const string Party = "Prefab/Button/Party";
             }
 
             public static class Panel
@@ -83,6 +85,12 @@
                     public const string MenuPopupButton = "Sprite/UI/InGame/MenuPopupButton";
                     public const string Misson = "Sprite/UI/InGame/Misson";
 
+                }
+
+                public static class InGamePopup
+                {
+                    public const string Background = "Sprite/UI/InGamePopup/Background";
+                    public const string Button = "Sprite/UI/InGamePopup/Button";
                 }
             }
         }

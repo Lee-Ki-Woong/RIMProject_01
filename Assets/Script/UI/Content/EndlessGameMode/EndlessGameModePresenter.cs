@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static AddressUtil.Async.Sprite.UI;
 
 
 public class EndlessGameModePresenter : BasePresenter
@@ -78,6 +77,7 @@ public class EndlessGameModePresenter : BasePresenter
 
         EndlessGameModeUI.SetAsset(m_background, m_selectCharacterButton, m_startGameButton, m_exitButton, m_baseFont);
         CreateButtonsAndPanel();
+        OnClick_CharacterButton(EndlessGameModeUI.CharacterButtons[0].m_iconDataId);
 
         IsAssetLoad = true;
     }

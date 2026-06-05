@@ -36,6 +36,7 @@ public partial class UIManager
 
         m_activeUI.Add(UIType.InGame);
         m_inGamePresenter.InGame.ActiveTrue();
+        m_inGamePresenter.OepnInGameUI();
     }
 
     public async UniTask OpenEndlessGameMode()
@@ -65,6 +66,17 @@ public partial class UIManager
         m_activeUI.Add(UIType.CharacterCollection);
         m_characterCollectionPresenter.CharacterCollectionUI.ActiveTrue();
         m_characterCollectionPresenter.OpenCharacterCollectionUI();
+    }
+
+    public async UniTask OpenInGamePopup()
+    {
+        InGamePopup ui = CreateUI<InGamePopup>(UIType.InGamePopup);
+
+        await ui.LoadAssetAsync();
+
+        m_activeUI.Add(UIType.InGamePopup);
+        ui.ActiveTrue();
+        ui.OpenInGamePopup();
     }
 
 }

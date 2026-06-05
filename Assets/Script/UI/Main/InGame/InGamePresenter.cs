@@ -1,4 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class InGamePresenter : BasePresenter
@@ -7,12 +9,25 @@ public class InGamePresenter : BasePresenter
 
     private Sprite Sprite_MenuButton;
     private Sprite Sprite_MissonButton;
+    private TMP_FontAsset Font_BaseFont;
 
 
     public void InitInGame(InGame inGame)
     {
         InGame = inGame;
     }
+    public void OepnInGameUI()
+    {
+        UIData inGameData = new()
+        {
+            Texts = new string[] { "메뉴 팝업", "미션 정보"},
+            Actions = new Action[] { OnClick_OpenMenuPopup, null }
+        };
+
+        InGame.SetData(inGameData);
+
+    }
+
     public override async UniTask LoadAndSetAssetAsync()
     {
         if (IsAssetLoad)
@@ -20,22 +35,26 @@ public class InGamePresenter : BasePresenter
             return;
         }
 
-        var (menuSprite, missonSprite) = await UniTask.WhenAll
+        var (menuSprite, missonSprite, font) = await UniTask.WhenAll
             (
-            LoadUtil.Async.LoadSpriteAsync("Sprite/UI/InGame/MenuButton"),
-            LoadUtil.Async.LoadSpriteAsync("Sprite/UI/Main/MissonButton")
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.InGame.MenuPopupButton),
+            LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.InGame.Misson),
+            LoadUtil.Async.LoadFontAssetAsync(AddressUtil.Async.Font.BaseFont)
             );
 
         Sprite_MenuButton = menuSprite;
         Sprite_MissonButton = missonSprite;
+        Font_BaseFont = font;
+
+
+        InGame.SetAsset(Sprite_MenuButton, Sprite_MissonButton, Font_BaseFont);
 
         IsAssetLoad = true;
-
-        InGame.SetAsset(Sprite_MenuButton, Sprite_MissonButton);
     }
 
-    public void LeaveInGame()
+
+    private void OnClick_OpenMenuPopup()
     {
-        UIManager.Instance.CloseUI(UIType.InGame);
+        UIManager.Instance.OpenInGamePopup().Forget();
     }
 }

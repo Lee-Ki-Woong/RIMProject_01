@@ -1,22 +1,30 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 public class GameObjectManager : BaseManager<GameObjectManager>
 {
-    public Character OnFieldCharacter { get; private set; }
-    public Character FirstSlotCharacter { get; private set; }
-    public Character SecondSlotCharacter { get; private set; }
-    public Character ThirdSlotCharacter { get; private set; }
-
-    public List<Character> CharacterList { get; private set; } = new();
-
-
-
 
 
 
     protected override void Awake()
     {
         base.Awake();
+
     }
+
+    private void AwakeSetting()
+    {
+
+    }
+
+    private async UniTask LoadEnemyData()
+    {
+        foreach(KeyValuePair<string, EnemyData> keyValuePair in GameDataManager.Instance.EnemyDataList)
+        {
+            return;
+        }
+    }
+
+
+
 }

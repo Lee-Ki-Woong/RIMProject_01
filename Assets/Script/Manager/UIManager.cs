@@ -150,6 +150,10 @@ public partial class UIManager : BaseManager<UIManager>
                 {
                     return AddressUtil.Sync.Prefab.UI.EndlessGameMode;
                 }
+            case UIType.InGamePopup:
+                {
+                    return AddressUtil.Sync.Prefab.UI.InGamePopup;
+                }
             default:
                 {
                     this.LogError($"{uiType}에 알맞는 Path가 없습니다!!");
@@ -177,6 +181,10 @@ public partial class UIManager : BaseManager<UIManager>
             case UIType.EndlessGameMode:
                 {
                     return UIRootType.Content;
+                }
+                case UIType.InGamePopup:
+                {
+                    return UIRootType.Popup;
                 }
             default:
                 {

@@ -36,9 +36,11 @@ public class SkillData : GameDataBase
     public string Name;
     public string Description;
     public int Damage;
-    public int Cooldown;
-
+    public int speed;
+    public float LifeTime;
+    public float CoolDown;
     public string SkillIconPath;
+    public string SkillObjectPath;
 }
 
 [Serializable]

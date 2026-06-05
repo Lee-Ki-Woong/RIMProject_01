@@ -5,11 +5,10 @@
     "Name": "암흑 화살",
     "Description": "검은 마나로 마법 화살을 생성하여 적을 공격한다.",
     "Damage": 150,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 5,
+    "LifeTime": 3,
     "CoolDown": 3,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/DarkMage01"
   },
   {
     "Id": "Skill_DarkMage_02",
@@ -17,11 +16,10 @@
     "Name": "암흑 영역",
     "Description": "주위에 암흑 지대를 만들어 적을 지속적으로 공격한다.",
     "Damage": 100,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 2,
+    "LifeTime": 1.8,
     "CoolDown": 10,
-    "Duration": 5,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/DarkMage02"
   },
   {
     "Id": "Skill_DarkMage_03",
@@ -29,11 +27,10 @@
     "Name": "검은 창",
     "Description": "검은 창을 생성하여 적을 꿰뚫는다.",
     "Damage": 200,
-    "DamageUp": null,
-    "tic": 1,
+    "speed": 3,
+    "LifeTime": 5,
     "CoolDown": 10,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/DarkMage03"
   },
   {
     "Id": "Skill_Archer_01",
@@ -41,11 +38,10 @@
     "Name": "더블 샷",
     "Description": "화살을 두 번 쏘아 공격한다",
     "Damage": 100,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 6,
+    "LifeTime": 3,
     "CoolDown": 4,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Archer01"
   },
   {
     "Id": "Skill_Archer_02",
@@ -53,11 +49,10 @@
     "Name": "다중 사격",
     "Description": "주변의 모든 적에게 화살을 발사한다",
     "Damage": 100,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 6,
+    "LifeTime": 3,
     "CoolDown": 5,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Archer02"
   },
   {
     "Id": "Skill_Archer_03",
@@ -65,11 +60,10 @@
     "Name": "속사",
     "Description": "화살을 여러번 쏘아 적을 공격한다",
     "Damage": 100,
-    "DamageUp": null,
-    "tic": 5,
+    "speed": 6,
+    "LifeTime": 3,
     "CoolDown": 10,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Archer03"
   },
   {
     "Id": "Skill_Archer_04",
@@ -77,11 +71,10 @@
     "Name": "저격",
     "Description": "집중하여 강력한 화살을 발사한다",
     "Damage": 500,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 8,
+    "LifeTime": 3,
     "CoolDown": 10,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Archer04"
   },
   {
     "Id": "Skill_Astrogist_01",
@@ -89,11 +82,10 @@
     "Name": "별빛",
     "Description": "별빛을 적에게 쏘아 공격한다.",
     "Damage": 200,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 4,
+    "LifeTime": 2,
     "CoolDown": 4,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Astrogist01"
   },
   {
     "Id": "Skill_Astrogist_02",
@@ -101,11 +93,10 @@
     "Name": "달빛",
     "Description": "달빛을 떨어뜨려 주위의 적을 공격한다.",
     "Damage": 100,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 4,
+    "LifeTime": 2,
     "CoolDown": 5,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Astrogist02"
   },
   {
     "Id": "Skill_Astrogist_03",
@@ -113,11 +104,10 @@
     "Name": "위성",
     "Description": "주위를 공전하는 위성을 소환한다.",
     "Damage": 30,
-    "DamageUp": null,
-    "tic": 1,
+    "speed": 3,
+    "LifeTime": 10,
     "CoolDown": 10,
-    "Duration": 5,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Astrogist03"
   },
   {
     "Id": "Skill_Astrogist_04",
@@ -125,11 +115,10 @@
     "Name": "별무리",
     "Description": "별무리를 소환하여 적을 타격한다.",
     "Damage": 100,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 5,
+    "LifeTime": 10,
     "CoolDown": 10,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Astrogist04"
   },
   {
     "Id": "Skill_Mage_01",
@@ -137,11 +126,10 @@
     "Name": "마법 화살",
     "Description": "마나로 마법 화살을 생성하여 적을 공격한다.",
     "Damage": 150,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 5,
+    "LifeTime": 3,
     "CoolDown": 3,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Mage01"
   },
   {
     "Id": "Skill_Mage_02",
@@ -149,11 +137,10 @@
     "Name": "화염구",
     "Description": "마법으로 화염 구체를 생성하여 적을 공격한다.",
     "Damage": 250,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 4,
+    "LifeTime": 4,
     "CoolDown": 5,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Mage02"
   },
   {
     "Id": "Skill_Mage_03",
@@ -161,11 +148,10 @@
     "Name": "마법진",
     "Description": "마법진을 소환하여 아군들의 스킬을 50% 강화시킨다",
     "Damage": 0,
-    "DamageUp": 50,
-    "tic": null,
+    "speed": 1,
+    "LifeTime": 5,
     "CoolDown": 20,
-    "Duration": 10,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Mage03"
   },
   {
     "Id": "Skill_Mage_04",
@@ -173,11 +159,10 @@
     "Name": "서리 폭발",
     "Description": "주변에 거대한 서리 영역을 생성한 후 적을 공격한다",
     "Damage": 250,
-    "DamageUp": null,
-    "tic": null,
+    "speed": 5,
+    "LifeTime": 5,
     "CoolDown": 10,
-    "Duration": null,
-    "SkillObjectPath": null
+    "SkillObjectPath": "Prefab/SkillObject/Mage04"
   },
   {
     "Id": null,
@@ -185,10 +170,9 @@
     "Name": null,
     "Description": null,
     "Damage": null,
-    "DamageUp": null,
-    "tic": null,
+    "speed": null,
+    "LifeTime": null,
     "CoolDown": null,
-    "Duration": null,
     "SkillObjectPath": null
   }
 ]

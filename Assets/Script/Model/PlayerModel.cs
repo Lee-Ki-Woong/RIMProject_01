@@ -4,4 +4,5 @@
 public class PlayerModel
 {
     public int Score;
+    public bool isFirstStart;
 }

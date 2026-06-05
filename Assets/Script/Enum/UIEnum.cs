@@ -3,6 +3,7 @@
     None,
     MainMenu,
     InGame,
+    InGamePopup,
     EndlessGameMode,
     CharacterCollection,
 }
