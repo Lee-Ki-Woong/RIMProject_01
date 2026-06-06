@@ -5,6 +5,7 @@
         public static class Prefab
         {
             public static string BasePrefab = "Base/Prefab";
+            public static string Party = "Prefab/Party";
 
             public static class UI
             {
@@ -13,6 +14,7 @@
                 public const string EndlessGameMode = "Prefab/UI/EndlessGameMode";
                 public const string CharacterCollection = "Prefab/UI/CharacterCollection";
                 public const string InGamePopup = "Prefab/UI/InGamePopup";
+                public const string NewMainMenu = "Prefab/UI/NewMainMenu";
             }
         }
     }

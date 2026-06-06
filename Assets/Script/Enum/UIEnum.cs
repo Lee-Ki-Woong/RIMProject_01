@@ -6,6 +6,7 @@
     InGamePopup,
     EndlessGameMode,
     CharacterCollection,
+    NewMainMenu,
 }
 
 public enum  UIRootType : byte

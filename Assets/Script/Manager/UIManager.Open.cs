@@ -3,9 +3,6 @@
 public partial class UIManager
 {
     public MainMenuPresenter m_mainMenuPresenter { get; private set; }
-    public InGamePresenter m_inGamePresenter { get; private set; }
-    public CharacterCollectionPresenter m_characterCollectionPresenter { get; private set; }
-    public EndlessGameModePresenter m_endlessGameModePresenter { get; private set; }
 
     public async UniTask OpenMainMenu()
     {
@@ -23,6 +20,8 @@ public partial class UIManager
         m_mainMenuPresenter.OpenMainMenuUI();
     }
 
+    public InGamePresenter m_inGamePresenter { get; private set; }
+
     public async UniTask OpenInGame()
     {
         if (m_inGamePresenter == null)
@@ -39,6 +38,8 @@ public partial class UIManager
         m_inGamePresenter.OepnInGameUI();
     }
 
+    public EndlessGameModePresenter m_endlessGameModePresenter { get; private set; }
+
     public async UniTask OpenEndlessGameMode()
             {
         if (m_endlessGameModePresenter == null)
@@ -51,6 +52,8 @@ public partial class UIManager
         m_endlessGameModePresenter.EndlessGameModeUI.ActiveTrue();
         m_endlessGameModePresenter.OpenEndlessGameModeUI();
     }
+
+    public CharacterCollectionPresenter m_characterCollectionPresenter { get; private set; }
 
     public async UniTask OpenCharacterCollection()
     {
@@ -79,4 +82,43 @@ public partial class UIManager
         ui.OpenInGamePopup();
     }
 
+
+
+
+
+    public NewCharacterCollectionPresenter m_newCharacterCollectionPresenter { get; private set; }
+
+    public async UniTask OpenNewCharacterCollection()
+    {
+        if (m_newCharacterCollectionPresenter == null)
+        {
+            m_newCharacterCollectionPresenter = new NewCharacterCollectionPresenter();
+        }
+
+        m_newCharacterCollectionPresenter.InitCharacterCollection(CreateUI<NewCharacterCollection>(UIType.CharacterCollection));
+
+        await m_newCharacterCollectionPresenter.LoadAndSetAssetAsync();
+
+        m_activeUI.Add(UIType.CharacterCollection);
+        m_newCharacterCollectionPresenter.CharacterCollectionUI.ActiveTrue();
+        m_newCharacterCollectionPresenter.OpenCharacterCollectionUI();
+    }
+
+    private NewMainMenuPresenter m_newMainMenuPresenter;
+
+    public async UniTask OpenNewMainMenu()
+    {
+        if (m_newMainMenuPresenter == null)
+        {
+            m_newMainMenuPresenter = new NewMainMenuPresenter();
+        }
+
+        m_newMainMenuPresenter.InitMainMenu(CreateUI<NewMainMenu>(UIType.NewMainMenu));
+
+        await m_newMainMenuPresenter.LoadAndSetAssetAsync();
+
+        m_activeUI.Add(UIType.CharacterCollection);
+        m_newMainMenuPresenter.MainMenuUI.ActiveTrue();
+        m_newMainMenuPresenter.OpenMainMenuUI();
+    }
 }

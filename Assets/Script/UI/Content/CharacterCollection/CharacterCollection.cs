@@ -30,7 +30,7 @@ public class CharacterCollection : BaseUI
     [SerializeField] private MenuButton CharacterSkillList;
 
     public List<CharacterButton> m_characterButtons { get; private set; } = new();
-    public List<SkillButton> m_skillButtons { get; private set; } = new();
+    private List<SkillButton> m_skillButtons = new();
 
     public void SetAsset(Sprite background, Sprite menuButton, Sprite menuButtonHighlighted, Sprite menuButtonSelected, Sprite exitButton, TMP_FontAsset font)
     {

@@ -11,6 +11,8 @@ public class InGamePresenter : BasePresenter
     private Sprite Sprite_MissonButton;
     private TMP_FontAsset Font_BaseFont;
 
+    private bool IsAssetLoad = false;
+
 
     public void InitInGame(InGame inGame)
     {

@@ -173,7 +173,7 @@ public class EndlessGameModePresenter : BasePresenter
     {
         UIManager.Instance.CloseUI(UIType.MainMenu);
         UIManager.Instance.CloseUI(UIType.EndlessGameMode);
-        GameManager.Instance.SetPartyData(m_partyData);
+        GameObjectManager.Instance.SetParty(m_partyData);
         UIManager.Instance.OpenInGame().Forget();
     }
 

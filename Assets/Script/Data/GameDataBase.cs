@@ -40,6 +40,7 @@ public class SkillData : GameDataBase
     public float LifeTime;
     public float CoolDown;
     public string SkillIconPath;
+    public string SkillSpritePath;
     public string SkillObjectPath;
 }
 

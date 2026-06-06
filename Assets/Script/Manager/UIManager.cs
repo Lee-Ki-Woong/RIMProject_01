@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using AutoGroupGenerator;
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public partial class UIManager : BaseManager<UIManager>
     {
         CreateUI<MainMenu>(UIType.MainMenu);
         CreateUIAsync<CharacterCollection>(UIType.CharacterCollection).Forget();
+        CreateUIAsync<EndlessGameMode>(UIType.EndlessGameMode).Forget();
+        CreateUIAsync<InGame>(UIType.InGame).Forget();
         OpenMainMenu().Forget();
     }
 
@@ -154,6 +157,10 @@ public partial class UIManager : BaseManager<UIManager>
                 {
                     return AddressUtil.Sync.Prefab.UI.InGamePopup;
                 }
+            case UIType.NewMainMenu:
+                {
+                    return AddressUtil.Sync.Prefab.UI.NewMainMenu;
+                }
             default:
                 {
                     this.LogError($"{uiType}에 알맞는 Path가 없습니다!!");
@@ -185,6 +192,10 @@ public partial class UIManager : BaseManager<UIManager>
                 case UIType.InGamePopup:
                 {
                     return UIRootType.Popup;
+                }
+                case UIType.NewMainMenu:
+                {
+                    return UIRootType.Main;
                 }
             default:
                 {

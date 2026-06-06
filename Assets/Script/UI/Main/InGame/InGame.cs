@@ -50,6 +50,8 @@ public class InGame : BaseUI
         Button_MenuPopup.onClick.AddListener(action.Invoke);
     }
 
+
+
     public void SetHp(float currentHp, float maxHp)
     {
         if (maxHp <= 0) return;

@@ -7,4 +7,8 @@ public abstract class BasePresenter
     public BasePresenter() { }
 
     public abstract UniTask LoadAndSetAssetAsync();
+
+    //protected abstract void SubscribeEvents();
+
+    //public abstract void UnsubscribeEvents();
 }

@@ -19,12 +19,6 @@ public class InGamePopup : BaseUI
     [SerializeField] private Buttons[] Menus;
     [SerializeField] private Image Image_Background;
 
-
-    private void Awake()
-    {
-
-    }
-
     public void OpenInGamePopup()
     {
         string[] texts = { "계속하기", "처음부터", "게임 옵션", "메인메뉴로" };
@@ -37,6 +31,16 @@ public class InGamePopup : BaseUI
         };
 
         SetData(inGamePopupData);
+    }
+
+    private void OnEnable()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1;
     }
 
     public override void SetData(UIData uiData)
@@ -79,7 +83,6 @@ public class InGamePopup : BaseUI
         }
     }
 
-
     public async UniTask LoadAssetAsync()
     {
         var (sprite_Background, sprite_Button, font) = await UniTask.WhenAll(
@@ -118,6 +121,7 @@ public class InGamePopup : BaseUI
         UIManager.Instance.CloseUI(UIType.InGamePopup);
         UIManager.Instance.OpenMainMenu().Forget();
         GameManager.Instance.Save();
+        GameObjectManager.Instance.DestroyParty();
     }
 
 }

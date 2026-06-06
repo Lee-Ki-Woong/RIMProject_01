@@ -21,6 +21,11 @@ public class MainMenuPresenter : BasePresenter
         MainMenuUI = mainMenu;
     }
 
+    public void OpenMainMenuUI()
+    {
+        OnClick_MainMenuButton();
+    }
+
     public override async UniTask LoadAndSetAssetAsync()
     {
         if (IsAssetLoad)
@@ -69,7 +74,7 @@ public class MainMenuPresenter : BasePresenter
         return newMainMenuUIData;
     }
 
-    private void OnClick_ReturnButton()
+    private void OnClick_MainMenuButton()
     {
         OpenMainMenu();
     }
@@ -101,13 +106,20 @@ public class MainMenuPresenter : BasePresenter
 
     private void OnClick_CharacterCollectionButton()
     {
-        OpenCharacterCollection();
+        UIManager.Instance.OpenCharacterCollection().Forget();
     }
 
     private void OnClick_EndlessGameModeButton()
     {
-        OpenEndlessGameMode();
+        UIManager.Instance.OpenEndlessGameMode().Forget();
     }
+    public void OnClick_NewCharacterCollectionButton()
+    {
+        UIManager.Instance.OpenNewCharacterCollection().Forget();
+    }
+
+
+
 
     private void OpenMainMenu()
     {
@@ -122,7 +134,7 @@ public class MainMenuPresenter : BasePresenter
     private void OpenGameStartMenu()
     {
         string[] gameStartMenuText = { "스토리 모드", "무한 모드", "", "", "돌아가기" };
-        Action[] gameStartMenuAction = { null, OnClick_EndlessGameModeButton, null, null, OnClick_ReturnButton };
+        Action[] gameStartMenuAction = { null, OnClick_EndlessGameModeButton, null, null, OnClick_MainMenuButton };
 
         UIData gameStartMenuData = CreateMainMenuUIData(MainMenuType.GameStart, gameStartMenuText, gameStartMenuAction);
 
@@ -132,7 +144,7 @@ public class MainMenuPresenter : BasePresenter
     private void OpenMyCollectionMenu()
     {
         string[] myCollectionMenuText = { "캐릭터 콜렉션", "무기 콜렉션", "아티팩트 콜렉션", "", "돌아가기" };
-        Action[] myCollectionMenuAction = { OnClick_CharacterCollectionButton, null, null, null, OnClick_ReturnButton };
+        Action[] myCollectionMenuAction = { OnClick_CharacterCollectionButton, null, null, null, OnClick_MainMenuButton };
 
         UIData myCollectionMenuData = CreateMainMenuUIData(MainMenuType.MyCollection, myCollectionMenuText, myCollectionMenuAction);
 
@@ -142,7 +154,7 @@ public class MainMenuPresenter : BasePresenter
     private void OpenShopMenu()
     {
         string[] shopMenuText = { "캐릭터 샵", "무기 샵", "아티팩트 샵", "", "돌아가기" };
-        Action[] shopMenuAction = { null, null, null, null, OnClick_ReturnButton };
+        Action[] shopMenuAction = { null, null, null, null, OnClick_MainMenuButton };
 
         UIData shopMenuData = CreateMainMenuUIData(MainMenuType.Shop, shopMenuText, shopMenuAction);
 
@@ -153,30 +165,11 @@ public class MainMenuPresenter : BasePresenter
     private void OpenGameOptionMenu()
     {
         string[] gameOptionMenuText = { "게임 옵션", "사운드 옵션", "", "", "돌아가기" };
-        Action[] gameOptionMenuAction = { null, null, null, null, OnClick_ReturnButton };
+        Action[] gameOptionMenuAction = { null, null, null, null, OnClick_MainMenuButton };
 
         UIData gameOptionMenuData = CreateMainMenuUIData(MainMenuType.GameOption, gameOptionMenuText, gameOptionMenuAction);
 
         MainMenuUI.SetData(gameOptionMenuData);
     }
-
-    private void OpenCharacterCollection()
-    {
-        UIManager.Instance.OpenCharacterCollection().Forget();
-    }
-
-    private void OpenEndlessGameMode()
-    {
-        UIManager.Instance.OpenEndlessGameMode().Forget();
-    }
-
-    public void OpenMainMenuUI()
-    {
-        OpenMainMenu();
-    }
-
-    public void CloseMainMenuUI()
-    {
-        UIManager.Instance.CloseUI(UIType.MainMenu);
-    }
 }
+

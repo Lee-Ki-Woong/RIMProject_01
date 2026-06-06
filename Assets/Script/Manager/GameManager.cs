@@ -17,7 +17,7 @@ public class GameManager : BaseManager<GameManager>
     private NetworkManager Network;
 
     public PlayerModel PlayerModel {  get; private set; }
-    public List<CharacterData> PartyData { get; private set; }
+    
 
     protected override void Awake()
     {
@@ -59,11 +59,6 @@ public class GameManager : BaseManager<GameManager>
         {
             this.LogError("NetworkManager가 할당되지 않았습니다!!");
         }
-    }
-
-    public void SetPartyData(List<CharacterData> partyData)
-    {
-        PartyData = partyData;
     }
 
     private void CreateManagerAndCheckManagerScript()
