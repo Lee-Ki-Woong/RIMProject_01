@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Party : MonoBehaviour
@@ -11,12 +12,15 @@ public class Party : MonoBehaviour
 
 
 
-    public Player[] players = new Player[4];
-    public Player OnFieldPlayer { get; private set; } 
+    private Player[] m_players;
+    private Player m_onFieldPlayer;
+
+    private List<Transform> m_enemiesTransform = new List<Transform>();
 
     private void Awake()
     {
         AwakeSetting();
+        this.ActiveFalse();
     }
 
     private void AwakeSetting()
@@ -24,64 +28,115 @@ public class Party : MonoBehaviour
 
     }
 
+    public void InitPlayerData(List<CharacterData> characterDatas)
+    {
+        m_players = new Player [characterDatas.Count];
+
+        for (int i = 0; i < characterDatas.Count; i++)
+        {
+            m_players[i] = new Player();
+            m_players[i].InitCharacterData(characterDatas[i]);
+        }
+
+        this.ActiveTrue();
+    }
+
     private void Start()
     {
         StartSetting();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-
     private void StartSetting()
     {
-        for(int i = 0; i < Math.Min(players.Length, GameManager.Instance.PartyData.Count); i++)
+        ChangeOnFieldCharacter(m_players[0]);
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
         {
-            players[i] = new Player();
-            players[i].SetData(GameManager.Instance.PartyData[i]);
+            m_enemiesTransform.Add(collision.transform);
         }
+    }
 
-        ChangeOnFieldCharacter(players[0]);
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            m_enemiesTransform.Remove(collision.transform);
+        }
     }
 
     private void Update()
     {
         CheckingKeyDown();
         Move();
-        CoolTime();
+        AutoFireSkill();
     }
 
-    private void CoolTime()
+    private void AutoFireSkill()
     {
-        for(int i = 0; i < players.Length;i++)
-        {
-            players[i].UpdateSkillCooldowns(Time.deltaTime, this.transform);
-        }
-    }
+        if (m_onFieldPlayer == null) return;
 
+        for (int i = m_enemiesTransform.Count - 1; i >= 0; i--)
+        {
+            if (m_enemiesTransform[i] == null)
+            {
+                m_enemiesTransform.RemoveAt(i);
+            }
+        }
+
+        if (m_enemiesTransform.Count == 0) return;
+
+        m_onFieldPlayer.UpdateAndFireSkill(Time.deltaTime, this.transform, m_enemiesTransform);
+    }
 
     private void CheckingKeyDown()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeOnFieldCharacter(players[0]);
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeOnFieldCharacter(players[1]);
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeOnFieldCharacter(players[2]);
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeOnFieldCharacter(players[3]);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (m_players[0] != null)
+            {
+                ChangeOnFieldCharacter(m_players[0]);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (m_players[1] != null)
+            {
+                ChangeOnFieldCharacter(m_players[1]);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (m_players[2] != null)
+            {
+                ChangeOnFieldCharacter(m_players[2]);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (m_players[3] != null)
+            {
+                ChangeOnFieldCharacter(m_players[3]);
+            }
+        }
     }
 
     private void ChangeOnFieldCharacter(Player player)
     {
         if (player == null) return;
-        if (OnFieldPlayer == player) return;
+        if (m_onFieldPlayer == player) return;
 
-        OnFieldPlayer = player;
+        m_onFieldPlayer = player;
         SpriteRenderer_OnFieldCharacter.sprite = LoadUtil.Sync.LoadGeneric<Sprite>(player.CharacterData_This.CharacterStandPath);
     }
 
     private void Move()
     {
-        if(OnFieldPlayer == null)
+        if(m_onFieldPlayer == null)
         {
             this.LogError("온필드 캐릭터가 없습니다!");
             return;
@@ -92,7 +147,7 @@ public class Party : MonoBehaviour
 
         Vector2 moveDirection = new Vector2(horizontal, vertical).normalized;
 
-        RigidBody2D_Character.linearVelocity = moveDirection * OnFieldPlayer.CharacterData_This.MoveSpeed;
+        RigidBody2D_Character.linearVelocity = moveDirection * m_onFieldPlayer.CharacterData_This.MoveSpeed;
     }
 
 

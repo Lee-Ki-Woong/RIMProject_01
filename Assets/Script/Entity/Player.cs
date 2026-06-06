@@ -1,20 +1,18 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 public class Player
 {
     public CharacterData CharacterData_This { get; private set; }
-
-    public GameObject Prefab_FirstSkill {  get; private set; }
-    public GameObject Prefab_SecondSkill {  get; private set; }
-    public GameObject Prefab_ThirdSkill { get; private set; }
     public int Hp { get; private set; }
 
+    public event Action<int, int> OnHp;
+
     private SkillData[] m_skillDatas = new SkillData[3];
-    
     private GameObject[] m_skillPrefabs = new GameObject[3];
-    
+    private Sprite[] m_skillSprites = new Sprite[3];
     private float[] m_skillTimers = new float[3];
 
     private enum CharacterState : byte
@@ -22,8 +20,6 @@ public class Player
         Idle = 0,
         Move = 1,
     }
-
-    private event Action<int> DamagedEvent;
 
     public void CharacterGetDamaged(int damage)
     {
@@ -33,54 +29,61 @@ public class Player
 
     private void CheckingHp()
     {
-        if(Hp <= 0)
-        {
+        OnHp?.Invoke(Hp, CharacterData_This.MaxHp);
 
+        if (Hp <= 0)
+        {
+            
         }
     }
 
-    public void SetData(CharacterData characterData)
+    public void InitCharacterData(CharacterData characterData)
     {
         CharacterData_This = characterData;
-        LoadAssetAsync();
+        Hp = CharacterData_This.MaxHp;
+
+        LoadAsset();
     }
 
-    private void LoadAssetAsync()
+    private void LoadAsset()
     {
-        GameDataManager.Instance.SkillDataList.TryGetValue(CharacterData_This.SkillList[0], out SkillData firstSkillData);
-        GameDataManager.Instance.SkillDataList.TryGetValue(CharacterData_This.SkillList[1], out SkillData secondSkillData);
-        GameDataManager.Instance.SkillDataList.TryGetValue(CharacterData_This.SkillList[2], out SkillData thirdSkillData);
+        if (CharacterData_This.SkillList.Length < 3)
+        {
+            Debug.LogError($"{CharacterData_This.Name}의 스킬이 3개가 아닙니다!!");
+            return;
+        }
 
-        var (preafab_FirstSkill, prefab_SecondSkill, prefab_ThirdSkill) = (
-            LoadUtil.Sync.LoadPrefab(firstSkillData.SkillObjectPath),
-            LoadUtil.Sync.LoadPrefab(secondSkillData.SkillObjectPath),
-            LoadUtil.Sync.LoadPrefab(thirdSkillData.SkillObjectPath)
-            );
-
-        Prefab_FirstSkill = preafab_FirstSkill;
-        Prefab_SecondSkill = prefab_SecondSkill;
-        Prefab_ThirdSkill = prefab_ThirdSkill;
-
-        m_skillPrefabs[0] = Prefab_FirstSkill;
-        m_skillPrefabs[1] = Prefab_SecondSkill;
-        m_skillPrefabs[2] = Prefab_ThirdSkill;
-
-        m_skillDatas[0] = firstSkillData;
-        m_skillDatas[1] = secondSkillData;
-        m_skillDatas[2] = thirdSkillData;
-
-        SetSkill();
-    }
-
-    private void SetSkill()
-    {
         for (int i = 0; i < 3; i++)
         {
-            m_skillTimers[i] = 0f;
+            GameDataManager.Instance.SkillDataList.TryGetValue(CharacterData_This.SkillList[i], out SkillData skillData);
+
+            if (skillData == null)
+            {
+                Debug.LogError($"{i}번째 스킬 데이터가 없습니다!!");
+                continue;
+            }
+
+            LoadAssetSync(i, skillData);
+            LoadAssetAsync(i, skillData).Forget();
+            m_skillDatas[i] = skillData;
         }
     }
 
-    public void UpdateSkillCooldowns(float deltaTime, Transform playerTransform)
+    private void LoadAssetSync(int index,SkillData skillDtata)
+    {
+        GameObject prefab = LoadUtil.Sync.LoadPrefab(skillDtata.SkillObjectPath);
+        m_skillPrefabs[index] = prefab;
+
+    }
+
+    private async UniTask LoadAssetAsync(int index, SkillData skillData)
+    {
+        Sprite sprite_skillData = await LoadUtil.Async.LoadSpriteAsync(skillData.SkillSpritePath);
+
+        m_skillSprites[index] = sprite_skillData;
+    }
+
+    public void UpdateAndFireSkill(float deltaTime, Transform playerTransform, List<Transform> enemiesInRange)
     {
         for (int i = 0; i < 3; i++)
         {
@@ -91,54 +94,26 @@ public class Player
             if (m_skillTimers[i] >= m_skillDatas[i].CoolDown)
             {
                 m_skillTimers[i] = 0f;
-                FireSkill(i, playerTransform);
+                FireSkill(i, playerTransform, enemiesInRange);
             }
         }
     }
-
-    private void FireSkill(int skillIndex, Transform spawnTransform)
+    private void FireSkill(int skillIndex, Transform spawnTransform, List<Transform> enemiesInRange)
     {
-        Transform target = FindNearestEnemy(spawnTransform.position);
+        GameObject skillInstance = UnityEngine.Object.Instantiate(m_skillPrefabs[skillIndex], spawnTransform.position, Quaternion.identity);
 
-        GameObject skillObj = UnityEngine.Object.Instantiate(m_skillPrefabs[skillIndex], spawnTransform.position, Quaternion.identity);
-
-        if (skillObj.TryGetComponent<Skill>(out var skill))
+        if (skillInstance.TryGetComponent(out SpriteRenderer spriteRenderer))
         {
-            SkillData data = m_skillDatas[skillIndex];
-            Vector3 direction;
-
-            if (target != null)
+            if (m_skillSprites[skillIndex] != null)
             {
-                direction = target.position - spawnTransform.position;
-                skill.SetData(data.Damage, data.speed, data.LifeTime, direction, target);
-            }
-            else
-            {
-                float randomX = UnityEngine.Random.Range(-1f, 1f);
-                float randomY = UnityEngine.Random.Range(-1f, 1f);
-                direction = new Vector3(randomX, randomY, 0f);
-
-                skill.SetData(data.Damage, data.speed, data.LifeTime, direction, null);
+                spriteRenderer.sprite = m_skillSprites[skillIndex];
             }
         }
-    }
 
-    private Transform FindNearestEnemy(Vector3 centerPosition)
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform nearestEnemy = null;
-        float minDistance = float.MaxValue;
-
-        foreach (GameObject enemy in enemies)
+        if (skillInstance.TryGetComponent(out Skill skillScript))
         {
-            float distance = Vector2.Distance(centerPosition, enemy.transform.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                nearestEnemy = enemy.transform;
-            }
+            SkillData skillData = m_skillDatas[skillIndex];
+            skillScript.SetData(skillData.Damage, skillData.speed, skillData.LifeTime, spawnTransform.position, enemiesInRange);
         }
-        return nearestEnemy;
     }
-
 }
