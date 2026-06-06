@@ -1,96 +1,64 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Skill : MonoBehaviour
 {
-    [SerializeField] private Collider2D Collider;
-    [SerializeField] private SpriteRenderer Renderer;
+    [SerializeField] protected Collider2D Collider;
+    [SerializeField] protected SpriteRenderer Renderer;
 
-    private int m_damage;
-    private int m_speed;
+    protected int m_damage;
+    protected int m_speed;
 
-    private float m_lifeTime;
+    protected float m_lifeTime;
 
-    private bool m_isSetData;
-    private bool m_isSetAsset;
+    protected bool m_isSetData;
+    protected bool m_isSetAsset;
 
-    private Vector3 m_moveDirection;
+    protected Vector3 m_spawnPosition;
 
-    private Transform m_enemyTransform;
+    protected List<Transform> m_enemiesTransform;
 
-    private void Awake()
+    protected void Awake()
     {
         AwakeSetting();
     }
 
-    private void AwakeSetting()
+    protected void AwakeSetting()
     {
         BoolSetting();
     }
 
-    private void BoolSetting()
+    protected void BoolSetting()
     {
         m_isSetData = false;
         m_isSetAsset = false;
     }
 
-    public void SetAsset(Sprite sprite)
+    protected virtual void SetAsset(Sprite sprite)
     {
         Renderer.sprite = sprite;
 
         m_isSetAsset = true;
     }
 
-    public void SetData(int damage, int speed, float lifeTime, Vector3 direction, Transform enemyTransform)
+    public virtual void SetData(int damage, int speed, float lifeTime, Vector3 direction, List<Transform> enemiesTransform)
     {
         m_damage = damage;
         m_speed = speed;
         m_lifeTime = lifeTime;
-        m_moveDirection = direction.normalized;
-        m_enemyTransform = enemyTransform;
+        m_spawnPosition = direction.normalized;
+        m_enemiesTransform = enemiesTransform;
 
         m_isSetData = true;
 
         Invoke(nameof(DestroySkill), m_lifeTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void Update()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            if (collision.gameObject.TryGetComponent(out Enemy enemy))
-            {
-                enemy.GetDamaged(m_damage);
-            }
-
-            DestroySkill();
-        }
     }
 
-    private void Update()
-    {
-        if (!m_isSetData) return;
-        
-        Move();
-    }
-
-    private void Move()
-    {
-        if(m_enemyTransform != null)
-        {
-            m_moveDirection = (m_enemyTransform.position - transform.position).normalized;
-        }
-
-        transform.position += m_moveDirection * m_speed * Time.deltaTime;
-
-        // 날아가는 방향으로 머리를 회전해주는 AI 코드
-        if (m_moveDirection != Vector3.zero)
-        {
-            float angle = Mathf.Atan2(m_moveDirection.y, m_moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-    }
-
-    private void DestroySkill()
+    protected virtual void DestroySkill()
     {
         Destroy(this.gameObject);
     }
