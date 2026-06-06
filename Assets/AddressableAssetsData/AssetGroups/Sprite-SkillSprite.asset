@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sprite-SkillSprite
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Sprite-SkillSprite
+  m_GUID: f3d962e7777b84b458a848296dde4541
+  m_SerializeEntries:
+  - m_GUID: a662d013557d1bc4b8028fe9b104b332
+    m_Address: Sprite/SkillSprite/DarkMage03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2e21a0c29413384a820914ad3a7b897
+    m_Address: Sprite/SkillSprite/DarkMage01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba920a222ce6f204192bcaad1ef0663b
+    m_Address: Sprite/SkillSprite/DarkMage02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c1b852682edc21144a7034702910b7ad, type: 2}
+    - {fileID: 11400000, guid: df87ee4aecb5c9246b96a3efbb37e793, type: 2}

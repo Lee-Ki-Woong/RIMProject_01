@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4148502363220046686}
-  - component: {fileID: 4627470615687821323}
-  - component: {fileID: 6529757512269021266}
-  - component: {fileID: 8981105406541104503}
+  - component: {fileID: 736537614963302370}
+  - component: {fileID: 5700633212510128184}
+  - component: {fileID: 7321413664336508677}
   m_Layer: 0
   m_Name: Skill_DarkMage03
   m_TagString: Untagged
@@ -34,7 +34,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4627470615687821323
+--- !u!114 &736537614963302370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834071518316813776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e037313255b8d674cbbb2c69394922f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetSkill
+  Collider: {fileID: 0}
+  Renderer: {fileID: 0}
+--- !u!212 &5700633212510128184
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -83,18 +97,18 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: a662d013557d1bc4b8028fe9b104b332, type: 2}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.45, y: 0.07}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
---- !u!61 &6529757512269021266
-BoxCollider2D:
+--- !u!70 &7321413664336508677
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,7 +124,7 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -128,28 +142,5 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5049505, y: 0.48648646}
-    oldSize: {x: 1.01, y: 0.37}
-    newSize: {x: 0.45, y: 0.07}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.3}
-  m_EdgeRadius: 0
---- !u!114 &8981105406541104503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7834071518316813776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e614377495342c44d9bb7baf579217f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Skill
-  Collider: {fileID: 6529757512269021266}
-  Renderer: {fileID: 4627470615687821323}
+  m_Size: {x: 1, y: 0.4}
+  m_Direction: 1

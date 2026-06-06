@@ -10,18 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Sprite
+  m_Name: Sprite-UI
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: Sprite
+  m_GroupName: Sprite-UI
   m_GUID: 43c9f5db7678a944aa5f1dc50c56ced1
   m_SerializeEntries:
   - m_GUID: 06a788992989f3d4c89ab892f6899b65
     m_Address: Sprite/UI/EndlessGameMode/SelectCharacterIcon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0c8a3de7b5c4e214cae13d694e5d3836
-    m_Address: Sprite/CharacterStand/Charcter02
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -35,8 +30,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2c1bab6f58de0ce42a3f67d5aea1bcd1
-    m_Address: Sprite/CharacterStand/Charcter03
+  - m_GUID: 38138ccccf03a124daae2f3ea733beeb
+    m_Address: Sprite/UI/InGamePopup/Background
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -52,11 +47,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 556fdad024f04204eae9117cd364b62e
     m_Address: Sprite/UI/MainMenu/TitleImage
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 574c99311e6a51645a9ba095b3b4e9b1
-    m_Address: Sprite/CharacterStand/Charcter01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -80,6 +70,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d495b65f6da34e40bf0225ea8ee1966
+    m_Address: Sprite/UI/InGame/MenuPopupButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b24cedbb7e031ef499680b06b229e83e
     m_Address: Sprite/UI/CharacterCollection/Highlighted
     m_ReadOnly: 0
@@ -95,8 +90,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d35906efb95557947a2e5a074a7dbe9d
+    m_Address: Sprite/UI/InGamePopup/Button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc36cb65a21f7a94683249fedaa9805d
     m_Address: Sprite/UI/MainMenu/TitleText
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f861cb2773e41f140b815fc6f9925257
+    m_Address: Sprite/UI/InGame/Misson
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

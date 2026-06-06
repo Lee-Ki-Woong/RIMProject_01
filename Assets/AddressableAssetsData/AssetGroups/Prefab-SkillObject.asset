@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefab-SkillObject
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Prefab-SkillObject
+  m_GUID: 29af5cf0812cfb545bce797f40f7663b
+  m_SerializeEntries:
+  - m_GUID: 7a47f89cb5b4a964c884a9540ff6d8a7
+    m_Address: Prefab/SkillObject/DarkMage01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ed0ba99383d10c45ba9807a70fe8067
+    m_Address: Prefab/SkillObject/DarkMage02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5e34661f8958d445bf3a46c1e07cd52
+    m_Address: Prefab/SkillObject/DarkMage03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2f6810ed808399d4fb12f747d127c644, type: 2}
+    - {fileID: 11400000, guid: 5395ae3cd06c821418b37c37e124a149, type: 2}
