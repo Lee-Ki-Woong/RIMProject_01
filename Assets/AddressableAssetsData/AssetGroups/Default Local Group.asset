@@ -14,7 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 61eba34407ba67b4d8b3f245dbc12bbe
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 38b045228b9c56444a2bad9b5b52a792
+    m_Address: Prefab/SkillObject/Archer02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b92f51e6569be2045b6f63ff5926eb55
+    m_Address: Prefab/SkillObject/Archer01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
   m_SchemaSet:

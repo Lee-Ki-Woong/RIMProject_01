@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23d41f9bd23525441903480f203aaed0
+    m_Address: Sprite/CharacterStand/Charcter04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c1bab6f58de0ce42a3f67d5aea1bcd1
     m_Address: Sprite/CharacterStand/Charcter03
     m_ReadOnly: 0
@@ -27,6 +32,26 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 574c99311e6a51645a9ba095b3b4e9b1
     m_Address: Sprite/CharacterStand/Charcter01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c3bdf28896c6f34c8c7bc42a48acdd6
+    m_Address: Sprite/CharacterStand/Charcter06
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a07db7e1b56168f4da86642ee2fd2fe1
+    m_Address: Sprite/CharacterStand/Charcter08
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0b7e9a0148def145842188c055dcb40
+    m_Address: Sprite/CharacterStand/Charcter07
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca04fd86e4cd0b146b2b17ffa96fa0ac
+    m_Address: Sprite/CharacterStand/Charcter05
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

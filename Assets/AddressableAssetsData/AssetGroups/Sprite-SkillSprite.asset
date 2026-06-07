@@ -15,8 +15,18 @@ MonoBehaviour:
   m_GroupName: Sprite-SkillSprite
   m_GUID: f3d962e7777b84b458a848296dde4541
   m_SerializeEntries:
+  - m_GUID: 86296b12fc2427444bf3152a66fc143b
+    m_Address: Sprite/SkillSprite/Archer02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a662d013557d1bc4b8028fe9b104b332
     m_Address: Sprite/SkillSprite/DarkMage03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae32082834cc3f848867fd289beb8415
+    m_Address: Sprite/SkillSprite/Archer01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

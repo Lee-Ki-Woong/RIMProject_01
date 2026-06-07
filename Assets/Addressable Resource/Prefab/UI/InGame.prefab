@@ -367,9 +367,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -491,9 +491,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -579,9 +579,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1260,13 +1260,16 @@ MonoBehaviour:
   Text_MissonDescription: {fileID: 7968685938949733609}
   Slider_MainCharacterHp: {fileID: 3114251836396283369}
   SubCharadcters:
-  - Button_CharacterButton: {fileID: 538119876165414297}
+  - GameObject_This: {fileID: 3777230316766822127}
+    Button_CharacterButton: {fileID: 538119876165414297}
     Image_CharacterIcon: {fileID: 2004107414121123881}
     Slider_SubCharacterHp: {fileID: 8063281189276998824}
-  - Button_CharacterButton: {fileID: 9126354982782813673}
+  - GameObject_This: {fileID: 1848120106786324403}
+    Button_CharacterButton: {fileID: 9126354982782813673}
     Image_CharacterIcon: {fileID: 4968742147981341734}
     Slider_SubCharacterHp: {fileID: 8446235183311674323}
-  - Button_CharacterButton: {fileID: 3101979644127179727}
+  - GameObject_This: {fileID: 2038747698728710399}
+    Button_CharacterButton: {fileID: 3101979644127179727}
     Image_CharacterIcon: {fileID: 8815100468268551392}
     Slider_SubCharacterHp: {fileID: 9185996757400975706}
 --- !u!1 &5336173313901039191
@@ -1507,9 +1510,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
