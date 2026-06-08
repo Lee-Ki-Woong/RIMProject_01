@@ -35,6 +35,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 435acc271fc399748bff98793d1d87e7
+    m_Address: Prefab/UI/FirstStartPopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 48094dffd6bc45b408aa80b0ff605a83
     m_Address: Prefab/UI/EndlessGameMode
     m_ReadOnly: 0
@@ -57,6 +62,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e4ed72f9088ffcd409b9f9793ddb8f44
     m_Address: Prefab/UI/NewMainMenu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7221b4020a5561478d51ecd6f4fb568
+    m_Address: Prefab/UI/DiePopup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

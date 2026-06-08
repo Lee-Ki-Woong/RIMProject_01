@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a70a0ffe88dbe74dae15c585135c589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameObjectManager
+  m_spawnInterval: 0.75
+  m_spawnCountPerInterval: 2
+  m_maxEnemyLimit: 10000

@@ -40,6 +40,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bcee175c1cd7f74b870bd2d1af97358
+    m_Address: Sprite/UI/DiePopup/ExitButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f8ab348ebb23bd4a80792ecac8d6113
+    m_Address: Sprite/UI/DiePopup/Background
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41ddc7e82fbd8b644bc67a9ea2bfa1b7
     m_Address: Sprite/UI/CharacterButton/Mask
     m_ReadOnly: 0
