@@ -1,9 +1,8 @@
-﻿using AutoGroupGenerator;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class UIManager : BaseManager<UIManager>
+public partial class UIManager : BaseMonoManager<UIManager>
 {
     [SerializeField] private Canvas MainCanvas;
     [SerializeField] private Canvas PopupCanvas;
@@ -26,7 +25,7 @@ public partial class UIManager : BaseManager<UIManager>
         CreateUIAsync<CharacterCollection>(UIType.CharacterCollection).Forget();
         CreateUIAsync<EndlessGameMode>(UIType.EndlessGameMode).Forget();
         CreateUIAsync<InGame>(UIType.InGame).Forget();
-        OpenMainMenu().Forget();
+        OpenMainMenu();
     }
 
     public T CreateUI<T>(UIType uiType) where T : BaseUI
@@ -161,6 +160,18 @@ public partial class UIManager : BaseManager<UIManager>
                 {
                     return AddressUtil.Sync.Prefab.UI.NewMainMenu;
                 }
+            case UIType.SkillStatePopup:
+                {
+                    return AddressUtil.Sync.Prefab.UI.SkillStatePopup;
+                }
+        case UIType.FirstStartPopup:
+                {
+                    return AddressUtil.Sync.Prefab.UI.FirstStartPopup;
+                }
+            case UIType.DiePopup:
+                {
+                    return AddressUtil.Sync.Prefab.UI.DiePopup;
+                }
             default:
                 {
                     this.LogError($"{uiType}에 알맞는 Path가 없습니다!!");
@@ -196,6 +207,18 @@ public partial class UIManager : BaseManager<UIManager>
                 case UIType.NewMainMenu:
                 {
                     return UIRootType.Main;
+                }
+            case UIType.SkillStatePopup:
+                {
+                    return UIRootType.Popup;
+                }
+            case UIType.FirstStartPopup:
+                {
+                    return UIRootType.Popup;
+                }
+            case UIType.DiePopup:
+                {
+                    return UIRootType.Popup;
                 }
             default:
                 {

@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class NetworkManager : BaseManager<NetworkManager>
 {
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
     private string GetPath()
     {
         string path = Path.Combine(Application.persistentDataPath, "RIM_ProjectSaveFile.json");

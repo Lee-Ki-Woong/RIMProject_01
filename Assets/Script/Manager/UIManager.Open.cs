@@ -2,123 +2,109 @@
 
 public partial class UIManager
 {
-    public MainMenuPresenter m_mainMenuPresenter { get; private set; }
+    private MainMenuPresenter m_mainMenuPresenter;
 
-    public async UniTask OpenMainMenu()
+    public void OpenMainMenu()
     {
         if (m_mainMenuPresenter == null)
         {
             m_mainMenuPresenter = new MainMenuPresenter();
         }
 
-        m_mainMenuPresenter.InitMainMenu(CreateUI<MainMenu>(UIType.MainMenu));
-
-        await m_mainMenuPresenter.LoadAndSetAssetAsync();
-
         m_activeUI.Add(UIType.MainMenu);
-        m_mainMenuPresenter.MainMenuUI.ActiveTrue();
-        m_mainMenuPresenter.OpenMainMenuUI();
+        m_mainMenuPresenter.InitMainMenu(CreateUI<MainMenu>(UIType.MainMenu));
     }
 
     public InGamePresenter m_inGamePresenter { get; private set; }
 
-    public async UniTask OpenInGame()
+    public void OpenInGame()
     {
         if (m_inGamePresenter == null)
         {
             m_inGamePresenter = new InGamePresenter();
         }
 
-        m_inGamePresenter.InitInGame(CreateUI<InGame>(UIType.InGame));
-
-        await m_inGamePresenter.LoadAndSetAssetAsync();
-
         m_activeUI.Add(UIType.InGame);
-        m_inGamePresenter.InGame.ActiveTrue();
-        m_inGamePresenter.OepnInGameUI();
+        m_inGamePresenter.InitInGame(CreateUI<InGame>(UIType.InGame));
     }
 
-    public EndlessGameModePresenter m_endlessGameModePresenter { get; private set; }
+    private EndlessGameModePresenter m_endlessGameModePresenter;
 
-    public async UniTask OpenEndlessGameMode()
-            {
+    public void OpenEndlessGameMode()
+    {
         if (m_endlessGameModePresenter == null)
         {
             m_endlessGameModePresenter = new EndlessGameModePresenter();
         }
-        m_endlessGameModePresenter.InitEndlessGameMode(CreateUI<EndlessGameMode>(UIType.EndlessGameMode));
-        await m_endlessGameModePresenter.LoadAndSetAssetAsync();
+
         m_activeUI.Add(UIType.EndlessGameMode);
-        m_endlessGameModePresenter.EndlessGameModeUI.ActiveTrue();
-        m_endlessGameModePresenter.OpenEndlessGameModeUI();
+        m_endlessGameModePresenter.InitEndlessGameMode(CreateUI<EndlessGameMode>(UIType.EndlessGameMode));
     }
 
-    public CharacterCollectionPresenter m_characterCollectionPresenter { get; private set; }
+    private CharacterCollectionPresenter m_characterCollectionPresenter;
 
-    public async UniTask OpenCharacterCollection()
+    public void OpenCharacterCollection()
     {
         if (m_characterCollectionPresenter == null)
         {
             m_characterCollectionPresenter = new CharacterCollectionPresenter();
         }
 
-        m_characterCollectionPresenter.InitCharacterCollection(CreateUI<CharacterCollection>(UIType.CharacterCollection));
-
-        await m_characterCollectionPresenter.LoadAndSetAssetAsync();
-
         m_activeUI.Add(UIType.CharacterCollection);
-        m_characterCollectionPresenter.CharacterCollectionUI.ActiveTrue();
-        m_characterCollectionPresenter.OpenCharacterCollectionUI();
+        m_characterCollectionPresenter.InitCharacterCollection(CreateUI<CharacterCollection>(UIType.CharacterCollection));
     }
 
-    public async UniTask OpenInGamePopup()
-    {
-        InGamePopup ui = CreateUI<InGamePopup>(UIType.InGamePopup);
+    private InGamePopupPresenter m_inGamePopupPresenter;
 
-        await ui.LoadAssetAsync();
+    public void OpenInGamePopup(int score)
+    {
+        if (m_inGamePopupPresenter == null)
+        {
+            m_inGamePopupPresenter = new InGamePopupPresenter();
+        }
 
         m_activeUI.Add(UIType.InGamePopup);
-        ui.ActiveTrue();
-        ui.OpenInGamePopup();
+        m_inGamePopupPresenter.InitInGamePopup(CreateUI<InGamePopup>(UIType.InGamePopup));
     }
 
+    private SkillStatePopupPresenter m_skillStatePopupPresenter;
 
-
-
-
-    public NewCharacterCollectionPresenter m_newCharacterCollectionPresenter { get; private set; }
-
-    public async UniTask OpenNewCharacterCollection()
+    public void OpenSkillState(SkillData skillData)
     {
-        if (m_newCharacterCollectionPresenter == null)
+        if (m_skillStatePopupPresenter == null)
         {
-            m_newCharacterCollectionPresenter = new NewCharacterCollectionPresenter();
+            m_skillStatePopupPresenter = new SkillStatePopupPresenter();
         }
 
-        m_newCharacterCollectionPresenter.InitCharacterCollection(CreateUI<NewCharacterCollection>(UIType.CharacterCollection));
+        m_skillStatePopupPresenter.InitSkillStatePopup(CreateUI<SkillStatePopup>(UIType.SkillStatePopup));
 
-        await m_newCharacterCollectionPresenter.LoadAndSetAssetAsync();
-
-        m_activeUI.Add(UIType.CharacterCollection);
-        m_newCharacterCollectionPresenter.CharacterCollectionUI.ActiveTrue();
-        m_newCharacterCollectionPresenter.OpenCharacterCollectionUI();
+        m_skillStatePopupPresenter.InitSkillData(skillData);
+        m_activeUI.Add(UIType.SkillStatePopup);
     }
 
-    private NewMainMenuPresenter m_newMainMenuPresenter;
+    private DiePopupPresenter m_diePopupPresenter;
 
-    public async UniTask OpenNewMainMenu()
+    public void OpenDiePopup()
     {
-        if (m_newMainMenuPresenter == null)
+        if (m_diePopupPresenter == null)
         {
-            m_newMainMenuPresenter = new NewMainMenuPresenter();
+            m_diePopupPresenter = new DiePopupPresenter();
         }
 
-        m_newMainMenuPresenter.InitMainMenu(CreateUI<NewMainMenu>(UIType.NewMainMenu));
+        m_diePopupPresenter.InitDiePopup(CreateUI<DiePopup>(UIType.DiePopup));
+        m_activeUI.Add(UIType.DiePopup);
+    }
 
-        await m_newMainMenuPresenter.LoadAndSetAssetAsync();
+    private FirstPopupPresenter m_firstPopupPresenter;
 
-        m_activeUI.Add(UIType.CharacterCollection);
-        m_newMainMenuPresenter.MainMenuUI.ActiveTrue();
-        m_newMainMenuPresenter.OpenMainMenuUI();
+    public void OpenFirstPopup()
+    {
+        if (m_firstPopupPresenter == null)
+        {
+            m_firstPopupPresenter = new FirstPopupPresenter();
+        }
+
+        m_firstPopupPresenter.InitFirstPopup(CreateUI<FirstPopup>(UIType.FirstStartPopup));
+        m_activeUI.Add(UIType.FirstStartPopup);
     }
 }

@@ -9,16 +9,12 @@ public class GameDataManager : BaseManager<GameDataManager>
     public Dictionary<string, SkillData> SkillDataList { get; private set; } = new();
     public Dictionary<string, EnemyData> EnemyDataList {  get; private set; } = new();
 
-
-    protected override void Awake()
+    public GameDataManager()
     {
-        base.Awake();
-        AwakeSetting();
-    }
-
-    private void AwakeSetting()
-    {
-        LoadAllData();
+        if (Instance == this)
+        {
+            LoadAllData();
+        }
     }
 
     private void LoadAllData()
@@ -26,11 +22,6 @@ public class GameDataManager : BaseManager<GameDataManager>
         LoadCharacterData();
         LoadSkillData();
         LoadEnemyData();
-    }
-
-    private void LoadUIData()
-    {
-        UIDataList = LoadData<UIData>("UIData");
     }
 
     private void LoadCharacterData()
