@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb3e2bccbc193343a88827703ca8262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Party
-  Animator_Character: {fileID: 0}
+  Animator_Character: {fileID: 8920198280056591204}
   RigidBody2D_Character: {fileID: 8715214120048814540}
   Collider2D_Character: {fileID: 1387686332130792522}
   SpriteRenderer_OnFieldCharacter: {fileID: 674053001832533008}
@@ -127,6 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3556677793102210782}
   - component: {fileID: 674053001832533008}
+  - component: {fileID: 8920198280056591204}
   m_Layer: 0
   m_Name: SpriteRenderer_OnFieldPlayer
   m_TagString: Untagged
@@ -212,6 +213,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8920198280056591204
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4869410300370588709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cfccafeef77aeb408cef8f2650523fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6081502807828230620
 GameObject:
   m_ObjectHideFlags: 0

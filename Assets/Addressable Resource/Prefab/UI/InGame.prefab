@@ -1258,7 +1258,8 @@ MonoBehaviour:
   Image_Misson: {fileID: 4310989858633587759}
   Text_MissonTitle: {fileID: 5310538234548385830}
   Text_MissonDescription: {fileID: 7968685938949733609}
-  Slider_MainCharacterHp: {fileID: 3114251836396283369}
+  Slider_OnFieldCharacterHp: {fileID: 3114251836396283369}
+  Text_OnFieldCharacterHp: {fileID: 2639855243064514414}
   SubCharadcters:
   - GameObject_This: {fileID: 3777230316766822127}
     Button_CharacterButton: {fileID: 538119876165414297}

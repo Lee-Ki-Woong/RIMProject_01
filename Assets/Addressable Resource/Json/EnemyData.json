@@ -2,33 +2,41 @@
   {
     "Id": "Enemy_01",
     "Name": "적1",
-    "MoveSpeed": 4,
     "MaxHp": 200,
     "Damage": 10,
-    "PlayerObjectPath": "Prefab/Enemy/01"
+    "MoveSpeed": 4,
+    "Point": 1,
+    "EnemySpritePath": "Sprite/Enemy/01",
+    "EnemyAnimatorPath": "Animation/Enemy/01"
   },
   {
     "Id": "Enemy_02",
     "Name": "적2",
-    "MoveSpeed": 3,
     "MaxHp": 500,
     "Damage": 25,
-    "PlayerObjectPath": "Prefab/Enemy/02"
+    "MoveSpeed": 3,
+    "Point": 2,
+    "EnemySpritePath": "Sprite/Enemy/02",
+    "EnemyAnimatorPath": "Animation/Enemy/02"
   },
   {
     "Id": "Enemy_03",
     "Name": "적3",
-    "MoveSpeed": 5,
     "MaxHp": 150,
     "Damage": 10,
-    "PlayerObjectPath": "Prefab/Enemy/03"
+    "MoveSpeed": 5,
+    "Point": 2,
+    "EnemySpritePath": "Sprite/Enemy/03",
+    "EnemyAnimatorPath": "Animation/Enemy/03"
   },
   {
     "Id": "Enemy_04",
     "Name": "적4",
-    "MoveSpeed": 7,
     "MaxHp": 100,
     "Damage": 10,
-    "PlayerObjectPath": "Prefab/Enemy/04"
+    "MoveSpeed": 7,
+    "Point": 2,
+    "EnemySpritePath": "Sprite/Enemy/04",
+    "EnemyAnimatorPath": "Animation/Enemy/04"
   }
 ]

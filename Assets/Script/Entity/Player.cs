@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class Player
+public class Character
 {
     public CharacterData CharacterData_This { get; private set; }
     public int Hp { get; private set; }
@@ -33,7 +33,7 @@ public class Player
 
         if (Hp <= 0)
         {
-            
+
         }
     }
 
@@ -69,7 +69,7 @@ public class Player
         }
     }
 
-    private void LoadAssetSync(int index,SkillData skillDtata)
+    private void LoadAssetSync(int index, SkillData skillDtata)
     {
         GameObject prefab = LoadUtil.Sync.LoadPrefab(skillDtata.SkillObjectPath);
         m_skillPrefabs[index] = prefab;
@@ -113,7 +113,9 @@ public class Player
         if (skillInstance.TryGetComponent(out Skill skillScript))
         {
             SkillData skillData = m_skillDatas[skillIndex];
-            skillScript.SetData(skillData.Damage, skillData.speed, skillData.LifeTime, spawnTransform.position, enemiesInRange);
+
+            // [수정] spawnTransform.position (Vector3) 대신 spawnTransform (Transform) 자체를 넘겨줍니다.
+            skillScript.SetData(skillData.Damage, skillData.speed, skillData.LifeTime, spawnTransform, enemiesInRange);
         }
     }
 }

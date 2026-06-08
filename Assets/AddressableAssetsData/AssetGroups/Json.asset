@@ -14,22 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Json
   m_GUID: 44edbca6c28fcef4f87651512bf03d95
-  m_SerializeEntries:
-  - m_GUID: 0052fb31ccedd1a449f4ef77d7a44cd4
-    m_Address: Json/CharacterData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a2c746528f0029d498ac703d86503639
-    m_Address: Json/EnemyData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ece8b102ef3d24549a4222d2fd787049
-    m_Address: Json/SkillData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: af3df41ddc9ee9b41890fd135d5c890b, type: 2}
   m_SchemaSet:

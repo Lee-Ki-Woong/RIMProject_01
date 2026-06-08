@@ -15,13 +15,43 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 61eba34407ba67b4d8b3f245dbc12bbe
   m_SerializeEntries:
-  - m_GUID: 38b045228b9c56444a2bad9b5b52a792
-    m_Address: Prefab/SkillObject/Archer02
+  - m_GUID: 0052fb31ccedd1a449f4ef77d7a44cd4
+    m_Address: Json/CharacterData
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b92f51e6569be2045b6f63ff5926eb55
-    m_Address: Prefab/SkillObject/Archer01
+  - m_GUID: 16bc8f0d80fe3314890bb4e8a5384b33
+    m_Address: Sprite/Enemy/01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6cbf410b8441e2e4c8e97d96b6b1758b
+    m_Address: Prefab/SkillObject/Archer03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75d565e9fbc5fc643a7d1fa6337b4442
+    m_Address: Animation/Enemy/01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2c746528f0029d498ac703d86503639
+    m_Address: Json/EnemyData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9df953eced827a46b56399454688b97
+    m_Address: Prefab/UI/SkillStatePopup
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb6796c3f46e7de439c28eb0609a3b2f
+    m_Address: Prefab/Enemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ece8b102ef3d24549a4222d2fd787049
+    m_Address: Json/SkillData
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

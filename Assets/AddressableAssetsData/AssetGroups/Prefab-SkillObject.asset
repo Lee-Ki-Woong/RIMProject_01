@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Prefab-SkillObject
   m_GUID: 29af5cf0812cfb545bce797f40f7663b
   m_SerializeEntries:
+  - m_GUID: 38b045228b9c56444a2bad9b5b52a792
+    m_Address: Prefab/SkillObject/Archer02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7a47f89cb5b4a964c884a9540ff6d8a7
     m_Address: Prefab/SkillObject/DarkMage01
     m_ReadOnly: 0
@@ -22,6 +27,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9ed0ba99383d10c45ba9807a70fe8067
     m_Address: Prefab/SkillObject/DarkMage02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b92f51e6569be2045b6f63ff5926eb55
+    m_Address: Prefab/SkillObject/Archer01
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

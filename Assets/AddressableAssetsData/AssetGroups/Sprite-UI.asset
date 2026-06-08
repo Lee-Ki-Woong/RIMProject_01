@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4631b4f83cbcd0f4fa6d49bb136e9630
+    m_Address: Sprite/UI/SkillState/Background
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 556fdad024f04204eae9117cd364b62e
     m_Address: Sprite/UI/MainMenu/TitleImage
     m_ReadOnly: 0
@@ -52,6 +57,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6ec215d66ae83e043bcc82f7a2ff6db0
     m_Address: Sprite/UI/EndlessGameMode/StartGame
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c9de6d1cdf301a47a3158ba3c26a99b
+    m_Address: Sprite/UI/SkillState/ExitButton
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

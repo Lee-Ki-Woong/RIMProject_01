@@ -12,45 +12,36 @@ public class Party : MonoBehaviour
 
 
 
-    private Player[] m_players;
-    private Player m_onFieldPlayer;
+    public Character[] Characters { get; private set; }
+    public Character OnFieldCharacter { get; private set; }
+
+    public event Action<Character, Character[]> OnCharacterChanged;
 
     private List<Transform> m_enemiesTransform = new List<Transform>();
 
     private void Awake()
     {
-        AwakeSetting();
         this.ActiveFalse();
     }
 
-    private void AwakeSetting()
+    public void InitCharacterData(List<CharacterData> characterDatas)
     {
-
-    }
-
-    public void InitPlayerData(List<CharacterData> characterDatas)
-    {
-        m_players = new Player [characterDatas.Count];
+        Characters = new Character [characterDatas.Count];
 
         for (int i = 0; i < characterDatas.Count; i++)
         {
-            m_players[i] = new Player();
-            m_players[i].InitCharacterData(characterDatas[i]);
+            Characters[i] = new Character();
+            Characters[i].InitCharacterData(characterDatas[i]);
         }
 
+        ChangeOnFieldCharacter(Characters[0]);
         this.ActiveTrue();
     }
 
-    private void Start()
+    public void OnFieldCharacterGetDamaged(int damage)
     {
-        StartSetting();
+        OnFieldCharacter.CharacterGetDamaged(damage);
     }
-
-    private void StartSetting()
-    {
-        ChangeOnFieldCharacter(m_players[0]);
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -78,7 +69,7 @@ public class Party : MonoBehaviour
 
     private void AutoFireSkill()
     {
-        if (m_onFieldPlayer == null) return;
+        if (OnFieldCharacter == null) return;
 
         for (int i = m_enemiesTransform.Count - 1; i >= 0; i--)
         {
@@ -90,53 +81,58 @@ public class Party : MonoBehaviour
 
         if (m_enemiesTransform.Count == 0) return;
 
-        m_onFieldPlayer.UpdateAndFireSkill(Time.deltaTime, this.transform, m_enemiesTransform);
+        OnFieldCharacter.UpdateAndFireSkill(Time.deltaTime, this.transform, m_enemiesTransform);
     }
 
     private void CheckingKeyDown()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (m_players[0] != null)
+            if (Characters[0] != null)
             {
-                ChangeOnFieldCharacter(m_players[0]);
+                ChangeOnFieldCharacter(Characters[0]);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (m_players[1] != null)
+            if (Characters[1] != null)
             {
-                ChangeOnFieldCharacter(m_players[1]);
+                ChangeOnFieldCharacter(Characters[1]);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (m_players[2] != null)
+            if (Characters[2] != null)
             {
-                ChangeOnFieldCharacter(m_players[2]);
+                ChangeOnFieldCharacter(Characters[2]);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (m_players[3] != null)
+            if (Characters[3] != null)
             {
-                ChangeOnFieldCharacter(m_players[3]);
+                ChangeOnFieldCharacter(Characters[3]);
             }
         }
     }
 
-    private void ChangeOnFieldCharacter(Player player)
+    private void ChangeOnFieldCharacter(Character Character)
     {
-        if (player == null) return;
-        if (m_onFieldPlayer == player) return;
+        if (Character == null) return;
+        if (OnFieldCharacter == Character) return;
 
-        m_onFieldPlayer = player;
-        SpriteRenderer_OnFieldCharacter.sprite = LoadUtil.Sync.LoadGeneric<Sprite>(player.CharacterData_This.CharacterStandPath);
+        OnFieldCharacter = Character;
+        SpriteRenderer_OnFieldCharacter.sprite = LoadUtil.Sync.LoadGeneric<Sprite>(Character.CharacterData_This.CharacterStandPath);
+
+        OnCharacterChanged?.Invoke(OnFieldCharacter, Characters);
     }
 
     private void Move()
     {
-        if(m_onFieldPlayer == null)
+        if(OnFieldCharacter == null)
         {
             this.LogError("온필드 캐릭터가 없습니다!");
             return;
@@ -147,7 +143,7 @@ public class Party : MonoBehaviour
 
         Vector2 moveDirection = new Vector2(horizontal, vertical).normalized;
 
-        RigidBody2D_Character.linearVelocity = moveDirection * m_onFieldPlayer.CharacterData_This.MoveSpeed;
+        RigidBody2D_Character.linearVelocity = moveDirection * OnFieldCharacter.CharacterData_This.MoveSpeed;
     }
 
 
