@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "Id": "MainMenu_Main",
     "FirstButton": "Game Start",
@@ -13,7 +13,7 @@
     "SecondButton": "Endless Mode",
     "ThirdButton": null,
     "FourthButton": null,
-    "FifthButton": "Return MainMenu"
+    "FifthButton": "MainMenu"
   },
   {
     "Id": "MainMenu_Collection",
@@ -21,7 +21,7 @@
     "SecondButton": "Weapon Collection",
     "ThirdButton": "Artifact Collection",
     "FourthButton": null,
-    "FifthButton": "Return MainMenu"
+    "FifthButton": "MainMenu"
   },
   {
     "Id": "MainMenu_Shop",
@@ -29,7 +29,7 @@
     "SecondButton": "Coin Shop",
     "ThirdButton": null,
     "FourthButton": null,
-    "FifthButton": "Return MainMenu"
+    "FifthButton": "MainMenu"
   },
   {
     "Id": "MainMenu_GameOption",
@@ -37,6 +37,6 @@
     "SecondButton": "Game Option",
     "ThirdButton": "Language",
     "FourthButton": null,
-    "FifthButton": "Return MainMenu"
+    "FifthButton": "MainMenu"
   }
 ]

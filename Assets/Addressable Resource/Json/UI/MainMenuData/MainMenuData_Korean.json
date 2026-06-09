@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "Id": "MainMenu_Main",
     "FirstButton": "게임 시작",
@@ -13,7 +13,7 @@
     "SecondButton": "무한 모드",
     "ThirdButton": null,
     "FourthButton": null,
-    "FifthButton": "돌아가기"
+    "FifthButton": "메인메뉴로"
   },
   {
     "Id": "MainMenu_Collection",
@@ -21,7 +21,7 @@
     "SecondButton": "무기 콜렉션",
     "ThirdButton": "아티팩트 콜렉션",
     "FourthButton": null,
-    "FifthButton": "돌가가기"
+    "FifthButton": "메인메뉴로"
   },
   {
     "Id": "MainMenu_Shop",
@@ -29,7 +29,7 @@
     "SecondButton": "코인샵",
     "ThirdButton": null,
     "FourthButton": null,
-    "FifthButton": "돌아가기"
+    "FifthButton": "메인메뉴로"
   },
   {
     "Id": "MainMenu_GameOption",
@@ -37,6 +37,6 @@
     "SecondButton": "게임 옵션",
     "ThirdButton": "언어",
     "FourthButton": null,
-    "FifthButton": "돌아가기"
+    "FifthButton": "메인메뉴로"
   }
 ]
