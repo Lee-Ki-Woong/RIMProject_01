@@ -7,7 +7,7 @@ using UnityEngine;
 public class MainMenuPresenter : BasePresenter
 {
 
-    public MainMenu MainMenuUI { get; private set; }
+    private MainMenu m_mainMenuUI;
 
     private Sprite Sprite_TitleText;
     private Sprite Sprite_TitleImage;
@@ -16,24 +16,31 @@ public class MainMenuPresenter : BasePresenter
 
     private TMP_FontAsset TMPFont_MenuFont;
 
+    private MainMenuType m_mainMenuType;
+    private Dictionary<MainMenuType, Action[]> m_mainMenuActionList = new();
+
     public void InitMainMenu(MainMenu mainMenu)
     {
-        MainMenuUI = mainMenu;
-    }
-
-    public void OpenMainMenuUI()
-    {
-        OnClick_MainMenuButton();
-    }
-
-    public override async UniTask LoadAndSetAssetAsync()
-    {
-        if (IsAssetLoad)
+        if (m_mainMenuUI == null)
         {
-            MainMenuUI.SetAsset(Sprite_TitleText, Sprite_TitleImage, Sprite_MenuButton, Sprite_MenuButton_Highlighted, TMPFont_MenuFont);
-            return;
+            m_mainMenuUI = mainMenu;
         }
 
+        if (m_isAssetLoad == false)
+        {
+            m_mainMenuUI.ActiveFalse();
+            LoadAndSetAssetAsync().Forget();
+        }
+        else
+        {
+            m_mainMenuUI.ActiveTrue();
+        }
+
+            OpenMainMenu();
+    }
+
+    protected override async UniTask LoadAndSetAssetAsync()
+    {
         var (titleText, titleImage, menuButton, menuButtonHighlighted, menuFont) = await UniTask.WhenAll
             (
             LoadUtil.Async.LoadSpriteAsync(AddressUtil.Async.Sprite.UI.MainMenu.TitleText),
@@ -49,127 +56,214 @@ public class MainMenuPresenter : BasePresenter
         Sprite_MenuButton_Highlighted = menuButtonHighlighted;
         TMPFont_MenuFont = menuFont;
 
-        IsAssetLoad = true;
+        m_isAssetLoad = true;
 
-        MainMenuUI.SetAsset(Sprite_TitleText, Sprite_TitleImage, Sprite_MenuButton, Sprite_MenuButton_Highlighted, TMPFont_MenuFont);
+        m_mainMenuUI.SetAsset(Sprite_TitleText, Sprite_TitleImage, Sprite_MenuButton, Sprite_MenuButton_Highlighted, TMPFont_MenuFont);
+        m_mainMenuUI.ActiveTrue();
+
     }
 
-    private Dictionary<MainMenuType, UIData> m_mainMenuDataDic = new();
-
-    private UIData CreateMainMenuUIData(MainMenuType mainMenuType, string[] stringArray, Action[] actionArray)
+    private void OpenMenu(MainMenuType mainMenuType)
     {
-        if (m_mainMenuDataDic.TryGetValue(mainMenuType, out UIData mainMenuUIData))
+        string dataId = GetMainMenuId(mainMenuType);
+        if (UIDataManager.Instance.MainMenuDataList.TryGetValue(dataId, out MainMenuData mainMenuData) == false)
         {
-            return mainMenuUIData;
+            LogError(dataId + $"에 알맞는 MainMenuData가 없습니다!!");
+            return;
         }
 
-        UIData newMainMenuUIData = new()
+        string[] texts = new string[5] { mainMenuData.FirstButton, mainMenuData.SecondButton, mainMenuData.ThirdButton, mainMenuData.FourthButton, mainMenuData.FifthButton };
+        Action[] actions = GetAction(mainMenuType);
+        
+        m_mainMenuUI.SetData(texts, actions);
+    }
+
+    private string GetMainMenuId(MainMenuType mainMenuType)
+    {
+        switch (mainMenuType)
         {
-            Texts = stringArray,
-            Actions = actionArray,
-        };
-
-        m_mainMenuDataDic.Add(mainMenuType, newMainMenuUIData);
-
-        return newMainMenuUIData;
+            case MainMenuType.MainMenu:
+                {
+                    return "MainMenu_Main";
+                }
+            case MainMenuType.StartGame:
+                {
+                    return "MainMenu_StartGame";
+                }
+            case MainMenuType.Collection:
+                {
+                    return "MainMenu_Collection";
+                }
+            case MainMenuType.Shop:
+                {
+                    return "MainMenu_Shop";
+                }
+            case MainMenuType.GameOption:
+                {
+                    return "MainMenu_GameOption";
+                }
+            default:
+                {
+                    LogError("잘못된 접근입니다!! 메인화면으로 돌아갑니다");
+                    return "MainMenu_Main";
+                }
+        }
     }
 
-    private void OnClick_MainMenuButton()
+    private Action[] GetAction(MainMenuType mainMenuType)
     {
-        OpenMainMenu();
+        switch(mainMenuType)
+        {
+            case MainMenuType.MainMenu:
+                {
+                    if(m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    {
+                        return actions;
+                    }
+
+                    actions = new Action[5]
+                    {
+                        OpenStartMenu,
+                        OpenCollectionMenu,
+                        OpenShopMenu,
+                        OpenGameOptionMenu,
+                        QuitGame
+                    };
+
+                    m_mainMenuActionList.Add(mainMenuType, actions);
+
+                    return actions;
+                }
+                case MainMenuType.StartGame:
+                {
+                    if(m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    {
+                        return actions;
+                    }
+
+                    actions = new Action[5]
+                    {
+                        null,
+                        OpenEndlessMode,
+                        null,
+                        null,
+                        OpenMainMenu
+                    };
+
+                    m_mainMenuActionList.Add(mainMenuType, actions);
+
+                    return actions;
+                }
+            case MainMenuType.Collection:
+                {
+                    if(m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    {
+                        return actions;
+                    }
+
+                    actions = new Action[5]
+                    {
+                        OpenCharacterCollection,
+                        null,
+                        null,
+                        null,
+                        OpenMainMenu
+                    };
+
+                    m_mainMenuActionList.Add(mainMenuType, actions);
+
+                    return actions;
+                }
+            case MainMenuType.Shop:
+                {
+
+                    if (m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    {
+                        return actions;
+                    }
+
+                    actions = new Action[5]
+                    {
+                        null,
+                        null,
+                        null,
+                        null,
+                        OpenMainMenu
+                    };
+
+                    m_mainMenuActionList.Add(mainMenuType, actions);
+
+                    return actions;
+                }
+            case MainMenuType.GameOption:
+                {
+
+                    if (m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    {
+                        return actions;
+                    }
+
+                    actions = new Action[5]
+                    {
+                        null,
+                        null,
+                        null,
+                        null,
+                        OpenMainMenu
+                    };
+
+                    m_mainMenuActionList.Add(mainMenuType, actions);
+
+                    return actions;
+                }
+            default:
+                {
+                    LogError("예상치못한 오류가 발생하였습니다!!");
+                    return null;
+                }
+        }
     }
-
-    private void OnClick_GameStartButton()
-    {
-        OpenGameStartMenu();
-    }
-
-    private void OnClick_MyCollectionButton()
-    {
-        OpenMyCollectionMenu();
-    }
-
-    private void OnClick_ShopButton()
-    {
-        OpenShopMenu();
-    }
-
-    private void OnClick_GameOptionButton()
-    {
-        OpenGameOptionMenu();
-    }
-
-    private void OnClick_GameExitButton()
-    {
-        GameManager.Instance.GameQuit();
-    }
-
-    private void OnClick_CharacterCollectionButton()
-    {
-        UIManager.Instance.OpenCharacterCollection().Forget();
-    }
-
-    private void OnClick_EndlessGameModeButton()
-    {
-        UIManager.Instance.OpenEndlessGameMode().Forget();
-    }
-    public void OnClick_NewCharacterCollectionButton()
-    {
-        UIManager.Instance.OpenNewCharacterCollection().Forget();
-    }
-
-
-
 
     private void OpenMainMenu()
     {
-        string[] mainMenuText = { "게임시작", "내 콜렉션", "샵", "게임 옵션", "게임 종료" };
-        Action[] mainMenuAction = { OnClick_GameStartButton, OnClick_MyCollectionButton, OnClick_ShopButton, OnClick_GameOptionButton, OnClick_GameExitButton };
-
-        UIData mainMenuData = CreateMainMenuUIData(MainMenuType.MainMenu, mainMenuText, mainMenuAction);
-
-        MainMenuUI.SetData(mainMenuData);
+        OpenMenu(MainMenuType.MainMenu);
     }
 
-    private void OpenGameStartMenu()
+    #region MainMenu
+    private void OpenStartMenu()
     {
-        string[] gameStartMenuText = { "스토리 모드", "무한 모드", "", "", "돌아가기" };
-        Action[] gameStartMenuAction = { null, OnClick_EndlessGameModeButton, null, null, OnClick_MainMenuButton };
-
-        UIData gameStartMenuData = CreateMainMenuUIData(MainMenuType.GameStart, gameStartMenuText, gameStartMenuAction);
-
-        MainMenuUI.SetData(gameStartMenuData);
+        OpenMenu(MainMenuType.StartGame);
     }
 
-    private void OpenMyCollectionMenu()
+    private void OpenCollectionMenu()
     {
-        string[] myCollectionMenuText = { "캐릭터 콜렉션", "무기 콜렉션", "아티팩트 콜렉션", "", "돌아가기" };
-        Action[] myCollectionMenuAction = { OnClick_CharacterCollectionButton, null, null, null, OnClick_MainMenuButton };
-
-        UIData myCollectionMenuData = CreateMainMenuUIData(MainMenuType.MyCollection, myCollectionMenuText, myCollectionMenuAction);
-
-        MainMenuUI.SetData(myCollectionMenuData);
+        OpenMenu(MainMenuType.Collection);
     }
 
     private void OpenShopMenu()
     {
-        string[] shopMenuText = { "캐릭터 샵", "무기 샵", "아티팩트 샵", "", "돌아가기" };
-        Action[] shopMenuAction = { null, null, null, null, OnClick_MainMenuButton };
-
-        UIData shopMenuData = CreateMainMenuUIData(MainMenuType.Shop, shopMenuText, shopMenuAction);
-
-        MainMenuUI.SetData(shopMenuData);
-
+        OpenMenu(MainMenuType.Shop);
     }
 
     private void OpenGameOptionMenu()
     {
-        string[] gameOptionMenuText = { "게임 옵션", "사운드 옵션", "", "", "돌아가기" };
-        Action[] gameOptionMenuAction = { null, null, null, null, OnClick_MainMenuButton };
+        OpenMenu(MainMenuType.GameOption);
+    }
 
-        UIData gameOptionMenuData = CreateMainMenuUIData(MainMenuType.GameOption, gameOptionMenuText, gameOptionMenuAction);
+    private void QuitGame()
+    {
+        GameManager.Instance.GameQuit();
+    }
+    #endregion
 
-        MainMenuUI.SetData(gameOptionMenuData);
+    private void OpenEndlessMode()
+    {
+        UIManager.Instance.OpenEndlessGameMode();
+    }
+
+    private void OpenCharacterCollection()
+    {
+        UIManager.Instance.OpenCharacterCollection();
     }
 }
 

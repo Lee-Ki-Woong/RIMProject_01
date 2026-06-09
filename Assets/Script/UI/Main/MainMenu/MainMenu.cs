@@ -17,15 +17,28 @@ public class MainMenu : BaseUI
         public TMP_Text Text;
     }
 
-    [SerializeField] private MainMenuButton[] Menus;
+    [SerializeField] private MainMenuButton FirstMenuButton;
+    [SerializeField] private MainMenuButton SecondMenuButton;
+    [SerializeField] private MainMenuButton ThirdMenuButton;
+    [SerializeField] private MainMenuButton FourthMenuButton;
+    [SerializeField] private MainMenuButton FifthMenuButton;
+
+    private MainMenuButton[] Menus;
+
+    private void Awake()
+    {
+        Menus = new MainMenuButton[5]
+        {
+            FirstMenuButton,
+            SecondMenuButton,
+            ThirdMenuButton,
+            FourthMenuButton,
+            FifthMenuButton
+        };
+    }
 
     public void SetAsset(Sprite titleText, Sprite titleImage, Sprite menuButton, Sprite menuButtonHighlighted, TMP_FontAsset menuButtonFont)
     {
-        if(IsSetAsset)
-        {
-            return;
-        }
-
         Image_TitleText.sprite = titleText;
         Image_TitleImage.sprite = titleImage;
 
@@ -35,14 +48,10 @@ public class MainMenu : BaseUI
             menu.Button.SetButtonSprite(menuButtonHighlighted);
             menu.Text.font = menuButtonFont;
         }
-
-        IsSetAsset = true;
     }
 
-    public override void SetData(UIData uiData)
+    public void SetData(string[] texts, Action[] actions)
     {
-        string[] texts = uiData.Texts;
-        Action[] actions = uiData.Actions;
 
         if (texts.Length != actions.Length)
         {
@@ -54,16 +63,6 @@ public class MainMenu : BaseUI
         {
             if (string.IsNullOrEmpty(texts[i]) || actions[i] == null)
             {
-                if (string.IsNullOrEmpty(texts[i]))
-                {
-                    Debug.LogWarning($"{this.gameObject} : texts {i}의 값이 null이거나 Empty입니다!!");
-                }
-
-                if (actions[i] == null)
-                {
-                    Debug.LogWarning($"{this.gameObject} : action {i}의 값이 null이거나 Empty입니다!!");
-                }
-
                 Menus[i].GameObject.SetActive(false);
                 continue;
             }

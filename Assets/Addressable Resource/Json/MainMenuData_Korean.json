@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "MainMenu_Main",
+    "FirstButton": "게임 시작",
+    "SecondButton": "내 컬렉션",
+    "ThirdButton": "샵",
+    "FourthButton": "게임 옵션",
+    "FifthButton": "게임 종료"
+  },
+  {
+    "Id": "MainMenu_StartGame",
+    "FirstButton": "스토리 모드",
+    "SecondButton": "무한 모드",
+    "ThirdButton": null,
+    "FourthButton": null,
+    "FifthButton": "돌아가기"
+  },
+  {
+    "Id": "MainMenu_Collection",
+    "FirstButton": "캐릭터 콜렉션",
+    "SecondButton": "무기 콜렉션",
+    "ThirdButton": "아티팩트 콜렉션",
+    "FourthButton": null,
+    "FifthButton": "돌가가기"
+  },
+  {
+    "Id": "MainMenu_Shop",
+    "FirstButton": "캐시샵",
+    "SecondButton": "코인샵",
+    "ThirdButton": null,
+    "FourthButton": null,
+    "FifthButton": "돌아가기"
+  },
+  {
+    "Id": "MainMenu_GameOption",
+    "FirstButton": "사운드 옵션",
+    "SecondButton": "게임 옵션",
+    "ThirdButton": "언어",
+    "FourthButton": null,
+    "FifthButton": "돌아가기"
+  }
+]

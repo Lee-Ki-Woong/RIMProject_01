@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "MainMenu_Main",
+    "FirstButton": "Game Start",
+    "SecondButton": "My Collection",
+    "ThirdButton": "Shop",
+    "FourthButton": "Game Option",
+    "FifthButton": "Exit Game"
+  },
+  {
+    "Id": "MainMenu_StartGame",
+    "FirstButton": "Story Mode",
+    "SecondButton": "Endless Mode",
+    "ThirdButton": null,
+    "FourthButton": null,
+    "FifthButton": "Return MainMenu"
+  },
+  {
+    "Id": "MainMenu_Collection",
+    "FirstButton": "Character Collection",
+    "SecondButton": "Weapon Collection",
+    "ThirdButton": "Artifact Collection",
+    "FourthButton": null,
+    "FifthButton": "Return MainMenu"
+  },
+  {
+    "Id": "MainMenu_Shop",
+    "FirstButton": "Cash Shop",
+    "SecondButton": "Coin Shop",
+    "ThirdButton": null,
+    "FourthButton": null,
+    "FifthButton": "Return MainMenu"
+  },
+  {
+    "Id": "MainMenu_GameOption",
+    "FirstButton": "Sound Option",
+    "SecondButton": "Game Option",
+    "ThirdButton": "Language",
+    "FourthButton": null,
+    "FifthButton": "Return MainMenu"
+  }
+]
