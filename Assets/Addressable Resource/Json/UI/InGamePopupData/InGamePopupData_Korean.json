@@ -1,0 +1,9 @@
+[
+  {
+    "Id": "InGamePopup",
+    "ResumeButton": "돌아가기",
+    "RestartButton": "재시작",
+    "GameOptionButton": "게임 옵션",
+    "MainMenuButton": "메인메뉴"
+  }
+]

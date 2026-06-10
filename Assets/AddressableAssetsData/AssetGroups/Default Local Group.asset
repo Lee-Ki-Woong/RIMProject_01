@@ -15,11 +15,6 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 61eba34407ba67b4d8b3f245dbc12bbe
   m_SerializeEntries:
-  - m_GUID: 0052fb31ccedd1a449f4ef77d7a44cd4
-    m_Address: Json/CharacterData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16bc8f0d80fe3314890bb4e8a5384b33
     m_Address: Sprite/Enemy/01
     m_ReadOnly: 0
@@ -52,6 +47,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bb6796c3f46e7de439c28eb0609a3b2f
     m_Address: Prefab/Enemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea6457e5359e7a74287cb356a4650000
+    m_Address: Prefab/UI/LanguagePopup
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

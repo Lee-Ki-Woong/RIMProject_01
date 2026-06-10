@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class MainMenuPresenter : BasePresenter
 {
-
     private MainMenu m_mainMenuUI;
 
     private Sprite Sprite_TitleText;
@@ -16,8 +15,16 @@ public class MainMenuPresenter : BasePresenter
 
     private TMP_FontAsset TMPFont_MenuFont;
 
+    private string m_firstMenuButtonText;
+    private string m_secondMenuButtonText;
+    private string m_thirdMenuButtonText;
+    private string m_fourthMenuButtonText;
+    private string m_fifthMenuButtonText;
+
     private MainMenuType m_mainMenuType;
     private Dictionary<MainMenuType, Action[]> m_mainMenuActionList = new();
+
+    public override UIType UIType_This { get; } = UIType.MainMenu;
 
     public void InitMainMenu(MainMenu mainMenu)
     {
@@ -29,21 +36,19 @@ public class MainMenuPresenter : BasePresenter
         if (m_isAssetLoad == false)
         {
             m_mainMenuUI.ActiveFalse();
-            LoadAndSetAssetAsync().Forget();
+            LoadAssetAsync().Forget();
         }
         else
         {
             m_mainMenuUI.ActiveTrue();
         }
 
-        OpenMainMenu();
-        
-        UnsubscribeChangeLanguageEvents();
         SubscribeChangeLanguageEvents();
 
+        LoadData();
     }
 
-    protected override async UniTask LoadAndSetAssetAsync()
+    protected override async UniTask LoadAssetAsync()
     {
         var (titleText, titleImage, menuButton, menuButtonHighlighted, menuFont) = await UniTask.WhenAll
             (
@@ -67,18 +72,25 @@ public class MainMenuPresenter : BasePresenter
 
     }
 
-    private void OpenMenu(MainMenuType mainMenuType)
+    protected override void LoadData()
     {
-        string dataId = GetMainMenuId(mainMenuType);
+        string dataId = GetMainMenuId(m_mainMenuType);
+        Action[] actions = GetAction(m_mainMenuType);
+
         if (UIDataManager.Instance.MainMenuDataList.TryGetValue(dataId, out MainMenuData mainMenuData) == false)
         {
-            LogError("Json으로 불러온 데이터에 알맞는 MainMenuData가 없습니다!!");
+            LoadLogError(dataId);
             return;
         }
 
-        string[] texts = new string[5] { mainMenuData.FirstButton, mainMenuData.SecondButton, mainMenuData.ThirdButton, mainMenuData.FourthButton, mainMenuData.FifthButton };
-        Action[] actions = GetAction(mainMenuType);
-        
+        m_firstMenuButtonText = mainMenuData.FirstButton;
+        m_secondMenuButtonText = mainMenuData.SecondButton;
+        m_thirdMenuButtonText = mainMenuData.ThirdButton;
+        m_fourthMenuButtonText = mainMenuData.FourthButton;
+        m_fifthMenuButtonText = mainMenuData.FifthButton;
+
+        string[] texts = new string[5] { m_firstMenuButtonText, m_secondMenuButtonText, m_thirdMenuButtonText, m_fourthMenuButtonText, m_fifthMenuButtonText };
+
         m_mainMenuUI.SetData(texts, actions);
     }
 
@@ -116,11 +128,11 @@ public class MainMenuPresenter : BasePresenter
 
     private Action[] GetAction(MainMenuType mainMenuType)
     {
-        switch(mainMenuType)
+        switch (mainMenuType)
         {
             case MainMenuType.MainMenu:
                 {
-                    if(m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    if (m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
                     {
                         return actions;
                     }
@@ -138,9 +150,9 @@ public class MainMenuPresenter : BasePresenter
 
                     return actions;
                 }
-                case MainMenuType.StartGame:
+            case MainMenuType.StartGame:
                 {
-                    if(m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    if (m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
                     {
                         return actions;
                     }
@@ -160,7 +172,7 @@ public class MainMenuPresenter : BasePresenter
                 }
             case MainMenuType.Collection:
                 {
-                    if(m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
+                    if (m_mainMenuActionList.TryGetValue(mainMenuType, out Action[] actions))
                     {
                         return actions;
                     }
@@ -209,10 +221,10 @@ public class MainMenuPresenter : BasePresenter
 
                     actions = new Action[5]
                     {
+                        null, 
                         null,
-                        null,
-                        OpenLanguagePopup,
-                        null,
+                        OpenLanguagePopup, 
+                        null ,
                         OpenMainMenu
                     };
 
@@ -231,36 +243,37 @@ public class MainMenuPresenter : BasePresenter
     private void OpenMainMenu()
     {
         m_mainMenuType = MainMenuType.MainMenu;
-        OpenMenu(m_mainMenuType);
+        LoadData();
     }
 
     #region MainMenu
     private void OpenStartMenu()
     {
         m_mainMenuType = MainMenuType.StartGame;
-        OpenMenu(m_mainMenuType);
+        LoadData();
     }
 
     private void OpenCollectionMenu()
     {
         m_mainMenuType = MainMenuType.Collection;
-        OpenMenu(m_mainMenuType);
+        LoadData();
     }
 
     private void OpenShopMenu()
     {
         m_mainMenuType = MainMenuType.Shop;
-        OpenMenu(m_mainMenuType);
+        LoadData();
     }
 
     private void OpenGameOptionMenu()
     {
         m_mainMenuType = MainMenuType.GameOption;
-        OpenMenu(m_mainMenuType);
+        LoadData();
     }
 
     private void QuitGame()
     {
+        UnsubscribeChangeLanguageEvents();
         GameManager.Instance.GameQuit();
     }
     #endregion
@@ -268,6 +281,7 @@ public class MainMenuPresenter : BasePresenter
     #region StartGame
     private void OpenEndlessMode()
     {
+        UnsubscribeChangeLanguageEvents();
         UIManager.Instance.OpenEndlessGameMode();
     }
     #endregion
@@ -297,7 +311,7 @@ public class MainMenuPresenter : BasePresenter
 
     private void On_ChangeLanguage()
     {
-        OpenMenu(m_mainMenuType);
+        LoadData();
     }
 }
 

@@ -1,0 +1,9 @@
+[
+  {
+    "Id": "InGamePopup",
+    "ResumeButton": "Resume",
+    "RestartButton": "Restart",
+    "GameOptionButton": "Game Option",
+    "MainMenuButton": "MainMenu"
+  }
+]
