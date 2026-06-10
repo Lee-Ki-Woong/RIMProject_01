@@ -7,6 +7,10 @@
     EndlessGameMode,
     CharacterCollection,
     NewMainMenu,
+    FirstStartPopup,
+    SkillStatePopup,
+    DiePopup,
+    LanguagePopup
 }
 
 public enum  UIRootType : byte
@@ -20,8 +24,8 @@ public enum  UIRootType : byte
 public enum MainMenuType : byte
 {
     MainMenu,
-    GameStart,
-    MyCollection,
+    StartGame,
+    Collection,
     Shop,
     GameOption
 }

@@ -16,6 +16,8 @@ public class LanguagePopupPresenter : BasePresenterTwo
     private string m_englishButtonText;
     private string m_exitButtonText;
 
+    public override UIType UIType_This { get; } = UIType.LanguagePopup;
+
     public void InitLanguagePopup(LanguagePopup languagePopup)
     {
         if (m_lnaguagePopupUI == null)
@@ -26,7 +28,7 @@ public class LanguagePopupPresenter : BasePresenterTwo
         if(m_isAssetLoad == false)
         {
             m_lnaguagePopupUI.ActiveFalse();
-            LoadAndSetAssetAsync().Forget();
+            LoadAssetAsync().Forget();
         }
         else
         {
@@ -35,7 +37,7 @@ public class LanguagePopupPresenter : BasePresenterTwo
 
         SubscribeEvents();
         SubscribeLanguageEvent();
-        LoadUIData();
+        LoadData();
     }
 
     protected override void SubscribeEvents()
@@ -62,7 +64,7 @@ public class LanguagePopupPresenter : BasePresenterTwo
         GameManager.Instance.OnLanguageChanged -= On_ChangeLanguage;
     }
 
-    protected async override UniTask LoadAndSetAssetAsync()
+    protected async override UniTask LoadAssetAsync()
     {
         var (sprite_background, sprite_menuButtons, fontAsset_baseFont) = await UniTask.WhenAll
             (
@@ -81,9 +83,15 @@ public class LanguagePopupPresenter : BasePresenterTwo
         m_lnaguagePopupUI.ActiveTrue();
     }
 
-    protected void LoadUIData()
+    protected override void LoadData()
     {
-        UIDataManager.Instance.LanguagePopupList.TryGetValue(DataKeyUtil.UI.LanguagePopup, out LanguagePopupData languagePopupData);
+        string dataId = DataUtil.DataKey.UI.LanguagePopup;
+
+        if (UIDataManager.Instance.LanguagePopupDataList.TryGetValue(dataId, out LanguagePopupData languagePopupData) == false)
+        {
+            LoadLogError(dataId);
+            return;
+        }
 
         m_koreanButtonText = languagePopupData.KoreanButton;
         m_englishButtonText = languagePopupData.EnglishButton;
@@ -111,6 +119,6 @@ public class LanguagePopupPresenter : BasePresenterTwo
 
     private void On_ChangeLanguage()
     {
-        LoadUIData();
+        LoadData();
     }
 }

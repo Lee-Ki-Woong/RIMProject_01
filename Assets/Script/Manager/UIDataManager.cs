@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class UIDataManager : BaseManager<UIDataManager>
 {
-    public Dictionary<string, MainMenuData> MainMenuDataList { get; private set; } = new();    
+    public Dictionary<string, MainMenuData> MainMenuDataList { get; private set; } = new();
+    public Dictionary<string, CharacterCollectionData> CharaterCollectionDataList {  get; private set; } = new();
+    public Dictionary<string, LanguagePopupData> LanguagePopupDataList { get; private set; } = new();
+    public Dictionary<string, InGamePopupData> InGamePopupDataList {  get; private set; } = new();
+
+    public Dictionary<string, DiePopupData> DiePopupDataList { get; private set; } = new();
 
     public UIDataManager()
     {
@@ -14,39 +19,43 @@ public class UIDataManager : BaseManager<UIDataManager>
         }
     }
 
-    private void LoadAllData()
-    {
-        LoadMainMenuData();
-    }
-
     public void ReloadAllData()
     {
         LoadAllData();
     }
 
-    private void LoadMainMenuData()
+    private void LoadAllData()
     {
-        MainMenuDataList = LoadData<MainMenuData>("MainMenuData");
+        LoadMainMenuData();
+        LoadCharacterCollectionData();
+        LoadLanguagePopupData();
+        LoadInGamePopupData();
+        LoadDiePopupData();
     }
 
-    private string GetLanguage()
+    private void LoadMainMenuData()
     {
-        switch(GameManager.Instance.Language)
-        {
-            case Language.English:
-                {
-                    return "English";
-                }
-            case Language.Korean:
-                {
-                    return "Korean";
-                }
-            default:
-                {
-                    this.LogError("GameManager의 Language값이 비정상입니다!! 체크해주세요!!");
-                    return "English";
-                }
-        }
+        MainMenuDataList = LoadData<MainMenuData>(DataUtil.DataFile.UI.MainMenuData);
+    }
+
+    private void LoadCharacterCollectionData()
+    {
+        CharaterCollectionDataList = LoadData<CharacterCollectionData>(DataUtil.DataFile.UI.CharacterCollectionData);
+    }
+
+    private void LoadLanguagePopupData()
+    {
+        LanguagePopupDataList = LoadData<LanguagePopupData>(DataUtil.DataFile.UI.LanguagePopupData);
+    }
+
+    private void LoadInGamePopupData()
+    {
+        InGamePopupDataList = LoadData<InGamePopupData>(DataUtil.DataFile.UI.InGamePopupData);
+    }
+
+    private void LoadDiePopupData()
+    {
+        DiePopupDataList = LoadData<DiePopupData>(DataUtil.DataFile.UI.DiePopupData);
     }
 
     [Serializable]
@@ -58,7 +67,7 @@ public class UIDataManager : BaseManager<UIDataManager>
     private Dictionary<string, T> LoadData<T>(string path) where T : UIDataBase
     {
 
-        string language = GetLanguage();
+        string language = GameUtil.GetLanguage(GameManager.Instance.Language);
         string resourcePath = $"Json/{path}_{language}";
         TextAsset textAsset = LoadUtil.Sync.LoadTextAsset(resourcePath);
 
