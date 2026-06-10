@@ -120,6 +120,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e88152626383b6842a6c9b0126b232ce
+    m_Address: Sprite/UI/FirstPopup/ResumeButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f861cb2773e41f140b815fc6f9925257
     m_Address: Sprite/UI/InGame/Misson
     m_ReadOnly: 0
@@ -132,6 +137,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fb2f5e53a65200e42a78717db7b48146
     m_Address: Sprite/UI/MainMenu/Button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe3556cf6ee9eb9428aa40b2d3a02984
+    m_Address: Sprite/UI/LanguagePopup/Background
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe5a4af719b439c4795bc9358bec50b5
+    m_Address: Sprite/UI/LanguagePopup/MenuButtons
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

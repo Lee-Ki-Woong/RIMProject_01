@@ -55,11 +55,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e88152626383b6842a6c9b0126b232ce
-    m_Address: Sprite/UI/FirstPopup/ResumeButton
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ece8b102ef3d24549a4222d2fd787049
     m_Address: Json/SkillData
     m_ReadOnly: 0

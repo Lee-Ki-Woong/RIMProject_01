@@ -919,24 +919,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Background
   Image_TitleText: {fileID: 6026695695393770979}
   Image_TitleImage: {fileID: 7426262209972118345}
-  Menus:
-  - GameObject: {fileID: 7209659781861923059}
+  FirstMenuButton:
     Button: {fileID: 4713834974886392004}
     Image: {fileID: 3877954569832709232}
     Text: {fileID: 3130744515554517643}
-  - GameObject: {fileID: 653667080002245692}
+  SecondMenuButton:
     Button: {fileID: 6439765861809364109}
     Image: {fileID: 6663664088833509848}
     Text: {fileID: 5641947790507369919}
-  - GameObject: {fileID: 6836556782756298650}
+  ThirdMenuButton:
     Button: {fileID: 1763525605391426699}
     Image: {fileID: 6240468363669218189}
     Text: {fileID: 408529532768753166}
-  - GameObject: {fileID: 8782861294020344341}
+  FourthMenuButton:
     Button: {fileID: 84552119196364054}
     Image: {fileID: 6818738271591189643}
     Text: {fileID: 2543940668495341094}
-  - GameObject: {fileID: 1034323430995909026}
+  FifthMenuButton:
     Button: {fileID: 500609017839738506}
     Image: {fileID: 2742851346688139010}
     Text: {fileID: 2751127943200875235}
