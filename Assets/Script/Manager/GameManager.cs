@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
+using System;
 
 public class GameManager : BaseMonoManager<GameManager>
 {
     [SerializeField] private GameObject Prefab_UIManager;
     [SerializeField] private GameObject Prefab_GameObjectManager;
 
-
-    private UIManager UI;
-    private ResourceManager Resource;
     private GameDataManager GameData;
-    private GameObjectManager GameObject;
+    private UIDataManager UIData;
+    private ResourceManager Resource;
     private NetworkManager Network;
 
-    public PlayerModel PlayerModel { get; private set; }
+    private UIManager UI;
+    private GameObjectManager GameObject;
+    
+
+    public SaveData GameSaveData { get; private set; }
+
+
+
+    public Language Language { get; private set; }
+    
+    public event Action OnLanguageChanged;
+
 
     #region Awake
     protected override void Awake()
@@ -27,9 +37,13 @@ public class GameManager : BaseMonoManager<GameManager>
 
         DontDestroyGameManager();
         CreateCSharpManager();
-        
-        MonoManagerCheck();
-        CreateMonoManagerAndCheckManagerScript();
+
+        bool successChecking = MonoManagerCheck();
+
+        if (successChecking == true)
+        {
+            CreateMonoManagerAndCheckManagerScript();
+        }
     }
 
     private void DontDestroyGameManager()
@@ -39,22 +53,27 @@ public class GameManager : BaseMonoManager<GameManager>
 
     private void CreateCSharpManager()
     {
-        GameData = new GameDataManager();
-        Network = new NetworkManager();
         Resource = new ResourceManager();
+        GameData = new GameDataManager();
+        UIData =new UIDataManager();
+        Network = new NetworkManager();
     }
 
-    private void MonoManagerCheck()
+    private bool MonoManagerCheck()
     {
         if (Prefab_UIManager == null)
         {
             this.LogError("UIManager가 할당되지 않았습니다!!");
+            return false;
         }
 
         if (Prefab_GameObjectManager == null)
         {
             this.LogError("GameObjectManager가 할당되지 않았습니다!!");
+            return false;
         }
+
+        return true;
     }
 
     private void CreateMonoManagerAndCheckManagerScript()
@@ -95,6 +114,7 @@ public class GameManager : BaseMonoManager<GameManager>
     private void StartSetting()
     {
         LoadDataOnStart();
+        ChangeLanguage(GameUtil.GetLanguage(GameSaveData.Language));
     }
 
     private void LoadDataOnStart()
@@ -103,24 +123,18 @@ public class GameManager : BaseMonoManager<GameManager>
     }
     #endregion
 
-    private void SavePlayerModel()
+
+
+
+
+    private void Save()
     {
-        Network.RequestSavePlayerModel(PlayerModel);
+        Network.RequestSaveSaveData(GameSaveData);
     }
 
-    private void LoadPlayerModel()
+    private void Load()
     {
-        PlayerModel = Network.RequestLoadPlayerModel();
-    }
-
-    public void Save()
-    {
-        SavePlayerModel();
-    }
-
-    public void Load()
-    {
-        LoadPlayerModel();
+        GameSaveData = Network.RequestLoadSavaData();
     }
 
     public void GameQuit()
@@ -129,13 +143,32 @@ public class GameManager : BaseMonoManager<GameManager>
         Application.Quit();
     }
 
+
+
+
     public void PlayerGetScore(int score)
     {
-        if (PlayerModel.Score < score)
+        if (GameSaveData.Score >= score)
         {
-            PlayerModel.Score = score;
+            return;
         }
 
+        GameSaveData.Score = score;
         Save();
+    }
+
+    public void ChangeLanguage(Language language)
+    {
+        if (Language == language)
+        {
+            return;
+        }
+
+        Language = language;
+        GameSaveData.Language = GameUtil.SetLanguage(Language);
+        Save();
+
+        UIDataManager.Instance.ReloadAllData();
+        OnLanguageChanged?.Invoke();
     }
 }

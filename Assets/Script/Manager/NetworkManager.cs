@@ -9,38 +9,40 @@ public class NetworkManager : BaseManager<NetworkManager>
         return path;
     }
 
-    public void RequestSavePlayerModel(PlayerModel playerModel)
+    public void RequestSaveSaveData(SaveData saveData)
     {
-        if (playerModel == null) return;
+        if (saveData == null) return;
 
-        string json = JsonUtility.ToJson(playerModel, true);
+        string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(GetPath(), json);
         Debug.Log("저장 완료!!" + GetPath());
     }
 
-    public PlayerModel RequestLoadPlayerModel()
+    public SaveData RequestLoadSavaData()
     {
         string path = GetPath();
 
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            PlayerModel playerModel = JsonUtility.FromJson<PlayerModel>(json);
+            SaveData saveData = JsonUtility.FromJson<SaveData>(json);
             Debug.Log("로드 완료!");
-            return playerModel;
+            return saveData;
         }
         else
         {
-            Debug.Log("새로운 모델을 생성합니다!");
-            return CreateNewPlayerModel();
+            Debug.Log("새로운 세이브데이터를 생성합니다!");
+            return CreateNewSaveData();
         }
     }
 
-    private PlayerModel CreateNewPlayerModel()
+    private SaveData CreateNewSaveData()
     {
-        PlayerModel playerModel = new();
-        playerModel.Score = 0;
+        SaveData saveData = new();
+        saveData.Score = 0;
+        saveData.Language = GameUtil.SetLanguage(Language.Korean);
+        saveData.IsFirstStart = false;
 
-        return playerModel;
+        return saveData;
     }
 }
