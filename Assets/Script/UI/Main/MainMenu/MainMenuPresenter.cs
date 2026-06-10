@@ -36,7 +36,11 @@ public class MainMenuPresenter : BasePresenter
             m_mainMenuUI.ActiveTrue();
         }
 
-            OpenMainMenu();
+        OpenMainMenu();
+        
+        UnsubscribeChangeLanguageEvents();
+        SubscribeChangeLanguageEvents();
+
     }
 
     protected override async UniTask LoadAndSetAssetAsync()
@@ -68,7 +72,7 @@ public class MainMenuPresenter : BasePresenter
         string dataId = GetMainMenuId(mainMenuType);
         if (UIDataManager.Instance.MainMenuDataList.TryGetValue(dataId, out MainMenuData mainMenuData) == false)
         {
-            LogError(dataId + $"에 알맞는 MainMenuData가 없습니다!!");
+            LogError("Json으로 불러온 데이터에 알맞는 MainMenuData가 없습니다!!");
             return;
         }
 
@@ -207,7 +211,7 @@ public class MainMenuPresenter : BasePresenter
                     {
                         null,
                         null,
-                        null,
+                        OpenLanguagePopup,
                         null,
                         OpenMainMenu
                     };
@@ -226,28 +230,33 @@ public class MainMenuPresenter : BasePresenter
 
     private void OpenMainMenu()
     {
-        OpenMenu(MainMenuType.MainMenu);
+        m_mainMenuType = MainMenuType.MainMenu;
+        OpenMenu(m_mainMenuType);
     }
 
     #region MainMenu
     private void OpenStartMenu()
     {
-        OpenMenu(MainMenuType.StartGame);
+        m_mainMenuType = MainMenuType.StartGame;
+        OpenMenu(m_mainMenuType);
     }
 
     private void OpenCollectionMenu()
     {
-        OpenMenu(MainMenuType.Collection);
+        m_mainMenuType = MainMenuType.Collection;
+        OpenMenu(m_mainMenuType);
     }
 
     private void OpenShopMenu()
     {
-        OpenMenu(MainMenuType.Shop);
+        m_mainMenuType = MainMenuType.Shop;
+        OpenMenu(m_mainMenuType);
     }
 
     private void OpenGameOptionMenu()
     {
-        OpenMenu(MainMenuType.GameOption);
+        m_mainMenuType = MainMenuType.GameOption;
+        OpenMenu(m_mainMenuType);
     }
 
     private void QuitGame()
@@ -256,14 +265,40 @@ public class MainMenuPresenter : BasePresenter
     }
     #endregion
 
+    #region StartGame
     private void OpenEndlessMode()
     {
         UIManager.Instance.OpenEndlessGameMode();
     }
+    #endregion
 
+    #region Collection
     private void OpenCharacterCollection()
     {
         UIManager.Instance.OpenCharacterCollection();
     }
+    #endregion
+
+    private void OpenLanguagePopup()
+    {
+        UIManager.Instance.OpenLanguagePopup();
+    }
+
+
+    private void SubscribeChangeLanguageEvents()
+    {
+        GameManager.Instance.OnLanguageChanged += On_ChangeLanguage;
+    }
+
+    private void UnsubscribeChangeLanguageEvents()
+    {
+        GameManager.Instance.OnLanguageChanged -= On_ChangeLanguage;
+    }
+
+    private void On_ChangeLanguage()
+    {
+        OpenMenu(m_mainMenuType);
+    }
 }
+
 

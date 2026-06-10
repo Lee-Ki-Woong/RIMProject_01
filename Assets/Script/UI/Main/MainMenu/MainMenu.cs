@@ -11,7 +11,6 @@ public class MainMenu : BaseUI
     [System.Serializable]
     private class MainMenuButton
     {
-        public GameObject GameObject;
         public Button Button;
         public Image Image;
         public TMP_Text Text;
@@ -63,13 +62,13 @@ public class MainMenu : BaseUI
         {
             if (string.IsNullOrEmpty(texts[i]) || actions[i] == null)
             {
-                Menus[i].GameObject.SetActive(false);
+                Menus[i].Button.gameObject.SetActive(false);
                 continue;
             }
 
-            if (Menus[i].GameObject.activeSelf == false)
+            if (Menus[i].Button.gameObject.activeSelf == false)
             {
-                Menus[i].GameObject.SetActive(true);
+                Menus[i].Button.gameObject.SetActive(true);
             }
 
             Menus[i].Text.text = texts[i];
