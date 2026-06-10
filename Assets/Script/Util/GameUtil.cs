@@ -1,6 +1,6 @@
 ﻿public static class GameUtil
 {
-    public static string SetLanguage(Language language)
+    public static string GetLanguage(Language language)
     {
         switch (language)
         {

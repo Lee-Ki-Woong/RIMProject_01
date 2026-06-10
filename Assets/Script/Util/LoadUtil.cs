@@ -31,7 +31,7 @@ public static class LoadUtil
             
             if (asset == null)
             {
-                Debug.LogError($"{address} 경로에 리소스가 없습니다!!");
+                LogError(address);
                 return null;
             }
 
@@ -83,7 +83,7 @@ public static class LoadUtil
             
             if(asset == null)
             {
-                Debug.LogError($"{address} 경로에 리소스가 없습니다!!");
+                LogError(address);
                 return null;
             }
 

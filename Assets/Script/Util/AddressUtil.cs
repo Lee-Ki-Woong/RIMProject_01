@@ -5,7 +5,8 @@
         public static class Prefab
         {
             public static string BasePrefab = "Base/Prefab";
-            public static string Party = "Prefab/Party";
+            public static string BaseParty = "Prefab/Party";
+            public static string BaseEnemy = "Prefab/Enemy";
 
             public static class UI
             {
@@ -15,6 +16,10 @@
                 public const string CharacterCollection = "Prefab/UI/CharacterCollection";
                 public const string InGamePopup = "Prefab/UI/InGamePopup";
                 public const string NewMainMenu = "Prefab/UI/NewMainMenu";
+                public const string SkillStatePopup = "Prefab/UI/SkillStatePopup";
+                public const string FirstStartPopup = "Prefab/UI/FirstStartPopup";
+                public const string DiePopup = "Prefab/UI/DiePopup";
+                public const string LanguagePopup = "Prefab/UI/LanguagePopup";
             }
         }
     }
@@ -94,6 +99,30 @@
                     public const string Background = "Sprite/UI/InGamePopup/Background";
                     public const string Button = "Sprite/UI/InGamePopup/Button";
                 }
+
+                public static class FirstPopup
+                {
+                    public const string Background = "Sprite/UI/FirstPopup/Background";
+                    public const string ResumeButton = "Sprite/UI/FirstPopup/ResumeButton";
+                }
+
+                public static class SkillState
+                {
+                    public const string Background = "Sprite/UI/SkillState/Background";
+                    public const string ExitButton = "Sprite/UI/SkillState/ExitButton";
+                }
+
+                public static class DiePopup
+                {
+                    public const string Background = "Sprite/UI/DiePopup/Background";
+                    public const string ExitButton = "Sprite/UI/DiePopup/ExitButton";
+                }
+
+                public static class LanguagePopup
+                {
+                    public const string Background = "Sprite/UI/LanguagePopup/Background";
+                    public const string MenuButtons = "Sprite/UI/LanguagePopup/MenuButtons";
+                }
             }
         }
 
@@ -102,4 +131,5 @@
             public static string BaseFont = "Base/Font";
         }
     }
+
 }

@@ -6,6 +6,8 @@
         {
             public const string CharacterCollection = "CharacterCollection";
             public const string LanguagePopup = "LanguagePopup";
+            public const string InGamePopup = "InGamePopup";
+            public const string DiePopup = "DiePopup";
         }
     }
     public static class DataFile
@@ -15,6 +17,8 @@
             public const string MainMenuData = "MainMenuData";
             public const string CharacterCollectionData = "CharacterCollectionData";
             public const string LanguagePopupData = "LanguagePopupData";
+            public const string InGamePopupData = "InGamePopupData";
+            public const string DiePopupData = "DiePopupData";
         }
 
 
