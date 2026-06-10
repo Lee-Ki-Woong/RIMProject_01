@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "Character_01",
+    "Name": "Character1",
+    "OtherName": "OtherName1",
+    "Class": "DarkMage",
+    "Description": "Description1"
+  },
+  {
+    "Id": "Character_02",
+    "Name": "Character2",
+    "OtherName": "OtherName2",
+    "Class": "Archer",
+    "Description": "Description2"
+  },
+  {
+    "Id": "Character_03",
+    "Name": "Character3",
+    "OtherName": "OtherName3",
+    "Class": "Astrogist",
+    "Description": "Description3"
+  },
+  {
+    "Id": "Character_04",
+    "Name": "Character4",
+    "OtherName": "OtherName4",
+    "Class": "Mage",
+    "Description": "Description4"
+  },
+  {
+    "Id": "Character_05",
+    "Name": "Character5",
+    "OtherName": "OtherName5",
+    "Class": "Engineer",
+    "Description": "Description5"
+  },
+  {
+    "Id": "Character_06",
+    "Name": "Character6",
+    "OtherName": "OtherName6",
+    "Class": "Archer",
+    "Description": "Description6"
+  },
+  {
+    "Id": "Character_07",
+    "Name": "Character7",
+    "OtherName": "OtherName7",
+    "Class": "Mage",
+    "Description": "Description7"
+  },
+  {
+    "Id": "Character_08",
+    "Name": "Character8",
+    "OtherName": "OtherName8",
+    "Class": "Astrogist",
+    "Description": "Description8"
+  }
+]

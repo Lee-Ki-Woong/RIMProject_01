@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "Character_01",
+    "Name": "캐릭터1",
+    "OtherName": "이명1",
+    "Class": "암흑술사",
+    "Description": "대충 설명1"
+  },
+  {
+    "Id": "Character_02",
+    "Name": "캐릭터2",
+    "OtherName": "이명2",
+    "Class": "아처",
+    "Description": "대충 설명2"
+  },
+  {
+    "Id": "Character_03",
+    "Name": "캐릭터3",
+    "OtherName": "이명3",
+    "Class": "점성술사",
+    "Description": "대충 설명3"
+  },
+  {
+    "Id": "Character_04",
+    "Name": "캐릭터4",
+    "OtherName": "이명4",
+    "Class": "마법사",
+    "Description": "대충 설명4"
+  },
+  {
+    "Id": "Character_05",
+    "Name": "캐릭터5",
+    "OtherName": "이명5",
+    "Class": "엔지니어",
+    "Description": "대충 설명5"
+  },
+  {
+    "Id": "Character_06",
+    "Name": "캐릭터6",
+    "OtherName": "이명6",
+    "Class": "아처",
+    "Description": "대충 설명6"
+  },
+  {
+    "Id": "Character_07",
+    "Name": "캐릭터7",
+    "OtherName": "이명7",
+    "Class": "마법사",
+    "Description": "대충 설명7"
+  },
+  {
+    "Id": "Character_08",
+    "Name": "캐릭터8",
+    "OtherName": "이명8",
+    "Class": "점성술사",
+    "Description": "대충 설명8"
+  }
+]

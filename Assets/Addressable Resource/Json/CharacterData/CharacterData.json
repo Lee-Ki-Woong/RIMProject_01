@@ -1,0 +1,122 @@
+[
+  {
+    "Id": "Character_01",
+    "MoveSpeed": 5,
+    "MaxHp": 150,
+    "SkillList": [
+      "Skill_DarkMage_01",
+      "Skill_DarkMage_02",
+      "Skill_DarkMage_03"
+    ],
+    "UltimateSkill": "Ulti_DarkMage_01",
+    "CharacterAnimatorPath": "Animator/Character01",
+    "CharacterStandPath": "Sprite/CharacterStand/Character01",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character01",
+    "CharacterObjectPath": "Prefab/Character/01"
+  },
+  {
+    "Id": "Character_02",
+    "MoveSpeed": 7,
+    "MaxHp": 125,
+    "SkillList": [
+      "Skill_Archer_01",
+      "Skill_Archer_02",
+      "Skill_Archer_03"
+    ],
+    "UltimateSkill": "Ulti_Archer_01",
+    "CharacterAnimatorPath": "Animator/Character02",
+    "CharacterStandPath": "Sprite/CharacterStand/Character02",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character02",
+    "CharacterObjectPath": "Prefab/Character/02"
+  },
+  {
+    "Id": "Character_03",
+    "MoveSpeed": 5,
+    "MaxHp": 100,
+    "SkillList": [
+      "Skill_Astrogist_01",
+      "Skill_Astrogist_02",
+      "Skill_Astrogist_03"
+    ],
+    "UltimateSkill": "Ulti_Astrogist_01",
+    "CharacterAnimatorPath": "Animator/Character03",
+    "CharacterStandPath": "Sprite/CharacterStand/Character03",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character03",
+    "CharacterObjectPath": "Prefab/Character/03"
+  },
+  {
+    "Id": "Character_04",
+    "MoveSpeed": 5,
+    "MaxHp": 100,
+    "SkillList": [
+      "Skill_Mage_01",
+      "Skill_Mage_02",
+      "Skill_Mage_03"
+    ],
+    "UltimateSkill": "Ulti_Mage_01",
+    "CharacterAnimatorPath": "Animator/Character04",
+    "CharacterStandPath": "Sprite/CharacterStand/Character04",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character04",
+    "CharacterObjectPath": "Prefab/Character/04"
+  },
+  {
+    "Id": "Character_05",
+    "MoveSpeed": 4,
+    "MaxHp": 125,
+    "SkillList": [
+      "Skill_Engineer_01",
+      "Skill_Engineer_02",
+      "Skill_Engineer_03"
+    ],
+    "UltimateSkill": "Ulti_Engineer_01",
+    "CharacterAnimatorPath": "Animator/Character05",
+    "CharacterStandPath": "Sprite/CharacterStand/Character05",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character05",
+    "CharacterObjectPath": "Prefab/Character/05"
+  },
+  {
+    "Id": "Character_06",
+    "MoveSpeed": 7,
+    "MaxHp": 125,
+    "SkillList": [
+      "Skill_Archer_01",
+      "Skill_Archer_02",
+      "Skill_Archer_04"
+    ],
+    "UltimateSkill": "Ulti_Archer_02",
+    "CharacterAnimatorPath": "Animator/Character06",
+    "CharacterStandPath": "Sprite/CharacterStand/Character06",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character06",
+    "CharacterObjectPath": "Prefab/Character/06"
+  },
+  {
+    "Id": "Character_07",
+    "MoveSpeed": 4,
+    "MaxHp": 100,
+    "SkillList": [
+      "Skill_Mage_01",
+      "Skill_Mage_02",
+      "SKill_Mage_04"
+    ],
+    "UltimateSkill": "Ulti_Mage_02",
+    "CharacterAnimatorPath": "Animator/Character07",
+    "CharacterStandPath": "Sprite/CharacterStand/Character07",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character07",
+    "CharacterObjectPath": "Prefab/Character/07"
+  },
+  {
+    "Id": "Character_08",
+    "MoveSpeed": 4,
+    "MaxHp": 100,
+    "SkillList": [
+      "Skill_Astrogist_01",
+      "Skill_Astrogist_02",
+      "Skill_Astrogist_04"
+    ],
+    "UltimateSkill": "Ulti_Astrogist_02",
+    "CharacterAnimatorPath": "Animator/Character08",
+    "CharacterStandPath": "Sprite/CharacterStand/Character08",
+    "CharacterIconPath": "Sprite/CharacterIcon/Character08",
+    "CharacterObjectPath": "Prefab/Character/08"
+  }
+]

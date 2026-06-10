@@ -2,7 +2,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour
