@@ -13,6 +13,10 @@ public abstract class BasePresenter
 
     protected abstract void LoadData();
 
+    protected abstract void SubscribeEvents();
+
+    protected abstract void UnsubscribeEvents();
+
     protected void Log(string text)
     {
         Debug.Log($"{this} : " + text);
@@ -32,11 +36,4 @@ public abstract class BasePresenter
     {
         LogError($"{text}에 맞는 데이터가 UIDataManager에 없습니다!!");
     }
-}
-
-public abstract class BasePresenterTwo : BasePresenter
-{
-    protected abstract void SubscribeEvents();
-
-    protected abstract void UnsubscribeEvents();
 }
