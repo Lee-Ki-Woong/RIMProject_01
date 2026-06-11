@@ -1,8 +1,29 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
 
 public partial class UIManager
 {
     private MainMenuPresenter m_mainMenuPresenter;
+    public InGamePresenter m_inGamePresenter { get; private set; }
+    private EndlessGameModePresenter m_endlessGameModePresenter;
+    private CharacterCollectionPresenter m_characterCollectionPresenter;
+    private InGamePopupPresenter m_inGamePopupPresenter;
+    private SkillStatePopupPresenter m_skillStatePopupPresenter;
+    private DiePopupPresenter m_diePopupPresenter;
+    private FirstPopupPresenter m_firstPopupPresenter;
+
+    private Dictionary<Type, BasePresenter> m_PresenterList = new();
+
+    //public TPresenter OpenUI<TPresenter, TUI>() where TPresenter : BasePresenter, new() where TUI : BaseUI
+    //{
+    //    Type type = typeof(TPresenter);
+
+    //    if(m_PresenterList.TryGetValue(type, out BasePresenter basePresenter) == false)
+    //    {
+    //        basePresenter = new TPresenter();
+    //        m_PresenterList.Add(type, basePresenter);
+    //    }
+    //}
 
     public void OpenMainMenu()
     {
@@ -15,8 +36,6 @@ public partial class UIManager
         m_mainMenuPresenter.InitMainMenu(CreateUI<MainMenu>(UIType.MainMenu));
     }
 
-    public InGamePresenter m_inGamePresenter { get; private set; }
-
     public void OpenInGame()
     {
         if (m_inGamePresenter == null)
@@ -27,8 +46,6 @@ public partial class UIManager
         m_activeUI.Add(UIType.InGame);
         m_inGamePresenter.InitInGame(CreateUI<InGame>(UIType.InGame));
     }
-
-    private EndlessGameModePresenter m_endlessGameModePresenter;
 
     public void OpenEndlessGameMode()
     {
@@ -41,8 +58,6 @@ public partial class UIManager
         m_endlessGameModePresenter.InitEndlessGameMode(CreateUI<EndlessGameMode>(UIType.EndlessGameMode));
     }
 
-    private CharacterCollectionPresenter m_characterCollectionPresenter;
-
     public void OpenCharacterCollection()
     {
         if (m_characterCollectionPresenter == null)
@@ -54,8 +69,6 @@ public partial class UIManager
         m_characterCollectionPresenter.InitCharacterCollection(CreateUI<CharacterCollection>(UIType.CharacterCollection));
     }
 
-    private InGamePopupPresenter m_inGamePopupPresenter;
-
     public void OpenInGamePopup(int score)
     {
         if (m_inGamePopupPresenter == null)
@@ -66,8 +79,6 @@ public partial class UIManager
         m_activeUI.Add(UIType.InGamePopup);
         m_inGamePopupPresenter.InitInGamePopup(CreateUI<InGamePopup>(UIType.InGamePopup));
     }
-
-    private SkillStatePopupPresenter m_skillStatePopupPresenter;
 
     public void OpenSkillState(SkillData skillData)
     {
@@ -82,8 +93,6 @@ public partial class UIManager
         m_activeUI.Add(UIType.SkillStatePopup);
     }
 
-    private DiePopupPresenter m_diePopupPresenter;
-
     public void OpenDiePopup()
     {
         if (m_diePopupPresenter == null)
@@ -95,8 +104,6 @@ public partial class UIManager
         m_activeUI.Add(UIType.DiePopup);
     }
 
-    private FirstPopupPresenter m_firstPopupPresenter;
-
     public void OpenFirstPopup()
     {
         if (m_firstPopupPresenter == null)
@@ -106,5 +113,18 @@ public partial class UIManager
 
         m_firstPopupPresenter.InitFirstPopup(CreateUI<FirstPopup>(UIType.FirstStartPopup));
         m_activeUI.Add(UIType.FirstStartPopup);
+    }
+
+    private LanguagePopupPresenter m_languagePopupPresenter;
+
+    public void OpenLanguagePopup()
+    {
+        if(m_languagePopupPresenter == null)
+        {
+            m_languagePopupPresenter = new LanguagePopupPresenter();
+        }
+
+        m_languagePopupPresenter.InitLanguagePopup(CreateUI<LanguagePopup>(UIType.LanguagePopup));
+        m_activeUI.Add(UIType.LanguagePopup);
     }
 }

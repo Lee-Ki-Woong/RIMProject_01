@@ -1,0 +1,8 @@
+[
+  {
+    "Id": "DiePopup",
+    "GameOverText": "게임 오버!!",
+    "Score": "점수",
+    "ExitButton": "나가기"
+  }
+]

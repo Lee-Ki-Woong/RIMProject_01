@@ -35,6 +35,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdfca7bd978abf84a8963131552f4c2e
+    m_Address: Json/DiePopupData_English
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3fdb7e1e0130494cbd16fd06736bf02
+    m_Address: Json/DiePopupData_Korean
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d5361c68289d7aa43a39ec55d34393ac
     m_Address: Json/MainMenuData_Korean
     m_ReadOnly: 0

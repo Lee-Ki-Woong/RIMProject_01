@@ -1,0 +1,8 @@
+[
+  {
+    "Id": "DiePopup",
+    "GameOverText": "Game Over!!",
+    "ScoreText": "Score",
+    "ExitButton": "Exit Game"
+  }
+]
