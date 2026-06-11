@@ -6,7 +6,7 @@
         {
             case Language.English:
                 {
-                    return "Enlish";
+                    return "English";
                 }
             case Language.Korean:
                 {
