@@ -19,9 +19,11 @@ public class LanguagePopup : BaseUI
     [SerializeField] private MenuButton Button_English;
     [SerializeField] private MenuButton Button_Exit;
 
-    public event Action OnChangeLanguageKorean;
-    public event Action OnChangeLanguageEnglish;
-    public event Action OnExit;
+    public event Action OnChangeLanguageKoreanButton;
+    public event Action OnChangeLanguageEnglishButton;
+    public event Action OnExitButton;
+
+    public event Action OnUIExit;
 
     private void OnEnable()
     {
@@ -38,6 +40,7 @@ public class LanguagePopup : BaseUI
     private void OnDisable()
     {
         UnBindButtonEvents();
+        InvokeUIExit();
     }
 
     private void UnBindButtonEvents()
@@ -70,17 +73,21 @@ public class LanguagePopup : BaseUI
 
     private void InvokeChangeLanguageKorean()
     {
-        OnChangeLanguageKorean?.Invoke();
+        OnChangeLanguageKoreanButton?.Invoke();
     }
 
     private void InvokeChangeLanguageEnglish()
     {
-        OnChangeLanguageEnglish?.Invoke();
+        OnChangeLanguageEnglishButton?.Invoke();
     }
 
     private void InvokeExit()
     {
-        OnExit?.Invoke();
+        OnExitButton?.Invoke();
     }
 
+    private void InvokeUIExit()
+    { 
+        OnUIExit?.Invoke();
+    }
 }

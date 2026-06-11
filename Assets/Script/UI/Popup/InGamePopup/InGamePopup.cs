@@ -22,10 +22,12 @@ public class InGamePopup : BaseUI
 
     private MenuButton[] menuButtons;
 
-    public event Action OnResumeButton;
-    public event Action OnRestartButton;
-    public event Action OnGameOptionButton;
-    public event Action OnMainMenuButton;
+    public event Action OnResumeGame;
+    public event Action OnRestartGame;
+    public event Action OnOpenGameOption;
+    public event Action OnReturnMainMenu;
+
+    public event Action OnUIExit;
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class InGamePopup : BaseUI
     private void OnEnable()
     {
         Time.timeScale = 0;
+        InvokeUIExit();
         BindButtonEvent();
     }
 
@@ -56,6 +59,7 @@ public class InGamePopup : BaseUI
     {
         Time.timeScale = 1;
         UnBindButtonEvent();
+        InvokeUIExit();
     }
 
     private void UnBindButtonEvent()
@@ -87,22 +91,26 @@ public class InGamePopup : BaseUI
 
     private void InvokeOnResumeButton()
     {
-        OnResumeButton?.Invoke();
+        OnResumeGame?.Invoke();
     }
 
     private void InvokeOnRestartButton()
     {
-        OnRestartButton?.Invoke();
+        OnRestartGame?.Invoke();
     }
 
     private void InvokeOnGameOptionButton()
     {
-        OnGameOptionButton?.Invoke();
+        OnOpenGameOption?.Invoke();
     }
 
     private void InvokeOnMainMenuButton()
     {
-        OnMainMenuButton?.Invoke();
+        OnReturnMainMenu?.Invoke();
     }
 
+    private void InvokeUIExit()
+    {
+        OnUIExit?.Invoke();
+    }
 }

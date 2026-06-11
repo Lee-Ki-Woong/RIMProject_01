@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-public class InGamePopupPresenter : BasePresenterTwo
+public class InGamePopupPresenter : BasePresenter
 {
     private InGamePopup m_inGamePopupUI;
 
@@ -43,18 +43,18 @@ public class InGamePopupPresenter : BasePresenterTwo
 
     protected override void SubscribeEvents()
     {
-        m_inGamePopupUI.OnResumeButton += OnClick_ResumeButton;
-        m_inGamePopupUI.OnRestartButton += OnClick_RestartButton;
-        m_inGamePopupUI.OnGameOptionButton += OnClick_GameOptionButton;
-        m_inGamePopupUI.OnMainMenuButton += OnClick_MainButton;
+        m_inGamePopupUI.OnResumeGame += OnClick_ResumeButton;
+        m_inGamePopupUI.OnRestartGame += OnClick_RestartButton;
+        m_inGamePopupUI.OnOpenGameOption += OnClick_GameOptionButton;
+        m_inGamePopupUI.OnReturnMainMenu += OnClick_MainButton;
     }
 
     protected override void UnsubscribeEvents()
     {
-        m_inGamePopupUI.OnResumeButton -= OnClick_ResumeButton;
-        m_inGamePopupUI.OnRestartButton -= OnClick_RestartButton;
-        m_inGamePopupUI.OnGameOptionButton -= OnClick_GameOptionButton;
-        m_inGamePopupUI.OnMainMenuButton -= OnClick_MainButton;
+        m_inGamePopupUI.OnResumeGame -= OnClick_ResumeButton;
+        m_inGamePopupUI.OnRestartGame -= OnClick_RestartButton;
+        m_inGamePopupUI.OnOpenGameOption -= OnClick_GameOptionButton;
+        m_inGamePopupUI.OnReturnMainMenu -= OnClick_MainButton;
     }
 
     protected async override UniTask LoadAssetAsync()

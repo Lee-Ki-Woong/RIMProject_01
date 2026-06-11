@@ -2,9 +2,9 @@
 using TMPro;
 using UnityEngine;
 
-public class LanguagePopupPresenter : BasePresenterTwo
+public class LanguagePopupPresenter : BasePresenter
 {
-    private LanguagePopup m_lnaguagePopupUI;
+    private LanguagePopup m_languagePopupUI;
 
 
     private Sprite m_sprite_background;
@@ -20,19 +20,19 @@ public class LanguagePopupPresenter : BasePresenterTwo
 
     public void InitLanguagePopup(LanguagePopup languagePopup)
     {
-        if (m_lnaguagePopupUI == null)
+        if (m_languagePopupUI == null)
         {
-            m_lnaguagePopupUI = languagePopup;
+            m_languagePopupUI = languagePopup;
         }
 
         if(m_isAssetLoad == false)
         {
-            m_lnaguagePopupUI.ActiveFalse();
+            m_languagePopupUI.ActiveFalse();
             LoadAssetAsync().Forget();
         }
         else
         {
-            m_lnaguagePopupUI.ActiveTrue();
+            m_languagePopupUI.ActiveTrue();
         }
 
         SubscribeEvents();
@@ -42,9 +42,11 @@ public class LanguagePopupPresenter : BasePresenterTwo
 
     protected override void SubscribeEvents()
     {
-        m_lnaguagePopupUI.OnChangeLanguageKorean += OnClick_ChangeLanguageKoreanButton;
-        m_lnaguagePopupUI.OnChangeLanguageEnglish += OnClick_ChangeLanguageEnglishButton;
-        m_lnaguagePopupUI.OnExit += OnClick_ExitButton;
+        m_languagePopupUI.OnChangeLanguageKoreanButton += OnClick_ChangeLanguageKoreanButton;
+        m_languagePopupUI.OnChangeLanguageEnglishButton += OnClick_ChangeLanguageEnglishButton;
+        m_languagePopupUI.OnExitButton += OnClick_ExitButton;
+
+        m_languagePopupUI.OnUIExit += On_UIExit;
     }
 
     private void SubscribeLanguageEvent()
@@ -54,9 +56,11 @@ public class LanguagePopupPresenter : BasePresenterTwo
 
     protected override void UnsubscribeEvents()
     {
-        m_lnaguagePopupUI.OnChangeLanguageKorean -= OnClick_ChangeLanguageKoreanButton;
-        m_lnaguagePopupUI.OnChangeLanguageEnglish -= OnClick_ChangeLanguageEnglishButton;
-        m_lnaguagePopupUI.OnExit -= OnClick_ExitButton;
+        m_languagePopupUI.OnChangeLanguageKoreanButton -= OnClick_ChangeLanguageKoreanButton;
+        m_languagePopupUI.OnChangeLanguageEnglishButton -= OnClick_ChangeLanguageEnglishButton;
+        m_languagePopupUI.OnExitButton -= OnClick_ExitButton;
+
+        m_languagePopupUI.OnUIExit -= On_UIExit;
     }
 
     private void UnsubscribeLanguageEvent()
@@ -77,10 +81,10 @@ public class LanguagePopupPresenter : BasePresenterTwo
         m_sprite_menuButtons = sprite_menuButtons;
         m_fontAsset_baseFont = fontAsset_baseFont;
 
-        m_lnaguagePopupUI.SetAsset(m_sprite_background, m_sprite_menuButtons, m_fontAsset_baseFont);
+        m_languagePopupUI.SetAsset(m_sprite_background, m_sprite_menuButtons, m_fontAsset_baseFont);
 
         m_isAssetLoad = true;
-        m_lnaguagePopupUI.ActiveTrue();
+        m_languagePopupUI.ActiveTrue();
     }
 
     protected override void LoadData()
@@ -97,7 +101,7 @@ public class LanguagePopupPresenter : BasePresenterTwo
         m_englishButtonText = languagePopupData.EnglishButton;
         m_exitButtonText = languagePopupData.ExitButton;
 
-        m_lnaguagePopupUI.SetData(m_koreanButtonText, m_englishButtonText, m_exitButtonText);
+        m_languagePopupUI.SetData(m_koreanButtonText, m_englishButtonText, m_exitButtonText);
     }
 
     private void OnClick_ChangeLanguageKoreanButton()
@@ -112,13 +116,17 @@ public class LanguagePopupPresenter : BasePresenterTwo
 
     private void OnClick_ExitButton()
     {
-        UnsubscribeEvents();
-        UnsubscribeLanguageEvent();
         UIManager.Instance.CloseUI(UIType.LanguagePopup);
     }
 
     private void On_ChangeLanguage()
     {
         LoadData();
+    }
+
+    private void On_UIExit()
+    {
+        UnsubscribeEvents();
+        UnsubscribeLanguageEvent();
     }
 }
