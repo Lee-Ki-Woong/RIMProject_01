@@ -44,8 +44,44 @@ public class MainMenuPresenter : BasePresenter
         }
 
         SubscribeChangeLanguageEvents();
-
+        SubscribeEvents();
         LoadData();
+        OpenMainMenu();
+    }
+
+    protected override void SubscribeEvents()
+    {
+        Action[] actions = GetAction(m_mainMenuType);
+
+        m_mainMenuUI.OnFirstMenuClicked += actions[0];
+        m_mainMenuUI.OnSecondMenuClicked += actions[1];
+        m_mainMenuUI.OnThirdMenuClicked += actions[2];
+        m_mainMenuUI.OnFourthMenuClicked += actions[3];
+        m_mainMenuUI.OnFifthMenuClicked += actions[4];
+
+        m_mainMenuUI.OnUIExit += On_UIExit;
+    }
+
+    private void SubscribeChangeLanguageEvents()
+    {
+        GameManager.Instance.OnLanguageChanged += On_ChangeLanguage;
+    }
+
+    protected override void UnsubscribeEvents()
+    {
+        Action[] actions = GetAction(m_mainMenuType);
+        m_mainMenuUI.OnFirstMenuClicked -= actions[0];
+        m_mainMenuUI.OnSecondMenuClicked -= actions[1];
+        m_mainMenuUI.OnThirdMenuClicked -= actions[2];
+        m_mainMenuUI.OnFourthMenuClicked -= actions[3];
+        m_mainMenuUI.OnFifthMenuClicked -= actions[4];
+        
+        m_mainMenuUI.OnUIExit -= On_UIExit;
+    }
+
+    private void UnsubscribeChangeLanguageEvents()
+    {
+        GameManager.Instance.OnLanguageChanged -= On_ChangeLanguage;
     }
 
     protected override async UniTask LoadAssetAsync()
@@ -75,7 +111,6 @@ public class MainMenuPresenter : BasePresenter
     protected override void LoadData()
     {
         string dataId = GetMainMenuId(m_mainMenuType);
-        Action[] actions = GetAction(m_mainMenuType);
 
         if (UIDataManager.Instance.MainMenuDataList.TryGetValue(dataId, out MainMenuData mainMenuData) == false)
         {
@@ -91,7 +126,7 @@ public class MainMenuPresenter : BasePresenter
 
         string[] texts = new string[5] { m_firstMenuButtonText, m_secondMenuButtonText, m_thirdMenuButtonText, m_fourthMenuButtonText, m_fifthMenuButtonText };
 
-        m_mainMenuUI.SetData(texts, actions);
+        m_mainMenuUI.SetData(texts);
     }
 
     private string GetMainMenuId(MainMenuType mainMenuType)
@@ -100,28 +135,28 @@ public class MainMenuPresenter : BasePresenter
         {
             case MainMenuType.MainMenu:
                 {
-                    return "MainMenu_Main";
+                    return DataUtil.DataKey.UI.MainMenu.Main;
                 }
             case MainMenuType.StartGame:
                 {
-                    return "MainMenu_StartGame";
+                    return DataUtil.DataKey.UI.MainMenu.StartGame;
                 }
             case MainMenuType.Collection:
                 {
-                    return "MainMenu_Collection";
+                    return DataUtil.DataKey.UI.MainMenu.Collection;
                 }
             case MainMenuType.Shop:
                 {
-                    return "MainMenu_Shop";
+                    return DataUtil.DataKey.UI.MainMenu.Shop;
                 }
             case MainMenuType.GameOption:
                 {
-                    return "MainMenu_GameOption";
+                    return DataUtil.DataKey.UI.MainMenu.GameOption;
                 }
             default:
                 {
                     LogError("잘못된 접근입니다!! 메인화면으로 돌아갑니다");
-                    return "MainMenu_Main";
+                    return DataUtil.DataKey.UI.MainMenu.Main;
                 }
         }
     }
@@ -234,46 +269,48 @@ public class MainMenuPresenter : BasePresenter
                 }
             default:
                 {
-                    LogError("예상치못한 오류가 발생하였습니다!!");
+                    LogError("잘못된 접근입니다!!");
                     return null;
                 }
         }
     }
 
+    private void OpenMenuBase(MainMenuType mainMenuType)
+    {
+        UnsubscribeEvents();
+        m_mainMenuType = mainMenuType;
+        SubscribeEvents();
+        LoadData();
+    }
+
     private void OpenMainMenu()
     {
-        m_mainMenuType = MainMenuType.MainMenu;
-        LoadData();
+        OpenMenuBase(MainMenuType.MainMenu);
     }
 
     #region MainMenu
     private void OpenStartMenu()
     {
-        m_mainMenuType = MainMenuType.StartGame;
-        LoadData();
+        OpenMenuBase(MainMenuType.StartGame);
     }
 
     private void OpenCollectionMenu()
     {
-        m_mainMenuType = MainMenuType.Collection;
-        LoadData();
+        OpenMenuBase(MainMenuType.Collection);
     }
 
     private void OpenShopMenu()
     {
-        m_mainMenuType = MainMenuType.Shop;
-        LoadData();
+        OpenMenuBase(MainMenuType.Shop);
     }
 
     private void OpenGameOptionMenu()
     {
-        m_mainMenuType = MainMenuType.GameOption;
-        LoadData();
+        OpenMenuBase(MainMenuType.GameOption);
     }
 
     private void QuitGame()
     {
-        UnsubscribeChangeLanguageEvents();
         GameManager.Instance.GameQuit();
     }
     #endregion
@@ -281,7 +318,6 @@ public class MainMenuPresenter : BasePresenter
     #region StartGame
     private void OpenEndlessMode()
     {
-        UnsubscribeChangeLanguageEvents();
         UIManager.Instance.OpenEndlessGameMode();
     }
     #endregion
@@ -293,25 +329,22 @@ public class MainMenuPresenter : BasePresenter
     }
     #endregion
 
+    #region GameOption
     private void OpenLanguagePopup()
     {
         UIManager.Instance.OpenLanguagePopup();
     }
-
-
-    private void SubscribeChangeLanguageEvents()
-    {
-        GameManager.Instance.OnLanguageChanged += On_ChangeLanguage;
-    }
-
-    private void UnsubscribeChangeLanguageEvents()
-    {
-        GameManager.Instance.OnLanguageChanged -= On_ChangeLanguage;
-    }
+    #endregion
 
     private void On_ChangeLanguage()
     {
         LoadData();
+    }
+
+    private void On_UIExit()
+    {
+        UnsubscribeEvents();
+        UnsubscribeChangeLanguageEvents();
     }
 }
 
